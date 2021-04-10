@@ -16,12 +16,14 @@ const location = {
 }
 
 const About = () => (
-  <div>
+  <div className="about">
     <h1>About UIUC Crime Map</h1>
     <p id="description">UIUC Crime Map is a website that tracks data about crimes in the University Illinois Campustown
-      area and displays detailed information about each crime incident. By clicking on the points on
-      the map, you can find information about the crime type, date, location, and incident code for each
-      crime.
+      area and displays detailed information about each crime incident. 
+      <br></br>
+      <br></br>
+      By clicking on the points on the map, you can find information about the crime type, date,
+      location, and incident code for every crime occured on campus.
     </p>
   </div>
   );
@@ -32,8 +34,8 @@ export default function App() {
   <div>
     <Router>
       <main>
-        <div class="header">
-          <a href="/" class="logo">UIUC Crime Map</a>
+        <div className="header">
+          <a href="/" className="logo">UIUC Crime Map</a>
             <div class="header-right">
               <a href="/about">About</a>
           </div>

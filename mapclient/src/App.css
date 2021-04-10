@@ -8,13 +8,13 @@
 
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #13294B;
   padding: 10px 10px;
 }
 
 .header a {
   float: left;
-  color: black;
+  color: white;
   text-align: center;
   padding: 12px;
   text-decoration: none;
@@ -28,6 +28,7 @@
 .header a.logo {
   font-size: 25px;
   font-weight: bold;
+  color: #E84A27;
 }
 
 .header-right {
@@ -37,14 +38,23 @@
 }
 
 .header a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #17315a;
+  color: white;
+  transition: 0.5s;
 }
 
 h1 {
-  font-size: larger;
+  font-size: 200%;
 }
 
 #description {
-  font-size: medium;
+  font-size: 120%;
+  color: rgb(87, 87, 87);
+}
+
+.about {
+  width: 850px;
+  padding: 20px;
+  margin: 0px auto;
+  color: #13294B;
 }
