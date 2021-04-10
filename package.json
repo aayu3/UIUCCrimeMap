@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cd ./api && npm start",
-    "heroku-postbuild": "cd ../mapclient && npm start"
+    "heroku-postbuild": "cd ./mapclient && npm start"
   },
   "repository": {
     "type": "git",
