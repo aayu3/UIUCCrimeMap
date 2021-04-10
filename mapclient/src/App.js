@@ -37,9 +37,15 @@ const About = () => (
         // get date info
         var today = new Date();
         
+        /*
         let curday = parseInt(today.getDate());
         let curmonth = parseInt(today.getMonth() + 1);
         let curyear = parseInt(today.getFullYear());
+        */
+
+        let curday = 2;
+        let curmonth = 4;
+        let curyear = 21;
 
         this.state = { 
           crimes : [] ,
@@ -63,8 +69,14 @@ const About = () => (
       var dateOccurred = crime.DateOccurred.split("/");
       var monthOccurred = parseInt(dateOccurred[0]);
       var dayOccurred = parseInt(dateOccurred[1]);
-      if (Math.abs(dayOccurred - this.state.day) <= 3 && monthOccurred == this.state.month) {
+      var redDaysThreshold = 7;
+      var yellowMonthThreshold = 1;
+      if ((Math.abs(dayOccurred - this.state.day) <= redDaysThreshold && monthOccurred == this.state.month) || 
+      // Check if previous month date is within the  7 day threshold
+      ((dayOccurred + redDaysThreshold > 30) && ((dayOccurred + redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 == this.state.month)) {
         return redIcon;
+      } else if (Math.abs(monthOccurred - this.state.month) <= yellowMonthThreshold) {
+        return yellowIcon;
       }
       return greenIcon;
     }
