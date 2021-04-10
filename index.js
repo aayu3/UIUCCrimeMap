@@ -16,7 +16,7 @@ mongoose.connect(
     app.use("/api", routes);
     app.use(express.json());
 
-    app.listen(5000, () => {
+    app.listen(process.env.PORT || 5000, () => {
         console.log("server running...");
     })
  }).catch(err => console.log(err));
