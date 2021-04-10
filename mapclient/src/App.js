@@ -1,4 +1,5 @@
 import React from "react";
+import { Component } from 'react';
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import {Icon} from "leaflet";
 import crimeData from "./data/illinoisCrimeShort.json";
@@ -13,39 +14,65 @@ const location = {
   zoom: 17,
 }
 
-export default function App() {
+class App extends Component {
+  constructor(props) {
+      super(props);
+      this.state = { crimes: [] };
+  }
 
-  return ( 
-  <div>
-    <div>
-      <div class="header">
-        <a href="#default" class="logo">UIUC Crime Map</a>
-      </div>
-    </div>
+  getCrimes = () => {
+      fetch("http://localhost:5000/api/crimes")
+      .then(res => res.json())
+      .then(res => this.setState({ crimes: Array.from(res) }))
+      .catch(err => console.log(err));
+  }
 
-  <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
-  <TileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-  />
-  {crimeData.map(crime => (
-    <Marker 
-    key={crime.Incident}
-    position={[crime.GeneralLocation[0], crime.GeneralLocation[1]]}>
-      icon = 
-      <Popup position={[crime.GeneralLocation[0], crime.GeneralLocation[1]]} > 
+  
+
+  componentDidMount() {
+      this.getCrimes();
+  }
+
+  render() {
+
+    console.log(this.state.crimes);
+    
+      return (
         <div>
-          <h2>{crime.CrimeDescription}</h2>
-          <h3>Date: {crime.DateOccurred}</h3>
-          <h3>Address: {crime.StreetAddress}</h3>
-          <p>Incident: {crime.Incident}</p>
+        <div>
+          <div class="header">
+            <a href="#default" class="logo">UIUC Crime Map</a>
+          </div>
         </div>
-      </Popup>
-    </Marker>
-  ))}
-
-
-</MapContainer>
-</div>
-  )
+    
+      <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      />
+      {this.state.crimes.map((crime, i) => 
+      <Marker
+      key={crime.CaseID}
+      position={[crime.Latitude, crime.Longitude]}>
+        icon = 
+        <Popup position={[crime.Latitude, crime.Longitude]} > 
+          <div>
+            <h2>{crime.Description}</h2>
+            <h3>Date: {crime.DateOccurred}</h3>
+            <h3>Address: {crime.StreetAddress}</h3>
+            <p>Incident: {crime.CaseID}</p>
+          </div>
+        </Popup>
+      </Marker>)}
+      
+    
+    
+    </MapContainer>
+    </div>
+      );
+  }
 }
+
+export default App;
+
+
