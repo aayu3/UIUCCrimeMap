@@ -30,7 +30,21 @@
   font-weight: bold;
 }
 
+.header-right {
+  float: right;
+  position: relative;
+  right: 10px;
+}
+
 .header a:hover {
   background-color: #ddd;
   color: black;
+}
+
+h1 {
+  font-size: larger;
+}
+
+#description {
+  font-size: medium;
 }
