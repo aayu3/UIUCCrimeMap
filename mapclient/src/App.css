@@ -1,13 +1,15 @@
 .leaflet-container {   
   width: 70%;
   height: 80vh;
-  margin: 0px auto;
+  margin: 30px auto;
+  position: relative;
+  left: -160px;
 }
 
 .header {
   overflow: hidden;
   background-color: #f1f1f1;
-  padding: 20px 10px;
+  padding: 10px 10px;
 }
 
 .header a {
@@ -19,6 +21,8 @@
   font-size: 18px;
   line-height: 25px;
   border-radius: 4px;
+  position: relative;
+  left: 10px;
 }
 
 .header a.logo {

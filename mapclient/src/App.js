@@ -23,8 +23,6 @@ export default function App() {
       </div>
     </div>
 
-    <br></br>
-
   <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
   <TileLayer
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
