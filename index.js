@@ -7,7 +7,7 @@ const path = require('path');
 
 
 mongoose.connect(
- "mongodb+srv://aaronyu:tlKbPr4so2GFkMaA@uiuccrimedatabase.vg06i.mongodb.net/Crime-DB?retryWrites=true&w=majority",
+ process.env.MONGODB_KEY,
  {
      useNewUrlParser: true,
      useUnifiedTopology: true
