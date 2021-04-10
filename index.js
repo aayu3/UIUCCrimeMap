@@ -20,10 +20,10 @@ mongoose.connect(
     // Serve up our react app
 
     // serves the built version of your react app
-app.use(express.static(path.join(__dirname, 'mapclient/build')))
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/mapclient/build/index.html'))
-})
+    app.use(express.static(path.join(__dirname, 'mapclient/build')))
+    app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/mapclient/build/index.html'))
+    })
 
     app.listen(process.env.PORT || 5000, () => {
         console.log("server running...");
