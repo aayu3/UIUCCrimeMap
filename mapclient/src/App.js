@@ -15,7 +15,15 @@ const location = {
 
 export default function App() {
 
-  return <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
+  return ( 
+  <div>
+    <div>
+      <div class="header">
+        <a href="#default" class="logo">UIUC Crime Map</a>
+      </div>
+    </div>
+
+  <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
   <TileLayer
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -38,4 +46,6 @@ export default function App() {
 
 
 </MapContainer>
+</div>
+  )
 }
