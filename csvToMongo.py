@@ -21,7 +21,7 @@ with open(file) as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         #print(row)
-        if collection.find_one(filter={"CaseID":row['Incident ID']}) is None:
+        if collection.find_one(filter={"CaseID":row['Incident ID'],"Description":row["Crime"]}) is None:
             formattedrow = {
                 "CaseID":row['Incident ID'],
                 "DateReported" :row['Date'],
@@ -34,7 +34,7 @@ with open(file) as csvfile:
                 "Description": row["Crime"],
                 "Disposition": "UNKNOWN"
             }
-            print("Added: %s,%s"%(row['Incident ID'],row['Crime']))
+            print("Added: %s:%s"%(row['Incident ID'],row['Crime']))
             collection.insert_one(formattedrow)
         else:
             print("Skipped: %s:%s"%(row['Incident ID'],row['Crime']))
