@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd ./api && npm start",
-    "heroku-postbuild": "cd ./mapclient && npm start"
+    "start": "node ./api/src/index.js",
+    "heroku-postbuild": "cd mapclient && npm install --only=dev && npm install && npm start"
   },
   "repository": {
     "type": "git",
