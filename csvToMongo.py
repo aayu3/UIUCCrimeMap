@@ -27,8 +27,8 @@ with open(file) as csvfile:
             "TimeReported": "12:00",
             "DateOccurred": row['Date'],
             "TimeOccurred": "12:00",
-            "Latitude": int(row["Latitude"]),
-            "Longitude" : int(row["Longitude"]),
+            "Latitude": float(row["Latitude"]),
+            "Longitude" : float(row["Longitude"]),
             "StreetAddress": row["Address"], # I could also use row["Location"], but I think this one is better
             "Description": row["Crime"],
             "Disposition": "UNKNOWN"

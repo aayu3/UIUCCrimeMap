@@ -15,7 +15,7 @@ csvFile["Longitude"]=np.nan
 csvFile["Latitude"]=np.nan
 with open('output.csv','w', encoding='utf-8') as out:
 	csv_out=csv.writer(out)
-	csv_out.writerow(["Incident ID", "Location", "Date", "Crime", "Adress", "Longitude", "Latitude"])
+	csv_out.writerow(["Incident ID", "Location", "Date", "Crime", "Address", "Longitude", "Latitude"])
 	for index, row in csvFile.iterrows():
 		if row["General Location"].split()[-1].lower() not in ["urbana", "champaign"]:
 			row["General Location"] += " Urbana champaign"
