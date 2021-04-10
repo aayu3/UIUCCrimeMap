@@ -34,6 +34,7 @@ with open(file) as csvfile:
             "Disposition": "UNKNOWN"
         }
         collection.insert_one(formattedrow)
+        break
 
 # collection.insert_one({"CaseID":"CC2109632",
 #                        "DateReported" :"4/6/2021",
