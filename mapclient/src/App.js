@@ -27,10 +27,10 @@ export default function App() {
       icon = 
       <Popup position={[crime.GeneralLocation[0], crime.GeneralLocation[1]]} > 
         <div>
-          <h2>{crime.Incident}</h2>
+          <h2>{crime.CrimeDescription}</h2>
           <h3>Date: {crime.DateOccurred}</h3>
           <h3>Address: {crime.StreetAddress}</h3>
-          <p>{crime.CrimeDescription}</p>
+          <p>Incident: {crime.Incident}</p>
         </div>
       </Popup>
     </Marker>
