@@ -17,8 +17,6 @@ with open('output.csv','w', encoding='utf-8') as out:
 	csv_out=csv.writer(out)
 	csv_out.writerow(["Incident ID", "Location", "Date", "Crime", "Adress", "Longitude", "Latitude"])
 	for index, row in csvFile.iterrows():
-		print("New location")
-		print(row["General Location"])
 		if row["General Location"].split()[-1].lower() not in ["urbana", "champaign"]:
 			row["General Location"] += " Urbana champaign"
 
@@ -26,8 +24,5 @@ with open('output.csv','w', encoding='utf-8') as out:
 
 		if place_candidate['status']=="OK":
 			location = gmaps.reverse_geocode(place_candidate['candidates'][0]['place_id'])
-			# print(reverse_location_geocode)
-			# location = gmaps.geocode(reverse_location_geocode)
 			csv_out.writerow((row["Incident"], row["General Location"], row["Date occurred"],row["Crime Description"], location[0]["formatted_address"],location[0]["geometry"]["location"]["lng"], location[0]["geometry"]["location"]["lat"]))
-			# place_candidate["Longitude"]=
 	
