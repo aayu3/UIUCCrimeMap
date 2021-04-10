@@ -34,9 +34,10 @@ with open(file) as csvfile:
                 "Description": row["Crime"],
                 "Disposition": "UNKNOWN"
             }
+            print("Added: %s,%s"%(row['Incident ID'],row['Crime']))
             collection.insert_one(formattedrow)
         else:
-            print("Skipped: %s"%(row['Incident ID'],))
+            print("Skipped: %s:%s"%(row['Incident ID'],row['Crime']))
 
 # collection.insert_one({"CaseID":"CC2109632",
 #                        "DateReported" :"4/6/2021",
