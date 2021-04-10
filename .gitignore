@@ -1,2 +1,8 @@
+#api keys
+.env
+
+#dependancies
+/node_modules
+
 #Local Cache
 /__pycache__

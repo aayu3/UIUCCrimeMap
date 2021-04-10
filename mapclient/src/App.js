@@ -34,7 +34,7 @@ const About = () => (
     }
   
     getCrimes = () => {
-        fetch("http://localhost:5000/api/crimes")
+        fetch("/api/crimes")
         .then(res => res.json())
         .then(res => this.setState({ crimes: Array.from(res) }))
         .catch(err => console.log(err));
