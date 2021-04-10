@@ -2,11 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const cors = require("cors");
-require('dotenv').config();
+
 
 
 mongoose.connect(
- process.env.MONGODB_KEY,
+ "mongodb+srv://aaronyu:tlKbPr4so2GFkMaA@uiuccrimedatabase.vg06i.mongodb.net/Crime-DB?retryWrites=true&w=majority",
  {
      useNewUrlParser: true,
      useUnifiedTopology: true
