@@ -21,16 +21,19 @@ export default function App() {
     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   />
   {crimeData.map(crime => (
-    <Marker key={crime.Incident} position={[crime.GeneralLocation[0], crime.GeneralLocation[1]]}>
-<Popup position={[crime.GeneralLocation[0], crime.GeneralLocation[1]]} > 
-  <div>
-    <h2>{crime.Incident}</h2>
-    <h3>Date: {crime.DateOccurred}</h3>
-    <h3>Address: {crime.StreetAddress}</h3>
-    <p>{crime.CrimeDescription}</p>
-  </div>
-  </Popup>
-      </Marker>
+    <Marker 
+    key={crime.Incident}
+    position={[crime.GeneralLocation[0], crime.GeneralLocation[1]]}>
+      icon = 
+      <Popup position={[crime.GeneralLocation[0], crime.GeneralLocation[1]]} > 
+        <div>
+          <h2>{crime.Incident}</h2>
+          <h3>Date: {crime.DateOccurred}</h3>
+          <h3>Address: {crime.StreetAddress}</h3>
+          <p>{crime.CrimeDescription}</p>
+        </div>
+      </Popup>
+    </Marker>
   ))}
 
 
