@@ -1,0 +1,21 @@
+{
+  "name": "UIUCCrimeMap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd ./api && npm start",
+    "heroku-postbuild": "cd ../mapclient && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aayu3/UIUCCrimeMap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aayu3/UIUCCrimeMap/issues"
+  },
+  "homepage": "https://github.com/aayu3/UIUCCrimeMap#readme"
+}
