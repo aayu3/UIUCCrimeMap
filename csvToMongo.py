@@ -21,20 +21,22 @@ with open(file) as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         #print(row)
-        formattedrow = {
-            "CaseID":row['Incident ID'],
-            "DateReported" :row['Date'],
-            "TimeReported": "12:00",
-            "DateOccurred": row['Date'],
-            "TimeOccurred": "12:00",
-            "Latitude": float(row["Latitude"]),
-            "Longitude" : float(row["Longitude"]),
-            "StreetAddress": row["Address"], # I could also use row["Location"], but I think this one is better
-            "Description": row["Crime"],
-            "Disposition": "UNKNOWN"
-        }
-        collection.insert_one(formattedrow)
-        break
+        if collection.find_one(filter={"CaseID":row['Incident ID']}) is None:
+            formattedrow = {
+                "CaseID":row['Incident ID'],
+                "DateReported" :row['Date'],
+                "TimeReported": "12:00",
+                "DateOccurred": row['Date'],
+                "TimeOccurred": "12:00",
+                "Latitude": float(row["Latitude"]),
+                "Longitude" : float(row["Longitude"]),
+                "StreetAddress": row["Address"], # I could also use row["Location"], but I think this one is better
+                "Description": row["Crime"],
+                "Disposition": "UNKNOWN"
+            }
+            collection.insert_one(formattedrow)
+        else:
+            print("Skipped: %s"%(row['Incident ID'],))
 
 # collection.insert_one({"CaseID":"CC2109632",
 #                        "DateReported" :"4/6/2021",
@@ -46,3 +48,6 @@ with open(file) as csvfile:
 #     "StreetAddress": "55 E HEALEY ST, CHAMPAIGN",
 #     "Description": "BURGLARY",
 #     "Disposition": "REPORTED TO OTHER AGENCY"})
+
+# print(collection.find_one(filter={"CaseID":"UU2105449"}))
+# print(collection.find_one(filter={"CaseID":"??"}))
