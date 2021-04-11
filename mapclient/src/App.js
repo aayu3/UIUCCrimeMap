@@ -45,7 +45,8 @@ const About = () => (
 const team = () => (
   <div className="team">
     <div>
-      <img className="profilepic" src={aaronyu} alt="Aaron Yu"/>
+      <a href="https://github.com/aayu3"><img className="profilepic" src={aaronyu} alt="Aaron Yu"/></a>
+      
       <div className="name">
         Aaron Yu
       </div>
