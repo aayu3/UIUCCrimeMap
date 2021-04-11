@@ -18,6 +18,7 @@ import profilepic from './icons/defaultprofilepic.png';
 import aaronyu from './icons/aaronpfp.png';
 import angelshah from './icons/angelshah.jpg';
 
+
 console.log(profilepic);
 
 // Define Center Location
@@ -78,14 +79,12 @@ const team = () => (
     </div>
     <div className="break"></div>
     <div>
-      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <img className="profilepic" src={guitar} alt="Juyoung Choi"/>
       <div className="name">
-        Foo
+        Juyoung Choi
       </div>
       <div className="bio">
-         Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor
-         incididunt ut labore et dolore magna aliqua.
+        I am a Freshman at UIUC majoring in Physics from South Korea. I love playing pubg mobile and wildrift and playing the guitar.
       </div>
     </div>
     <div>
