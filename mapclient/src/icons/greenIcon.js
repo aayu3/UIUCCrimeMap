@@ -7,7 +7,7 @@ const greenIcon = new L.Icon({
     iconRetinaUrl: greenMarker,
     iconAnchor: [0,0],
     popupAnchor:  [15.5,10],
-    shadowUrl: shadowMarker,
+    shadowUrl: null,
     shadowSize: [36, 36],
     shadowAnchor: [2.5,2],
     iconSize: [30, 30],
