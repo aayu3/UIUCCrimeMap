@@ -74,6 +74,7 @@ const About = () => (
         .catch(err => console.log(err));
     }
     
+    // Red only map
     RedMap = () => (
       <div className="redMap">
         <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
@@ -104,6 +105,36 @@ const About = () => (
       </div>
       );
 
+      YellowMap = () => (
+        <div className="yellowMap">
+          <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            />
+            {this.state.crimes.map((crime, i) => 
+          <Marker
+        //key={crime.CaseID}
+        position={[crime.Latitude, crime.Longitude]} 
+        
+        icon = {this.returnYellow(crime)}
+        
+        >
+          
+          <Popup position={[crime.Latitude, crime.Longitude]} > 
+            <div>
+              <h2>{crime.Description}</h2>
+              <h3>Date: {crime.DateOccurred}</h3>
+              <h3>Address: {crime.StreetAddress}</h3>
+              <p>Incident: {crime.CaseID}</p>
+            </div>
+          </Popup>
+          
+        </Marker>)}
+            </MapContainer> 
+        </div>
+        );    
+
     crimeDate(props) {
       const crime = props;
       var dateOccurred = crime.DateOccurred.split("/");
@@ -128,6 +159,16 @@ const About = () => (
       // Check if previous month date is within the  7 day threshold
       ((dayOccurred + this.state.redDaysThreshold > 30) && ((dayOccurred + this.state.redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 === this.state.month)) {
         return redIcon;
+      } return noIcon;
+    }
+
+    returnYellow(props) {
+      const crime = props;
+      var dateOccurred = crime.DateOccurred.split("/");
+      var monthOccurred = parseInt(dateOccurred[0]);
+      var dayOccurred = parseInt(dateOccurred[1]);
+      if (Math.abs(monthOccurred - this.state.month) <= this.state.yellowMonthThreshold) {
+        return yellowIcon;
       } return noIcon;
     }
   
@@ -214,6 +255,8 @@ const About = () => (
 
                 <Route path="/about" component={About} />
               </Switch>
+// Red map switch
+
               <Switch>
               <Route path="/" exact render={() =>
               <div className="map-legend-outerContainer">
@@ -263,6 +306,58 @@ const About = () => (
         </div> }/>
 
                 <Route path="/redMap" component={this.RedMap} />
+              </Switch>
+
+              // yellow map switch
+              <Switch>
+              <Route path="/" exact render={() =>
+              <div className="map-legend-outerContainer">
+            <div className="iconlegend">
+              <h2><b>Legend:</b></h2>
+              <h5>Crimes within...</h5>
+              <img src={redMarker}/>One week
+              <br></br>
+              <br></br>
+              <img src={yellowMarker}/>One month
+              <br></br>
+              <br></br>
+              <img src={greenMarker}/>All time
+            </div>
+      
+        <div className="map">
+        <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        {this.state.crimes.map((crime, i) => 
+        <Marker
+      //key={crime.CaseID}
+      position={[crime.Latitude, crime.Longitude]} 
+      
+      icon = {this.crimeDate(crime)}
+      
+      >
+        
+        <Popup position={[crime.Latitude, crime.Longitude]} > 
+          <div>
+            <h2>{crime.Description}</h2>
+            <h3>Date: {crime.DateOccurred}</h3>
+            <h3>Address: {crime.StreetAddress}</h3>
+            <p>Incident: {crime.CaseID}</p>
+          </div>
+        </Popup>
+        
+      </Marker>)}
+      
+   
+
+        </MapContainer> 
+
+        </div>
+        </div> }/>
+
+                <Route path="/yellowMap" component={this.YellowMap} />
               </Switch>
             </main>
           </Router>
