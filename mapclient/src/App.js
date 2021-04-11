@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from 'react';
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {  greenIcon  } from './icons/greenIcon';
@@ -108,11 +108,22 @@ const About = () => (
                       </a>
                      
                 </div>
+
               </div>
               <Switch>
               <Route path="/" exact render={() =>
+              <div>
+            <div className="iconlegend">
+              <img src={redIcon}/> Crimes within one week
+              <br></br>
+              <br></br>
+              <img src={yellowIcon}/> Crimes within one month
+              <br></br>
+              <br></br>
+              <img src={greenIcon}/> Crimes from all time
+            </div>
       
-      
+        
         <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -138,9 +149,11 @@ const About = () => (
         
       </Marker>)}
       
-      
-        </MapContainer> } />
-        
+   
+
+        </MapContainer> 
+        </div> } />
+
                 <Route path="/about" component={About} />
               </Switch>
             </main>
