@@ -18,7 +18,7 @@ import profilepic from './icons/defaultprofilepic.png';
 import aaronyu from './icons/aaronpfp.png';
 import petervandervelde from './icons/peterpfp.png';
 import angelshah from './icons/angelshah.jpg'
-
+import mohammad from './icons/mohammadpfp.png';
 
 console.log(profilepic);
 
@@ -108,14 +108,14 @@ const team = () => (
       </div>
     </div>
     <div>
-      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <a href="https://github.com/mraahemi"><img className="profilepic" src={mohammad} alt="Mohammad"/></a>
       <div className="name">
         Foo
       </div>
       <div className="bio">
-         Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor
-         incididunt ut labore et dolore magna aliqua.
+      Mohammad is an MSc student at the University of Ottawa. He is studying CS as his major program, and his minor stream is in Data Science. <br></br>
+He has a plethora of work in data science and machine learning from the industry during his internships, his participation and victories in multiple hackathons, as well as in his thesis work during his Masters.
+He is working as a data scientist with Canada Border Service Agency.
       </div>
     </div>
   </div>
