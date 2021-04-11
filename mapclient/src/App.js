@@ -121,14 +121,15 @@ const About = () => (
               <Route path="/" exact render={() =>
               <div className="map-legend-outerContainer">
             <div className="iconlegend">
-              <h3><b>Legend:</b></h3>
-              <img src={redMarker}/> Crimes within one week
+              <h2><b>Legend:</b></h2>
+              <h5>Crimes within...</h5>
+              <img src={redMarker}/>One week
               <br></br>
               <br></br>
-              <img src={yellowMarker}/> Crimes within one month
+              <img src={yellowMarker}/>One month
               <br></br>
               <br></br>
-              <img src={greenMarker}/> Crimes from all time
+              <img src={greenMarker}/>All time
             </div>
       
         <div className="map">
