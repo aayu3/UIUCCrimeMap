@@ -9,19 +9,22 @@ In our project we used React.js to create a front end and display a map with lea
 As of now our features are pretty barebone, we have a <a href="https://uiuccrimemap.herokuapp.com/">homepage</a> and an <a href="https://uiuccrimemap.herokuapp.com//about">about section</a>. As the weekend continues we want to add more features, such as color coding markers by crime type or by date. One ambitious goal we have is allowing users to report crimes that will be added to the database.<br>
 <br>
 <h2>How to Run</h2>
-
-<h3>Frontend (Client)</h3>
 <br>
-
 <h3>Backend (API)</h3>
 <code>
 yarn // to install dependencies in package.json <br>
 yarn start // starts the backend server (no need to open this in a browser)  <br>
 </code>
 <br>
+<h3>Frontend (Client)</h3>
+<br>
 <code>
 cd mapclient <br>
 yarn // to install dependencies in package.json  <br>
 yarn start // starts the frontend in a browser  <br>
 </code>
+
+
+
+
 
