@@ -1,9 +1,11 @@
 .leaflet-container {   
-  width: 70%;
+  width: 70vw;
   height: 90vh;
-  margin: 30px auto;
+  margin: 30px;
+  margin-right: 0px;
   position: relative;
-  left: -160px;
+  background-color: #0455A4;
+  
 }
 
 
@@ -85,13 +87,33 @@ h1 {
   color: rgb(0, 51, 102);
 }
 
-.iconlegend {
-  position: absolute;
-  right: 70px;
-  font-size: 22px;
+
+
+.map-legend-outerContainer{
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
 }
+
+.iconlegend {
+  /* position: absolute; */
+  flex:1.75;
+  font-size: 22px;
+  background-color: #E8E9EA ;
+  margin:30px;
+  margin-left: 0px;
+ 
+  padding:15px;
+  border-radius: 20px;
+
+}
+
 
 .iconlegend img{
   width:5vw;
   
+}
+.map{
+  flex:6;
+  border-radius: 20px;
 }
