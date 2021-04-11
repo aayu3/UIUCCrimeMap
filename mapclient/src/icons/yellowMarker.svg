@@ -4,5 +4,7 @@ aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
   <desc>A solid styled icon from Orion Icon Library.</desc>
   <path data-name="layer1"
   d="M32 2a20 20 0 0 0-20 20c0 18 20 40 20 40s20-22 20-40A20 20 0 0 0 32 2zm0 28a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-  fill="#e3e22b"></path>
+  fill="#e6b800
+
+"></path>
 </svg>

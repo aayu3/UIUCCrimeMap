@@ -345,14 +345,14 @@ const team = () => (
             <div className="iconlegend">
               <h2><b>Legend:</b></h2>
               <h5>Crimes within...</h5>
-              <a href= "/redMap"><img src={redMarker}/></a>
-               {this.state.redDaysThreshold} Days
+              <a href= "/redMap"><img src={redMarker}/>{this.state.redDaysThreshold} Days</a>
+               
               <br></br>
               <br></br>
-              <a href="/yellowMap"><img src={yellowMarker}/></a>{this.state.yellowMonthThreshold} Months
+              <a href="/yellowMap"><img src={yellowMarker}/> {this.state.yellowMonthThreshold} Months</a>
               <br></br>
               <br></br>
-              <a href = "/greenMap"><img src={greenMarker}/></a>All Time
+              <a href = "/greenMap"><img src={greenMarker}/>All Time</a>
             </div>
       
         <div className="map">
