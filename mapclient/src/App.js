@@ -322,13 +322,13 @@ const team = () => (
                     <button href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
                     <a href="/greenMap">
-                    <button href=" /greenMap" type="button" class="btn btn-outline-light">Green Marker Map</button>
+                    <button href=" /greenMap" type="button" class="btn btn-outline-success">Green Marker Map</button>
                       </a>
                     <a href="/yellowMap">
-                    <button href=" /yellowMap" type="button" class="btn btn-outline-light">Yellow Marker Map</button>
+                    <button href=" /yellowMap" type="button" class="btn btn-outline-warning">Yellow Marker Map</button>
                       </a>
                     <a href="/redMap">
-                    <button href=" /redMap" type="button" class="btn btn-outline-light">Red Marker Map</button>
+                    <button href=" /redMap" type="button" class="btn btn-outline-danger">Red Marker Map</button>
                       </a>
                      
                 </div>
