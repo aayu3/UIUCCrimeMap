@@ -11,14 +11,17 @@ As of now our features are pretty barebone, we have a <a href="https://uiuccrime
 <h2>How to Run</h2>
 
 <h3>Frontend (Client)</h3>
- ```
-cd mapclient
-yarn // to install dependencies in package.json
-yarn start // starts the frontend in a browser
-```
+<br>
 
 <h3>Backend (API)</h3>
-```
-yarn // to install dependencies in package.json
-yarn start // starts the backend server (no need to open this in a browser)
-```
+<code>
+yarn // to install dependencies in package.json <br>
+yarn start // starts the backend server (no need to open this in a browser)  <br>
+</code>
+<br>
+<code>
+cd mapclient <br>
+yarn // to install dependencies in package.json  <br>
+yarn start // starts the frontend in a browser  <br>
+</code>
+
