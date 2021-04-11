@@ -19,6 +19,7 @@ import aaronyu from './icons/aaronpfp.png';
 import petervandervelde from './icons/peterpfp.png';
 import angelshah from './icons/angelshah.jpg'
 import mohammad from './icons/mohammadpfp.png';
+import illiaborzov from './icons/illiapfp.png';
 
 console.log(profilepic);
 
@@ -97,20 +98,19 @@ const team = () => (
       </div>
     </div>
     <div>
-      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <a href="https://github.com/zer0key123"><img className="profilepic" src={illiaborzov} alt="Illia Borzov"/></a>
+      
       <div className="name">
-        Foo
+        Illia Borzov
       </div>
       <div className="bio">
-         Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor
-         incididunt ut labore et dolore magna aliqua.
+         Illia is a freshman studying Computer Science at NYU. In addition to CS, he enjoys linguistics and graphic design.
       </div>
     </div>
     <div>
       <a href="https://github.com/mraahemi"><img className="profilepic" src={mohammad} alt="Mohammad"/></a>
       <div className="name">
-        Foo
+        Mohammad Raahemi
       </div>
       <div className="bio">
       Mohammad is an MSc student at the University of Ottawa. He is studying CS as his major program, and his minor stream is in Data Science. <br></br>
