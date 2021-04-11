@@ -16,7 +16,6 @@ import   redMarker   from './icons/redMarker.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import profilepic from './icons/defaultprofilepic.png';
 import aaronyu from './icons/aaronpfp.png';
-import guitar from './icons/guitar.jpg';
 
 console.log(profilepic);
 
@@ -36,8 +35,13 @@ const About = () => (
       area and displays detailed information about each crime incident. 
       <br></br>
       <br></br>
-      Red markers indicate a crime that has occured in the last week, yellow markers indicate a crime that happened in the last month, and green markers indicate the rest. By clicking on the points on the map, you can find information about the crime type, date,
+      Red markers indicate a crime that has occured in the last week, yellow markers indicate a crime that happened in the last month,
+       and green markers indicate every crime in the <a href="https://police.illinois.edu/crime-reporting/daily-crime-log/">University Police Daily Crime Log</a>.
+        By clicking on the points on the map, you can find information about the crime type, date,
       location, and incident code for every crime occured on campus.
+      <br></br>
+      <br></br>
+      If you only want to see crimes that happened within a certain time perdoid, click on the colored marker maps to see only see makers in red, yellow, or green.
     </p>
   </div>
   );
@@ -79,7 +83,7 @@ const team = () => (
     </div>
     <div className="break"></div>
     <div>
-      <img className="profilepic" src={guitar} alt="Juyoung Choi"/>
+      <img className="profilepic" src={profilepic} alt="Juyoung Choi"/>
       <div className="name">
         Juyoung Choi
       </div>
