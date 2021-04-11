@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {  greenIcon  } from './icons/greenIcon';
 import {  yellowIcon  } from './icons/yellowIcon';
 import {  redIcon  } from './icons/redIcon';
+import {  noIcon  } from './icons/noIcon';
 import   uiucCrimeLogo2   from './icons/uiucCrimeLogo2.png';
 import websitelogo from './icons/websitelogo.png'
 import websitelogo2 from './icons/websitelogo2.png'
@@ -37,6 +38,8 @@ const About = () => (
   </div>
   );
 
+  
+
   class App extends Component {
     constructor(props) {
         super(props);
@@ -58,6 +61,8 @@ const About = () => (
           day : curday,
           month : curmonth,
           year : curyear,
+          redDaysThreshold : 7,
+          yellowMonthThreshold : 1
 
         };
     }
@@ -69,22 +74,61 @@ const About = () => (
         .catch(err => console.log(err));
     }
     
+    RedMap = () => (
+      <div className="redMap">
+        <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
+          {this.state.crimes.map((crime, i) => 
+        <Marker
+      //key={crime.CaseID}
+      position={[crime.Latitude, crime.Longitude]} 
+      
+      icon = {this.returnRed(crime)}
+      
+      >
+        
+        <Popup position={[crime.Latitude, crime.Longitude]} > 
+          <div>
+            <h2>{crime.Description}</h2>
+            <h3>Date: {crime.DateOccurred}</h3>
+            <h3>Address: {crime.StreetAddress}</h3>
+            <p>Incident: {crime.CaseID}</p>
+          </div>
+        </Popup>
+        
+      </Marker>)}
+          </MapContainer> 
+      </div>
+      );
 
     crimeDate(props) {
       const crime = props;
       var dateOccurred = crime.DateOccurred.split("/");
       var monthOccurred = parseInt(dateOccurred[0]);
-      var dayOccurred = parseInt(dateOccurred[1]);
-      var redDaysThreshold = 7;
-      var yellowMonthThreshold = 1;
-      if ((Math.abs(dayOccurred - this.state.day) <= redDaysThreshold && monthOccurred === this.state.month) || 
+      var dayOccurred = parseInt(dateOccurred[1]);      
+      if ((Math.abs(dayOccurred - this.state.day) <= this.state.redDaysThreshold && monthOccurred === this.state.month) || 
       // Check if previous month date is within the  7 day threshold
-      ((dayOccurred + redDaysThreshold > 30) && ((dayOccurred + redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 === this.state.month)) {
+      ((dayOccurred + this.state.redDaysThreshold > 30) && ((dayOccurred + this.state.redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 === this.state.month)) {
         return redIcon;
-      } else if (Math.abs(monthOccurred - this.state.month) <= yellowMonthThreshold) {
+      } else if (Math.abs(monthOccurred - this.state.month) <= this.state.yellowMonthThreshold) {
         return yellowIcon;
       }
       return greenIcon;
+    }
+
+    returnRed(props) {
+      const crime = props;
+      var dateOccurred = crime.DateOccurred.split("/");
+      var monthOccurred = parseInt(dateOccurred[0]);
+      var dayOccurred = parseInt(dateOccurred[1]);
+      if ((Math.abs(dayOccurred - this.state.day) <= this.state.redDaysThreshold && monthOccurred === this.state.month) || 
+      // Check if previous month date is within the  7 day threshold
+      ((dayOccurred + this.state.redDaysThreshold > 30) && ((dayOccurred + this.state.redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 === this.state.month)) {
+        return redIcon;
+      } return noIcon;
     }
   
     componentDidMount() {
@@ -112,6 +156,9 @@ const About = () => (
                       </a>
                     <a href="/about">
                     <button href=" /about" type="button" class="btn btn-outline-light">About</button>
+                    </a>
+                    <a href="/redMap">
+                    <button href=" /redMap" type="button" class="btn btn-outline-light">Red Map</button>
                       </a>
                      
                 </div>
@@ -163,9 +210,59 @@ const About = () => (
         </MapContainer> 
 
         </div>
-        </div> } />
+        </div> }/>
 
                 <Route path="/about" component={About} />
+              </Switch>
+              <Switch>
+              <Route path="/" exact render={() =>
+              <div className="map-legend-outerContainer">
+            <div className="iconlegend">
+              <h2><b>Legend:</b></h2>
+              <h5>Crimes within...</h5>
+              <img src={redMarker}/>One week
+              <br></br>
+              <br></br>
+              <img src={yellowMarker}/>One month
+              <br></br>
+              <br></br>
+              <img src={greenMarker}/>All time
+            </div>
+      
+        <div className="map">
+        <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        {this.state.crimes.map((crime, i) => 
+        <Marker
+      //key={crime.CaseID}
+      position={[crime.Latitude, crime.Longitude]} 
+      
+      icon = {this.crimeDate(crime)}
+      
+      >
+        
+        <Popup position={[crime.Latitude, crime.Longitude]} > 
+          <div>
+            <h2>{crime.Description}</h2>
+            <h3>Date: {crime.DateOccurred}</h3>
+            <h3>Address: {crime.StreetAddress}</h3>
+            <p>Incident: {crime.CaseID}</p>
+          </div>
+        </Popup>
+        
+      </Marker>)}
+      
+   
+
+        </MapContainer> 
+
+        </div>
+        </div> }/>
+
+                <Route path="/redMap" component={this.RedMap} />
               </Switch>
             </main>
           </Router>
