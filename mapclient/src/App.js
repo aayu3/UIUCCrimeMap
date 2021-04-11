@@ -19,6 +19,7 @@ import aaronyu from './icons/aaronpfp.png';
 import petervandervelde from './icons/peterpfp.png';
 import angelshah from './icons/angelshah.jpg'
 
+
 console.log(profilepic);
 
 // Define Center Location
@@ -65,12 +66,14 @@ const team = () => (
       </div>
     </div>
     <div>
+
       <img className="profilepic" src={petervandervelde} alt="Peter Vandervelde"/>
       <div className="name">
         Peter Vandervelde
       </div>
       <div className="bio">
         Peter is a High Schooler at Proof School who is interested in CS and Mathematics. His hobbies include acrobatics and digital drawing.
+
       </div>
     </div>
     <div>
