@@ -149,6 +149,11 @@ const team = () => (
     
     // Red only map
     RedMap = () => (
+      <div className="map-legend-outerContainer">
+            <div className="iconlegend">
+              <h2><b>Red Map</b></h2>
+              This map only displays the red markers, which are crimes that happened in the past {this.state.redDaysThreshold} days.
+            </div>
       <div className="redMap">
         <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
           <TileLayer
@@ -176,9 +181,15 @@ const team = () => (
       </Marker>)}
           </MapContainer> 
       </div>
+      </div>
       );
 
       YellowMap = () => (
+        <div className="map-legend-outerContainer">
+            <div className="iconlegend">
+              <h2><b>Yellow Map</b></h2>
+              This map only displays the yellow markers, which are crimes that happened in the past {this.state.yellowMonthThreshold} months.
+            </div>
         <div className="yellowMap">
           <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
             <TileLayer
@@ -205,10 +216,15 @@ const team = () => (
           
         </Marker>)}
             </MapContainer> 
-        </div>
+        </div></div>
         );    
 
         GreenMap = () => (
+          <div className="map-legend-outerContainer">
+            <div className="iconlegend">
+              <h2><b>Green Map</b></h2>
+              This map displays all crimes currently in the <a href="https://police.illinois.edu/crime-reporting/daily-crime-log/">University Police Daily Crime Log</a>.
+            </div>
           <div className="yellowMap">
             <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
               <TileLayer
@@ -235,6 +251,7 @@ const team = () => (
             
           </Marker>)}
               </MapContainer> 
+          </div>
           </div>
           );    
 
@@ -323,13 +340,13 @@ const team = () => (
             <div className="iconlegend">
               <h2><b>Legend:</b></h2>
               <h5>Crimes within...</h5>
-              <img src={redMarker}/>One week
+              <img src={redMarker}/> {this.state.redDaysThreshold} Days
               <br></br>
               <br></br>
-              <img src={yellowMarker}/>One month
+              <img src={yellowMarker}/>{this.state.yellowMonthThreshold} Months
               <br></br>
               <br></br>
-              <img src={greenMarker}/>All time
+              <img src={greenMarker}/>All Time
             </div>
       
         <div className="map">
