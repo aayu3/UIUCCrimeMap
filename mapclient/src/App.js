@@ -115,8 +115,9 @@ const About = () => (
               </div>
               <Switch>
               <Route path="/" exact render={() =>
-              <div>
+              <div className="map-legend-outerContainer">
             <div className="iconlegend">
+              <h3><b>Legend:</b></h3>
               <img src={redMarker}/> Crimes within one week
               <br></br>
               <br></br>
@@ -126,8 +127,8 @@ const About = () => (
               <img src={greenMarker}/> Crimes from all time
             </div>
       
-        
-        <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
+        <div className="map">
+        <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -155,6 +156,8 @@ const About = () => (
    
 
         </MapContainer> 
+
+        </div>
         </div> } />
 
                 <Route path="/about" component={About} />
