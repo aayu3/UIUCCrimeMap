@@ -14,7 +14,9 @@ import   greenMarker   from './icons/greenMarker.svg';
 import   yellowMarker   from './icons/yellowMarker.svg';
 import   redMarker   from './icons/redMarker.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import profilepic from './icons/defaultprofilepic.png';
 
+console.log(profilepic);
 
 // Define Center Location
 const location = {
@@ -38,7 +40,78 @@ const About = () => (
   </div>
   );
 
-  
+
+const team = () => (
+  <div className="team">
+    <div>
+      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <div className="name">
+        Foo
+      </div>
+      <div className="bio">
+         Lorem ipsum dolor sit amet,
+         consectetur adipiscing elit, sed do eiusmod tempor
+         incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+    <div>
+      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <div className="name">
+        Foo
+      </div>
+      <div className="bio">
+         Lorem ipsum dolor sit amet,
+         consectetur adipiscing elit, sed do eiusmod tempor
+         incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+    <div>
+      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <div className="name">
+        Foo
+      </div>
+      <div className="bio">
+         Lorem ipsum dolor sit amet,
+         consectetur adipiscing elit, sed do eiusmod tempor
+         incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+    <div className="break"></div>
+    <div>
+      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <div className="name">
+        Foo
+      </div>
+      <div className="bio">
+         Lorem ipsum dolor sit amet,
+         consectetur adipiscing elit, sed do eiusmod tempor
+         incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+    <div>
+      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <div className="name">
+        Foo
+      </div>
+      <div className="bio">
+         Lorem ipsum dolor sit amet,
+         consectetur adipiscing elit, sed do eiusmod tempor
+         incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+    <div>
+      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <div className="name">
+        Foo
+      </div>
+      <div className="bio">
+         Lorem ipsum dolor sit amet,
+         consectetur adipiscing elit, sed do eiusmod tempor
+         incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+  </div>
+);
 
   class App extends Component {
     constructor(props) {
@@ -225,6 +298,9 @@ const About = () => (
                     <button href="https://github.com/aayu3/UIUCCrimeMap" type="button" class="btn btn-outline-light">
                       <i class="fa fa-github"></i> GitHub</button>
                       </a>
+                    <a href="/team">
+                      <button href=" /team" type="button" class="btn btn-outline-light">Team</button>
+                    </a>
                     <a href="/about">
                     <button href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
@@ -290,6 +366,7 @@ const About = () => (
         </div> }/>
 
                 <Route path="/about" component={About} />
+                <Route path="/team" component={team} />
               </Switch>
 {/*Red map switch tags*/}
 

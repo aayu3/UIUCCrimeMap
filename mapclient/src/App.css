@@ -117,12 +117,60 @@ h1 {
  
   
 }
+
 .map{
   flex:8;
   border-radius: 20px;
 }
 
+
 .redMap{
   flex:8;
   border-radius: 20px;
+
+}
+
+.yellowMap{
+  flex:8;
+  border-radius: 20px;
+
+}
+
+.greenMap{
+  flex:8;
+  border-radius: 20px;
+
+}
+.team {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.team > div {
+  background-color: #f1f1f1;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 200px;
+  height: 320px;
+}
+
+.team > div.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.profilepic {
+  width: 200px;
+  height: 200px;
+}
+
+.name {
+  font-size: 20px;
+}
+
+.bio {
+  font-size: 12px;
 }
