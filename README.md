@@ -17,7 +17,7 @@ yarn start // starts the backend server (no need to open this in a browser)  <br
 </code>
 
 <h3>Frontend (Client)</h3>
-Open a new terminal to make sure your backend is still running.
+Open a new terminal to make sure your backend is still running. <br>
 <code>
 cd mapclient </code><br>
 <code>
