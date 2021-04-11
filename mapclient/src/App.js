@@ -83,7 +83,7 @@ const team = () => (
         Juyoung Choi
       </div>
       <div className="bio">
-         I am a Freshman at UIUC majoring in Physics from South Korea. I love playing mobile games and playing the guitar.
+        I am a Freshman at UIUC majoring in Physics from South Korea. I love playing pubg mobile and wildrift and playing the guitar.
       </div>
     </div>
     <div>
