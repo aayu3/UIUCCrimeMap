@@ -16,6 +16,7 @@ import   redMarker   from './icons/redMarker.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import profilepic from './icons/defaultprofilepic.png';
 import aaronyu from './icons/aaronpfp.png';
+import angelshah from './icons/angelshah.jpg';
 
 console.log(profilepic);
 
@@ -55,14 +56,13 @@ const team = () => (
       </div>
     </div>
     <div>
-      <img className="profilepic" src={profilepic} alt="Foo"/>
+    <a href="https://github.com/Angel-Shah"><img className="profilepic-angel" src={angelshah} alt="Angel Shah"/></a>
+      
       <div className="name">
-        Foo
+        Angel Shah
       </div>
       <div className="bio">
-         Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor
-         incididunt ut labore et dolore magna aliqua.
+         Angel is a Sophomore at the University of Waterloo studying Computer Engineering. Some of his hobbies include reading and working on side-projects.
       </div>
     </div>
     <div>
