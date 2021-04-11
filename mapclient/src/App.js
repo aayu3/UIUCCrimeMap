@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {  greenIcon  } from './icons/greenIcon';
 import {  yellowIcon  } from './icons/yellowIcon';
 import {  redIcon  } from './icons/redIcon';
+import   uiucCrimeLogo2   from './icons/uiucCrimeLogo2.png';
+import websitelogo from './icons/websitelogo.png'
+import websitelogo2 from './icons/websitelogo2.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -91,9 +94,19 @@ const About = () => (
           <Router>
             <main>
               <div className="header">
-                <a href="/" className="logo">UIUC Crime Map</a>
+                <a href="/" className="logo">
+                  {/* UIUC Crime Map */}
+                <img  className = "fullLogo" src ={websitelogo2} alt="logo"/>
+                
+                  </a>
+                
+
+
                   <div class="header-right">
-                    <a href="/about">About</a>
+                    <a href="/about">
+                    <button href=" /about" type="button" class="btn btn-outline-light">About</button>
+                      </a>
+                     
                 </div>
               </div>
               <Switch>
@@ -127,10 +140,7 @@ const About = () => (
       
       
         </MapContainer> } />
-        <div className="legend">
-          <h1>Red means hfdasfasdfhaksjldfhalkjsflakjsdhflakjsdflakjsdfhlkjasffasdjhlkjhsadjfhalsdkjhasdkjfhaklsjdhalksjdhakjlsfaljksfhaljksdalkjsdfai</h1>
-          
-        </div>
+        
                 <Route path="/about" component={About} />
               </Switch>
             </main>
