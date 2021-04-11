@@ -317,7 +317,11 @@ const team = () => (
 
 
                   <div class="header-right">
-                  <a href="https://github.com/aayu3/UIUCCrimeMap">
+                  <a href="https://youtu.be/1rHvtO1x0PI">
+                    <button href="https://youtu.be/1rHvtO1x0PI" type="button" class="btn btn-outline-light">
+                      <i class="fa fa-youtube"></i> YouTube</button>
+                      </a>
+                      <a href="https://github.com/aayu3/UIUCCrimeMap">
                     <button href="https://github.com/aayu3/UIUCCrimeMap" type="button" class="btn btn-outline-light">
                       <i class="fa fa-github"></i> GitHub</button>
                       </a>
