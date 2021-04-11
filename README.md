@@ -6,4 +6,19 @@ The goal of our project is to create a simple web application that displays crim
 In our project we used React.js to create a front end and display a map with leaftlet and react-leaflet. For our backend we used the Express.js package, and for our database we used MongoDB Atlas. For decrypting the pdf, we are using tabula in python, as well as Geocoding in order to convert street addresses to latitude and longitude coordinates for the front-end. Finally we are using pymongo to connect our python program with the MongoDB Atlas database.<br>
 <br>
 <h2>Features</h2>
-As of now our features are pretty barebone, we have a <a href="https://uiuccrimemap.herokuapp.com/">homepage</a> and an <a href="https://uiuccrimemap.herokuapp.com//about">about section</a>. As the weekend continues we want to add more features, such as color coding markers by crime type or by date. One ambitious goal we have is allowing users to report crimes that will be added to the database.
+As of now our features are pretty barebone, we have a <a href="https://uiuccrimemap.herokuapp.com/">homepage</a> and an <a href="https://uiuccrimemap.herokuapp.com//about">about section</a>. As the weekend continues we want to add more features, such as color coding markers by crime type or by date. One ambitious goal we have is allowing users to report crimes that will be added to the database.<br>
+<br>
+<h2>How to Run</h2>
+
+<h3>Frontend (Client)</h3>
+ ```
+cd mapclient
+yarn // to install dependencies in package.json
+yarn start // starts the frontend in a browser
+```
+
+<h3>Backend (API)</h3>
+```
+yarn // to install dependencies in package.json
+yarn start // starts the backend server (no need to open this in a browser)
+```
