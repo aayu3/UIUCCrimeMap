@@ -17,6 +17,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import profilepic from './icons/defaultprofilepic.png';
 import aaronyu from './icons/aaronpfp.png';
 import petervandervelde from './icons/peterpfp.png';
+import angelshah from './icons/angelshah.jpg'
+
 
 console.log(profilepic);
 
@@ -64,12 +66,14 @@ const team = () => (
       </div>
     </div>
     <div>
+
       <img className="profilepic" src={petervandervelde} alt="Peter Vandervelde"/>
       <div className="name">
         Peter Vandervelde
       </div>
       <div className="bio">
         Peter is a High Schooler at Proof School who is interested in CS and Mathematics. His hobbies include acrobatics and digital drawing.
+
       </div>
     </div>
     <div>
@@ -83,14 +87,13 @@ const team = () => (
     </div>
     <div className="break"></div>
     <div>
-      <img className="profilepic" src={profilepic} alt="Foo"/>
+    <a href="https://github.com/Angel-Shah"><img className="profilepic" src={angelshah} alt="Angel Shah"/></a>
+      
       <div className="name">
-        Foo
+        Angel Shah
       </div>
       <div className="bio">
-         Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor
-         incididunt ut labore et dolore magna aliqua.
+         Angel is a sophomore studying Computer Engineering at the University of Waterloo. In his spare time, he loves learning piano and reading. <i class="fa fa-book"></i>
       </div>
     </div>
     <div>
