@@ -41,7 +41,7 @@ const About = () => (
       location, and incident code for every crime occured on campus.
       <br></br>
       <br></br>
-      If you only want to see crimes that happened within a certain time perdoid, click on the colored marker maps to see only see makers in red, yellow, or green.
+      If you only want to see crimes that happened within a certain time perdiod, click on the colored marker maps to see only see makers in red, yellow, or green.
     </p>
   </div>
   );
