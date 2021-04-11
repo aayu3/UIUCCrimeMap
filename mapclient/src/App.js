@@ -18,7 +18,7 @@ import profilepic from './icons/defaultprofilepic.png';
 import aaronyu from './icons/aaronpfp.png';
 import petervandervelde from './icons/peterpfp.png';
 import angelshah from './icons/angelshah.jpg'
-
+import illiaborzov from './icons/illiapfp.png';
 
 console.log(profilepic);
 
@@ -97,14 +97,12 @@ const team = () => (
       </div>
     </div>
     <div>
-      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <img className="profilepic" src={illiaborzov} alt="Illia Borzov"/>
       <div className="name">
-        Foo
+        Illia Borzov
       </div>
       <div className="bio">
-         Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor
-         incididunt ut labore et dolore magna aliqua.
+         Illia is a freshman studying Computer Science at NYU. In addition to CS, he enjoys linguistics and graphic design 
       </div>
     </div>
     <div>
