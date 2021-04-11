@@ -15,6 +15,7 @@ import   yellowMarker   from './icons/yellowMarker.svg';
 import   redMarker   from './icons/redMarker.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import profilepic from './icons/defaultprofilepic.png';
+import aaronyu from './icons/aaronpfp.png';
 
 console.log(profilepic);
 
@@ -44,14 +45,12 @@ const About = () => (
 const team = () => (
   <div className="team">
     <div>
-      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <img className="profilepic" src={aaronyu} alt="Aaron Yu"/>
       <div className="name">
-        Foo
+        Aaron Yu
       </div>
       <div className="bio">
-         Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor
-         incididunt ut labore et dolore magna aliqua.
+         Aaron is a Freshman at UIUC in Mathematics + Computer Science. In his spare time he enjoys playing with his cat and reading.
       </div>
     </div>
     <div>
