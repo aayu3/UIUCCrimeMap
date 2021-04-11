@@ -9,6 +9,9 @@ import {  redIcon  } from './icons/redIcon';
 import   uiucCrimeLogo2   from './icons/uiucCrimeLogo2.png';
 import websitelogo from './icons/websitelogo.png'
 import websitelogo2 from './icons/websitelogo2.png'
+import   greenMarker   from './icons/greenMarker.svg';
+import   yellowMarker   from './icons/yellowMarker.svg';
+import   redMarker   from './icons/redMarker.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -114,13 +117,13 @@ const About = () => (
               <Route path="/" exact render={() =>
               <div>
             <div className="iconlegend">
-              <img src={redIcon}/> Crimes within one week
+              <img src={redMarker}/> Crimes within one week
               <br></br>
               <br></br>
-              <img src={yellowIcon}/> Crimes within one month
+              <img src={yellowMarker}/> Crimes within one month
               <br></br>
               <br></br>
-              <img src={greenIcon}/> Crimes from all time
+              <img src={greenMarker}/> Crimes from all time
             </div>
       
         
