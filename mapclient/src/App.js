@@ -71,9 +71,9 @@ const About = () => (
       var dayOccurred = parseInt(dateOccurred[1]);
       var redDaysThreshold = 7;
       var yellowMonthThreshold = 1;
-      if ((Math.abs(dayOccurred - this.state.day) <= redDaysThreshold && monthOccurred == this.state.month) || 
+      if ((Math.abs(dayOccurred - this.state.day) <= redDaysThreshold && monthOccurred === this.state.month) || 
       // Check if previous month date is within the  7 day threshold
-      ((dayOccurred + redDaysThreshold > 30) && ((dayOccurred + redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 == this.state.month)) {
+      ((dayOccurred + redDaysThreshold > 30) && ((dayOccurred + redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 === this.state.month)) {
         return redIcon;
       } else if (Math.abs(monthOccurred - this.state.month) <= yellowMonthThreshold) {
         return yellowIcon;
