@@ -48,7 +48,7 @@ const About = () => (
       location, and incident code for every crime occured on campus.
       <br></br>
       <br></br>
-      If you only want to see crimes that happened within a certain time period, click on the colored marker maps to see only see makers in red, yellow, or green.
+      To filter crimes by their date, you can click on the markers in the legend to view only the markers of those colors.
     </p>
   </div>
   );
