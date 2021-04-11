@@ -342,13 +342,14 @@ const team = () => (
             <div className="iconlegend">
               <h2><b>Legend:</b></h2>
               <h5>Crimes within...</h5>
-              <img src={redMarker}/> {this.state.redDaysThreshold} Days
+              <a href= "/redMap"><img src={redMarker}/></a>
+               {this.state.redDaysThreshold} Days
               <br></br>
               <br></br>
-              <img src={yellowMarker}/>{this.state.yellowMonthThreshold} Months
+              <a href="/yellowMap"><img src={yellowMarker}/></a>{this.state.yellowMonthThreshold} Months
               <br></br>
               <br></br>
-              <img src={greenMarker}/>All Time
+              <a href = "/greenMap"><img src={greenMarker}/></a>All Time
             </div>
       
         <div className="map">
