@@ -71,6 +71,16 @@ const team = () => (
       </div>
     </div>
     <div>
+      <a href="https://github.com/jchoi25"><img className="profilepic" src={profilepic} alt="Juyoung Choi"/></a>
+      <div className="name">
+        Juyoung Choi
+      </div>
+      <div className="bio">
+        I am a Freshman at UIUC majoring in Physics from South Korea. I love observing the night sky and playing the guitar.
+      </div>
+    </div>
+    <div className="break"></div>
+    <div>
       <img className="profilepic" src={profilepic} alt="Foo"/>
       <div className="name">
         Foo
@@ -79,16 +89,6 @@ const team = () => (
          Lorem ipsum dolor sit amet,
          consectetur adipiscing elit, sed do eiusmod tempor
          incididunt ut labore et dolore magna aliqua.
-      </div>
-    </div>
-    <div className="break"></div>
-    <div>
-      <img className="profilepic" src={profilepic} alt="Juyoung Choi"/>
-      <div className="name">
-        Juyoung Choi
-      </div>
-      <div className="bio">
-        I am a Freshman at UIUC majoring in Physics from South Korea. I love playing pubg mobile and wildrift and playing the guitar.
       </div>
     </div>
     <div>
