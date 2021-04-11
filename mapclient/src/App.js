@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {  greenIcon  } from './icons/greenIcon';
 import {  yellowIcon  } from './icons/yellowIcon';
 import {  redIcon  } from './icons/redIcon';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 // Define Center Location
@@ -25,7 +25,7 @@ const About = () => (
       area and displays detailed information about each crime incident. 
       <br></br>
       <br></br>
-      By clicking on the points on the map, you can find information about the crime type, date,
+      Red markers indicate a crime that has occured in the last week, yellow markers indicate a crime that happened in the last month, and green markers indicate the rest. By clicking on the points on the map, you can find information about the crime type, date,
       location, and incident code for every crime occured on campus.
     </p>
   </div>
@@ -71,9 +71,9 @@ const About = () => (
       var dayOccurred = parseInt(dateOccurred[1]);
       var redDaysThreshold = 7;
       var yellowMonthThreshold = 1;
-      if ((Math.abs(dayOccurred - this.state.day) <= redDaysThreshold && monthOccurred == this.state.month) || 
+      if ((Math.abs(dayOccurred - this.state.day) <= redDaysThreshold && monthOccurred === this.state.month) || 
       // Check if previous month date is within the  7 day threshold
-      ((dayOccurred + redDaysThreshold > 30) && ((dayOccurred + redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 == this.state.month)) {
+      ((dayOccurred + redDaysThreshold > 30) && ((dayOccurred + redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 === this.state.month)) {
         return redIcon;
       } else if (Math.abs(monthOccurred - this.state.month) <= yellowMonthThreshold) {
         return yellowIcon;
@@ -136,8 +136,10 @@ const About = () => (
       </Marker>)}
       
       
+
         </MapContainer> 
         </div> } />
+
                 <Route path="/about" component={About} />
               </Switch>
             </main>
