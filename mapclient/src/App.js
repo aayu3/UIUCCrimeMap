@@ -36,6 +36,9 @@ const About = () => (
       area and displays detailed information about each crime incident. 
       <br></br>
       <br></br>
+      The data is scraped from the <a href="https://police.illinois.edu/crime-reporting/daily-crime-log/">University Police Daily Crime Log</a>, which is updated daily. It is then pushed to a MongoDB Atlas database which this website interacts with through the <code>express.js</code> backend.
+      <br></br>
+      <br></br>
       Red markers indicate a crime that has occured in the last week, yellow markers indicate a crime that happened in the last month,
        and green markers indicate every crime in the <a href="https://police.illinois.edu/crime-reporting/daily-crime-log/">University Police Daily Crime Log</a>.
         By clicking on the points on the map, you can find information about the crime type, date,
