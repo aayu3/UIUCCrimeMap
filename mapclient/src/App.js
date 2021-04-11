@@ -135,6 +135,36 @@ const About = () => (
         </div>
         );    
 
+        GreenMap = () => (
+          <div className="yellowMap">
+            <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              />
+              {this.state.crimes.map((crime, i) => 
+            <Marker
+          //key={crime.CaseID}
+          position={[crime.Latitude, crime.Longitude]} 
+          
+          icon = {greenIcon}
+          
+          >
+            
+            <Popup position={[crime.Latitude, crime.Longitude]} > 
+              <div>
+                <h2>{crime.Description}</h2>
+                <h3>Date: {crime.DateOccurred}</h3>
+                <h3>Address: {crime.StreetAddress}</h3>
+                <p>Incident: {crime.CaseID}</p>
+              </div>
+            </Popup>
+            
+          </Marker>)}
+              </MapContainer> 
+          </div>
+          );    
+
     crimeDate(props) {
       const crime = props;
       var dateOccurred = crime.DateOccurred.split("/");
@@ -198,8 +228,14 @@ const About = () => (
                     <a href="/about">
                     <button href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
+                    <a href="/greenMap">
+                    <button href=" /greenMap" type="button" class="btn btn-outline-light">Green Marker Map</button>
+                      </a>
+                    <a href="/yellowMap">
+                    <button href=" /yellowMap" type="button" class="btn btn-outline-light">Yellow Marker Map</button>
+                      </a>
                     <a href="/redMap">
-                    <button href=" /redMap" type="button" class="btn btn-outline-light">Red Map</button>
+                    <button href=" /redMap" type="button" class="btn btn-outline-light">Red Marker Map</button>
                       </a>
                      
                 </div>
@@ -255,7 +291,7 @@ const About = () => (
 
                 <Route path="/about" component={About} />
               </Switch>
-// Red map switch
+{/*Red map switch tags*/}
 
               <Switch>
               <Route path="/" exact render={() =>
@@ -308,7 +344,7 @@ const About = () => (
                 <Route path="/redMap" component={this.RedMap} />
               </Switch>
 
-              // yellow map switch
+{/*Yellow map switch tags*/}
               <Switch>
               <Route path="/" exact render={() =>
               <div className="map-legend-outerContainer">
@@ -358,6 +394,57 @@ const About = () => (
         </div> }/>
 
                 <Route path="/yellowMap" component={this.YellowMap} />
+              </Switch>
+{/*Green map switch tags*/}
+            <Switch>
+              <Route path="/" exact render={() =>
+              <div className="map-legend-outerContainer">
+            <div className="iconlegend">
+              <h2><b>Legend:</b></h2>
+              <h5>Crimes within...</h5>
+              <img src={redMarker}/>One week
+              <br></br>
+              <br></br>
+              <img src={yellowMarker}/>One month
+              <br></br>
+              <br></br>
+              <img src={greenMarker}/>All time
+            </div>
+      
+        <div className="map">
+        <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        {this.state.crimes.map((crime, i) => 
+        <Marker
+      //key={crime.CaseID}
+      position={[crime.Latitude, crime.Longitude]} 
+      
+      icon = {this.crimeDate(crime)}
+      
+      >
+        
+        <Popup position={[crime.Latitude, crime.Longitude]} > 
+          <div>
+            <h2>{crime.Description}</h2>
+            <h3>Date: {crime.DateOccurred}</h3>
+            <h3>Address: {crime.StreetAddress}</h3>
+            <p>Incident: {crime.CaseID}</p>
+          </div>
+        </Popup>
+        
+      </Marker>)}
+      
+   
+
+        </MapContainer> 
+
+        </div>
+        </div> }/>
+
+                <Route path="/greenMap" component={this.GreenMap} />
               </Switch>
             </main>
           </Router>
