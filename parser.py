@@ -3,7 +3,7 @@ import googlemaps
 import pandas as pd
 import numpy as np
 import csv
-gmaps = googlemaps.Client(key='AIzaSyBM_dmjhaZwcGNYkQrAr1MLyRKz3tgQ95U')
+gmaps = googlemaps.Client(key='<insert key here>')
 
 file = "illinoisCrime.csv"
 location_bias_long = 88.2272
