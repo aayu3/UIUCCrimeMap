@@ -10,7 +10,7 @@
 
 .header {
   overflow: hidden;
-  background-color: #13294B;
+  background-color: rgb(0, 51, 102); 
   padding: 10px 10px;
 }
 
@@ -58,5 +58,10 @@ h1 {
   width: 850px;
   padding: 20px;
   margin: 0px auto;
-  color: #13294B;
+  color: rgb(0, 51, 102);
+}
+
+.iconlegend {
+  position: absolute;
+  right: 70px;
 }
