@@ -88,4 +88,10 @@ h1 {
 .iconlegend {
   position: absolute;
   right: 70px;
+  font-size: 22px;
+}
+
+.iconlegend img{
+  width:5vw;
+  
 }
