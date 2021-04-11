@@ -68,7 +68,7 @@ const team = () => (
     </div>
     <div>
 
-      <img className="profilepic" src={petervandervelde} alt="Peter Vandervelde"/>
+      <a href="https://github.com/r0ckwav3"><img className="profilepic" src={petervandervelde} alt="Peter Vandervelde"/></a>
       <div className="name">
         Peter Vandervelde
       </div>
