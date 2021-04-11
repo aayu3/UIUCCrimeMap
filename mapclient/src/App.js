@@ -19,7 +19,7 @@ import aaronyu from './icons/aaronpfp.png';
 import petervandervelde from './icons/peterpfp.png';
 import angelshah from './icons/angelshah.jpg'
 import mohammad from './icons/mohammadpfp.png';
-import illiaborzov from './icons/illiapfp.png';
+import illiaborzov from './icons/illiapfp.jpg';
 
 console.log(profilepic);
 
@@ -113,9 +113,7 @@ const team = () => (
         Mohammad Raahemi
       </div>
       <div className="bio">
-      Mohammad is an MSc student at the University of Ottawa. He is studying CS as his major program, and his minor stream is in Data Science. <br></br>
-He has a plethora of work in data science and machine learning from the industry during his internships, his participation and victories in multiple hackathons, as well as in his thesis work during his Masters.
-He is working as a data scientist with Canada Border Service Agency.
+      Mohammad is an MSc student at the University of Ottawa.<br></br> He is studying CS as his major program, and his minor stream is in Data Science.
       </div>
     </div>
   </div>
