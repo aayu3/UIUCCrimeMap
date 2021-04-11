@@ -16,6 +16,7 @@ import   redMarker   from './icons/redMarker.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import profilepic from './icons/defaultprofilepic.png';
 import aaronyu from './icons/aaronpfp.png';
+import petervandervelde from './icons/peterpfp.png';
 
 console.log(profilepic);
 
@@ -60,14 +61,12 @@ const team = () => (
       </div>
     </div>
     <div>
-      <img className="profilepic" src={profilepic} alt="Foo"/>
+      <img className="profilepic" src={petervandervelde} alt="Peter Vandervelde"/>
       <div className="name">
-        Foo
+        Peter Vandervelde
       </div>
       <div className="bio">
-         Lorem ipsum dolor sit amet,
-         consectetur adipiscing elit, sed do eiusmod tempor
-         incididunt ut labore et dolore magna aliqua.
+        Peter is a High Schooler at Proof School who is interested in Computer Science and Mathematics. His hobbies include Acrobatics, Competative Programming and League of Legends.
       </div>
     </div>
     <div>
