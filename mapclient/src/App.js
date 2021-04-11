@@ -66,7 +66,7 @@ const team = () => (
         Peter Vandervelde
       </div>
       <div className="bio">
-        Peter is a High Schooler at Proof School who is interested in Computer Science and Mathematics. His hobbies include Acrobatics, Competative Programming and League of Legends.
+        Peter is a High Schooler at Proof School who is interested in CS and Mathematics. His hobbies include acrobatics and digital drawing.
       </div>
     </div>
     <div>
