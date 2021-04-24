@@ -125,15 +125,10 @@ const team = () => (
         // get date info
         var today = new Date();
         
-        /*
+        
         let curday = parseInt(today.getDate());
         let curmonth = parseInt(today.getMonth() + 1);
         let curyear = parseInt(today.getFullYear());
-        */
-
-        let curday = 2;
-        let curmonth = 4;
-        let curyear = 21;
 
         this.state = { 
           crimes : [] ,
