@@ -3,16 +3,7 @@ import { Component } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {  greenIcon  } from './icons/greenIcon';
-import {  yellowIcon  } from './icons/yellowIcon';
-import {  redIcon  } from './icons/redIcon';
-import {  noIcon  } from './icons/noIcon';
-import   uiucCrimeLogo2   from './icons/uiucCrimeLogo2.png';
-import websitelogo from './icons/websitelogo.png'
 import websitelogo2 from './icons/websitelogo2.png'
-import   greenMarker   from './icons/greenMarker.svg';
-import   yellowMarker   from './icons/yellowMarker.svg';
-import   redMarker   from './icons/redMarker.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import profilepic from './icons/defaultprofilepic.png';
 import aaronyu from './icons/aaronpfp.png';
