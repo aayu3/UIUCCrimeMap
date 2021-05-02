@@ -20,6 +20,7 @@ import petervandervelde from './icons/peterpfp.png';
 import angelshah from './icons/angelshah.jpg'
 import mohammad from './icons/mohammadpfp.png';
 import illiaborzov from './icons/illiapfp.jpg';
+import CrimeMap from './CrimeMap';
 
 console.log(profilepic);
 
@@ -125,19 +126,10 @@ const team = () => (
         // get date info
         var today = new Date();
         
-        
-        let curday = parseInt(today.getDate());
-        let curmonth = parseInt(today.getMonth() + 1);
-        let curyear = parseInt(today.getFullYear());
-
         this.state = { 
           crimes : [] ,
-          day : curday,
-          month : curmonth,
-          year : curyear,
-          redDaysThreshold : 7,
-          yellowMonthThreshold : 1
-
+          thresholds : [7, 1],
+          date : today
         };
     }
   
@@ -256,20 +248,7 @@ const team = () => (
           </div>
           );    
 
-    crimeDate(props) {
-      const crime = props;
-      var dateOccurred = crime.DateOccurred.split("/");
-      var monthOccurred = parseInt(dateOccurred[0]);
-      var dayOccurred = parseInt(dateOccurred[1]);      
-      if ((Math.abs(dayOccurred - this.state.day) <= this.state.redDaysThreshold && monthOccurred === this.state.month) || 
-      // Check if previous month date is within the  7 day threshold
-      ((dayOccurred + this.state.redDaysThreshold > 30) && ((dayOccurred + this.state.redDaysThreshold) % 30) >= this.state.day && monthOccurred + 1 === this.state.month)) {
-        return redIcon;
-      } else if (Math.abs(monthOccurred - this.state.month) <= this.state.yellowMonthThreshold) {
-        return yellowIcon;
-      }
-      return greenIcon;
-    }
+    
 
     returnRed(props) {
       const crime = props;
@@ -356,34 +335,12 @@ const team = () => (
             </div>
       
         <div className="map">
-        <MapContainer center={[location.lat, location.lng]} zoom={location.zoom} >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {this.state.crimes.map((crime, i) => 
-        <Marker
-      //key={crime.CaseID}
-      position={[crime.Latitude, crime.Longitude]} 
-      
-      icon = {this.crimeDate(crime)}
-      
-      >
-        
-        <Popup position={[crime.Latitude, crime.Longitude]} > 
-          <div>
-            <h2>{crime.Description}</h2>
-            <h3>Date: {crime.DateOccurred}</h3>
-            <h3>Address: {crime.StreetAddress}</h3>
-            <p>Incident: {crime.CaseID}</p>
-          </div>
-        </Popup>
-        
-      </Marker>)}
-      
-   
-
-        </MapContainer> 
+        <CrimeMap 
+        crimeData={this.state.crimes} 
+        location={location}
+        date = {this.state.date}
+        thresholds = {this.state.thresholds}>
+        </CrimeMap>
 
         </div>
         </div> }/>
