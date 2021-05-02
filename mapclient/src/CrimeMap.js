@@ -9,9 +9,9 @@ function crimeDate(props, curDate, thresholds) {
     const crime = props;
 
     // Date parsing
-    let curday = parseInt(curDate.getDate());
-    let curmonth = parseInt(curDate.getMonth() + 1);
-    let curyear = parseInt(curDate.getFullYear());
+    let curday = curDate[0];
+    let curmonth = curDate[1];
+    let curyear = curDate[2];
     
     // get color thresholds
     let redDaysThreshold = thresholds[0];

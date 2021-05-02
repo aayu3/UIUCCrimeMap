@@ -120,12 +120,14 @@ const team = () => (
         let curday = parseInt(today.getDate());
         let curmonth = parseInt(today.getMonth() + 1);
         let curyear = parseInt(today.getFullYear());
+        let redDaysThreshold = 7;
+        let yellowMonthThreshold = 1;
 
         this.state = { 
           allCrimes : [],
           crimesToDisplay : [] ,
-          thresholds : [7, 1],
-          date : today,
+          thresholds : [redDaysThreshold, yellowMonthThreshold],
+          date : [curday, curmonth, curyear],
           day : curday,
           month : curmonth,
           year : curyear
