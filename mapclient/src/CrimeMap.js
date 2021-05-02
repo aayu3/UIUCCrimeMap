@@ -15,16 +15,18 @@ function crimeDate(props, curDate, thresholds) {
     
     // get color thresholds
     let redDaysThreshold = thresholds[0];
-    let yellowMonthThreshold = thresholds[1];
+    let yellowDaysThreshold = thresholds[1];
 
     var dateOccurred = crime.DateOccurred.split("/");
     var monthOccurred = parseInt(dateOccurred[0]);
-    var dayOccurred = parseInt(dateOccurred[1]);      
-    if ((Math.abs(dayOccurred - curday) <= redDaysThreshold && monthOccurred === curmonth) || 
-    // Check if previous month date is within the  7 day threshold
-    ((dayOccurred + redDaysThreshold > 30) && ((dayOccurred + redDaysThreshold) % 30) >=curday && monthOccurred + 1 === curmonth)) {
+    var dayOccurred = parseInt(dateOccurred[1]);
+    var yearOccurred = parseInt(dateOccurred[2]);
+    
+    var curDateInDays = curday + (curmonth - 1) * 30 + (curyear-2000) * 365;
+    var dateOccurredInDays = dayOccurred + (monthOccurred -1) * 30 + (yearOccurred - 2000) * 365;
+    if (curDateInDays - dateOccurredInDays <= redDaysThreshold) {
       return redIcon;
-    } else if (Math.abs(monthOccurred - curmonth) <= yellowMonthThreshold) {
+    } else if (curDateInDays - dateOccurredInDays <= yellowDaysThreshold) {
       return yellowIcon;
     }
     return greenIcon;

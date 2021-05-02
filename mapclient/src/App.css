@@ -100,7 +100,7 @@ h1 {
   /* position: absolute; */
   flex:1.75;
   font-size: 22px;
-  background-color: #E8E9EA ;
+  background-color: #ffffff ;
   margin-top:30px;
   margin-right: 20px;
   margin-left: 20px;
@@ -124,23 +124,6 @@ h1 {
 }
 
 
-.redMap{
-  flex:8;
-  border-radius: 20px;
-
-}
-
-.yellowMap{
-  flex:8;
-  border-radius: 20px;
-
-}
-
-.greenMap{
-  flex:8;
-  border-radius: 20px;
-
-}
 .team {
   display: flex;
   justify-content: center;
