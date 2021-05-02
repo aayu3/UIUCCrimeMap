@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import websitelogo2 from './icons/websitelogo2.png'
@@ -12,8 +13,8 @@ import angelshah from './icons/angelshah.jpg'
 import mohammad from './icons/mohammadpfp.png';
 import illiaborzov from './icons/illiapfp.jpg';
 import CrimeMap from './CrimeMap';
+import { createSliderWithTooltip, SliderTooltip } from "rc-slider";
 
-console.log(profilepic);
 
 // Define Center Location
 const location = {
@@ -110,6 +111,7 @@ const team = () => (
     </div>
   </div>
 );
+const Range = createSliderWithTooltip(Slider.Range);
 
   class App extends Component {
     constructor(props) {
@@ -121,22 +123,27 @@ const team = () => (
         let curmonth = parseInt(today.getMonth() + 1);
         let curyear = parseInt(today.getFullYear());
         let redDaysThreshold = 7;
-        let yellowMonthThreshold = 1;
+        let yellowDaysThreshold = 30;
+        
 
         this.state = { 
           allCrimes : [],
           crimesToDisplay : [] ,
-          thresholds : [redDaysThreshold, yellowMonthThreshold],
+          thresholds : [redDaysThreshold, yellowDaysThreshold],
           date : [curday, curmonth, curyear],
           day : curday,
           month : curmonth,
-          year : curyear
+          year : curyear,
+          rangeValue : [0, redDaysThreshold, yellowDaysThreshold],
+          rangeMin : 1,
+          rangeMax : 60
         };
 
         // bind function to use this
         this.changeToYellow = this.changeToYellow.bind(this);
         this.changeToRed = this.changeToRed.bind(this);
         this.resetMap = this.resetMap.bind(this);
+        this.onSliderChange = this.onSliderChange.bind(this);
     }
 
     resetMap() {
@@ -150,12 +157,17 @@ const team = () => (
 
     filterYellow(crimes) {
       var filtered = [];
+
       for (var i = 0; i < crimes.length; i++) {
         let crime = crimes[i];
         var dateOccurred = crime.DateOccurred.split("/");
         var monthOccurred = parseInt(dateOccurred[0]);
         var dayOccurred = parseInt(dateOccurred[1]);
-        if (Math.abs(monthOccurred - this.state.month) <= this.state.thresholds[1]) {
+        var yearOccurred = parseInt(dateOccurred[2]);
+
+        var curDateInDays = this.state.day + (this.state.month - 1) * 30 + (this.state.year - 2000) * 365;
+        var dateOccurredInDays = dayOccurred + (monthOccurred -1) * 30 + (yearOccurred - 2000) * 365;
+        if (curDateInDays - dateOccurredInDays <= this.state.thresholds[1]) {
           filtered.push(crime);
         } 
       }
@@ -169,14 +181,17 @@ const team = () => (
 
     filterRed(crimes) {
       var filtered = [];
+
       for (var i = 0; i < crimes.length; i++) {
         let crime = crimes[i];
         var dateOccurred = crime.DateOccurred.split("/");
         var monthOccurred = parseInt(dateOccurred[0]);
         var dayOccurred = parseInt(dateOccurred[1]);
-        if ((Math.abs(dayOccurred - this.state.day) <= this.state.thresholds[0] && monthOccurred === this.state.month) || 
-      // Check if previous month date is within the  7 day threshold
-      ((dayOccurred +  this.state.thresholds[0] > 30) && ((dayOccurred +  this.state.thresholds[0]) % 30) >= this.state.day && monthOccurred + 1 === this.state.month)) {
+        var yearOccurred = parseInt(dateOccurred[2]);
+
+        var curDateInDays = this.state.day + (this.state.month - 1) * 30 + (this.state.year - 2000) * 365;
+        var dateOccurredInDays = dayOccurred + (monthOccurred -1) * 30 + (yearOccurred - 2000) * 365;
+        if (curDateInDays - dateOccurredInDays <= this.state.thresholds[0]) {
           filtered.push(crime);
         } 
       }
@@ -192,6 +207,11 @@ const team = () => (
   
     componentDidMount() {
         this.getCrimes();
+    }
+
+    onSliderChange(value) {
+      let newThreshold = [value[1], value[2]];
+      this.setState({thresholds : newThreshold});
     }
   
     
@@ -235,15 +255,29 @@ const team = () => (
             <div className="iconlegend">
               <h2><b>Legend:</b></h2>
               <h5>Crimes within...</h5>
-              <button onClick={this.changeToRed} type="button" class="btn btn-danger">Red Map</button> <br></br>
+              <button onClick={this.changeToRed} type="button" class="btn btn-danger">Filter Red Only</button> <br></br>
               Crimes within {this.state.thresholds[0]} Days.  
               <br></br>
               <br></br>
-              <button onClick={this.changeToYellow} type="button" class="btn btn-warning">Yellow Map</button> <br></br>
-              Crimes within {this.state.thresholds[1]} Month.
+              <button onClick={this.changeToYellow} type="button" class="btn btn-warning">Filter Yellow Only</button> <br></br>
+              Crimes within {this.state.thresholds[1]} Days.
               <br></br>
               <br></br>
               <button onClick={this.resetMap} type="button" class="btn btn-outline-primary">Reset Map</button> 
+              <br></br>
+              <br></br>
+              <h3>Crime Threshold Slider</h3>
+              <Range 
+              allowCross={false} 
+              marks={{1: "1 Day", 60 : "60 Days"}}
+              defaultValue={this.state.rangeValue} 
+              min={this.state.rangeMin} 
+              max = {this.state.rangeMax}
+              tipFormatter={value => `${value} days`}
+              trackStyle={[ { backgroundColor: 'red' }, { backgroundColor: '#DADD2D' }]}
+              railStyle={{ backgroundColor: 'green' }}
+              onAfterChange = {this.onSliderChange}
+              /> 
             </div>
       
         <div className="map">
