@@ -12,6 +12,7 @@ import petervandervelde from './icons/peterpfp.png';
 import angelshah from './icons/angelshah.jpg'
 import mohammad from './icons/mohammadpfp.png';
 import illiaborzov from './icons/illiapfp.jpg';
+import uiuclogo from './icons/uiuclogo.png';
 import CrimeMap from './CrimeMap';
 import { createSliderWithTooltip, SliderTooltip } from "rc-slider";
 
@@ -231,6 +232,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 
 
                   <div class="header-right">
+                  
                   <a href="https://youtu.be/1rHvtO1x0PI">
                     <button href="https://youtu.be/1rHvtO1x0PI" type="button" class="btn btn-outline-light">
                       <i class="fa fa-youtube"></i> YouTube</button>
@@ -245,7 +247,10 @@ const Range = createSliderWithTooltip(Slider.Range);
                     <a href="/about">
                     <button href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
-                     
+                    <a href="https://police.illinois.edu/">
+                    <button href="https://police.illinois.edu/" type="button" class="btn btn-outline-light">
+                      <img src={uiuclogo} width='5%'></img>  UIUC Police Department</button>
+                      </a>
                 </div>
 
               </div>
