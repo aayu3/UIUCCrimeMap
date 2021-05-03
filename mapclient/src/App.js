@@ -129,7 +129,7 @@ const Range = createSliderWithTooltip(Slider.Range);
         this.state = { 
           allCrimes : [],
           crimesToDisplay : [] ,
-          thresholds : [redDaysThreshold, yellowDaysThreshold],
+          thresholds : [0, redDaysThreshold, yellowDaysThreshold],
           date : [curday, curmonth, curyear],
           day : curday,
           month : curmonth,
@@ -210,7 +210,7 @@ const Range = createSliderWithTooltip(Slider.Range);
     }
 
     onSliderChange(value) {
-      let newThreshold = [value[1], value[2]];
+      let newThreshold = [value[0], value[1], value[2]];
       this.setState({thresholds : newThreshold});
     }
   
@@ -263,7 +263,7 @@ const Range = createSliderWithTooltip(Slider.Range);
               Crimes within {this.state.thresholds[1]} Days.
               <br></br>
               <br></br>
-              <button onClick={this.resetMap} type="button" class="btn btn-outline-primary">Reset Map</button> 
+              <button onClick={this.resetMap} type="button" class="btn btn-primary">Reset Map</button> 
               <br></br>
               <br></br>
               <h3>Crime Threshold Slider</h3>
