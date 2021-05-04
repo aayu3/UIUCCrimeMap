@@ -249,7 +249,7 @@ const Range = createSliderWithTooltip(Slider.Range);
                     </a>
                     <a href="https://police.illinois.edu/">
                     <button href="https://police.illinois.edu/" type="button" class="btn btn-outline-light">
-                      <img src={uiuclogo} width='5%'></img>  UIUC Police Department</button>
+                      <img src={uiuclogo} width='5%'></img>  University Police Department</button>
                       </a>
                 </div>
 
