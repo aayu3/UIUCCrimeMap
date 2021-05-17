@@ -1,34 +1,44 @@
-.leaflet-container {   
+.leaflet-container {
   width: 80vw;
   height: 85vh;
   margin: 30px;
   margin-right: 0px;
   position: relative;
-  background-color: #E84A27;
   border-radius: 20px;
-  
 }
 
+@media (min-width: 1280px) and (max-width: 1299.8px) {
+  .header {
+    overflow: hidden;
+    background-color: #E84A27;
+    padding: 10px 10px;
+    height: 14vh;
+  }
 
-
-.header {
-  overflow: hidden;
-
-  /* background-color: #13294B; */
-  background-color: #0455A4;
-
-  padding: 10px 10px;
-  height: 10vh;
-  /* border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px; */
+  .fullLogo{
+    height: 9vh;
+    margin-top: 0px ;
+    margin-bottom: 0px;
+    padding: 0px;
+    margin:0px;
+   }
 }
 
-.fullLogo{
- height: 7vh;
- margin-top: 0px ;
- margin-bottom: 10px;
- padding: 0px;
- margin:0px;
+@media (min-width: 1300px) {
+  .header {
+    overflow: hidden;
+    background-color: #E84A27;
+    padding: 10px 10px;
+    height: 10vh;
+  }
+
+  .fullLogo{
+    height: 7vh;
+    margin-top: 0px ;
+    margin-bottom: 10px;
+    padding: 0px;
+    margin:0px;
+   }
 }
 
 .header a {
@@ -49,13 +59,11 @@
 .header a.logo {
   font-size: 25px;
   font-weight: bold;
-  color: #E84A27;
   padding:0px;
   margin:0px;
-
 }
 
-.header-right a{
+.header-right a {
   float: right;
   position: relative;
   right: 10px;
@@ -63,32 +71,110 @@
   line-height: 5vh;
   text-align: center;
   vertical-align: center;
- 
+  color: #A5A8AA;
 }
-
-/* .header a:hover {
-  background-color: #17315a;
-  color: white;
-  transition: 0.5s;
-} */
 
 h1 {
   font-size: 200%;
 }
 
-#description {
-  font-size: 120%;
-  color: rgb(87, 87, 87);
+@media (min-width: 1280px) and (max-width: 1299.8px) {
+  .iconlegend {
+    flex:1.75;
+    font-size: 18px;
+    background-color: #ffffff ;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-left: 35px;
+    padding: 0px;
+    border-radius: 20px;
+    height:85vh;
+  }
+
+  #description {
+    font-size: 120%;
+    color: rgb(87, 87, 87);
+  }
+  
+  .about {
+    width: 850px;
+    padding: 20px;
+    margin: 0px auto;
+    color: rgb(0, 51, 102);
+  }
+
+  .team > div {
+    background-color: #f1f1f1;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 320px;
+  }
+
+  .profilepic {
+    width: 200px;
+    height: 200px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+  
+  .bio {
+    font-size: 12px;
+  }
 }
 
-.about {
-  width: 850px;
-  padding: 20px;
-  margin: 0px auto;
-  color: rgb(0, 51, 102);
+@media (min-width: 1300px) {
+  .iconlegend {
+    flex:1.75;
+    font-size: 22px;
+    background-color: #ffffff ;
+    margin-top:30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding:15px;
+    border-radius: 20px;
+    height:85vh;
+  }
+
+  #description {
+    font-size: 150%;
+    color: rgb(87, 87, 87);
+  }
+  
+  .about {
+    width: 1200px;
+    padding: 20px;
+    margin: 0px auto;
+    color: rgb(0, 51, 102);
+  }
+
+  .team > div {
+    background-color: #f1f1f1;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 250px;
+    height: 370px;
+  }
+
+  .profilepic {
+    width: 250px;
+    height: 250px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+  
+  .bio {
+    font-size: 14px;
+  }
 }
-
-
 
 .map-legend-outerContainer{
   display: flex;
@@ -96,26 +182,8 @@ h1 {
   flex-wrap: wrap;
 }
 
-.iconlegend {
-  /* position: absolute; */
-  flex:1.75;
-  font-size: 22px;
-  background-color: #ffffff ;
-  margin-top:30px;
-  margin-right: 20px;
-  margin-left: 20px;
- 
-  padding:15px;
-  border-radius: 20px;
-  height:85vh;
-
-}
-
-
 .iconlegend img{
-  width:5vw;
- 
-  
+  width:5vw; 
 }
 
 .map{
@@ -123,41 +191,13 @@ h1 {
   border-radius: 20px;
 }
 
-
 .team {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.team > div {
-  background-color: #f1f1f1;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 200px;
-  height: 320px;
-}
-
 .team > div.break {
   flex-basis: 100%;
   height: 0;
-}
-
-.profilepic {
-  width: 200px;
-  height: 200px;
-}
-.profilepic-angel{
-  width: 170px;
-  height: 200px;
-}
-
-.name {
-  font-size: 20px;
-}
-
-.bio {
-  font-size: 12px;
 }
