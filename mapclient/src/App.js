@@ -258,11 +258,11 @@ const Range = createSliderWithTooltip(Slider.Range);
               <h2><b>Legend:</b></h2>
               <h5>Crimes within...</h5>
               <button onClick={this.changeToRed} type="button" class="btn btn-danger">Filter Red Only</button> <br></br>
-              {this.state.thresholds[0]} Days.  
+              {this.state.thresholds[1]} Days.  
               <br></br>
               <br></br>
               <button onClick={this.changeToYellow} type="button" class="btn btn-warning">Filter Yellow Only</button> <br></br>
-              {this.state.thresholds[1]} Days.
+              {this.state.thresholds[2]} Days.
               <br></br>
               <br></br>
               <button onClick={this.resetMap} type="button" class="btn btn-primary">Reset Map</button> 
