@@ -14,6 +14,7 @@ import mohammad from './icons/mohammadpfp.png';
 import illiaborzov from './icons/illiapfp.jpg';
 import uiuclogo from './icons/uiuclogo.png';
 import CrimeMap from './CrimeMap';
+import DateFilter from './DateFilter';
 import { createSliderWithTooltip, SliderTooltip } from "rc-slider";
 
 
@@ -128,6 +129,7 @@ const Range = createSliderWithTooltip(Slider.Range);
         
 
         this.state = { 
+          color : [200, 100, 100],
           allCrimes : [],
           crimesToDisplay : [] ,
           thresholds : [0, redDaysThreshold, yellowDaysThreshold],
@@ -145,6 +147,7 @@ const Range = createSliderWithTooltip(Slider.Range);
         this.changeToRed = this.changeToRed.bind(this);
         this.resetMap = this.resetMap.bind(this);
         this.onSliderChange = this.onSliderChange.bind(this);
+        
     }
 
     resetMap() {
@@ -199,6 +202,10 @@ const Range = createSliderWithTooltip(Slider.Range);
       return filtered;
     }
     
+    testFunction = (props) => {
+      this.setState( {color : [100, 100, 100]});
+    }
+
     getCrimes = () => {
         fetch("/api/crimes")
         .then(res => res.json())
@@ -255,6 +262,8 @@ const Range = createSliderWithTooltip(Slider.Range);
               <Route path="/" exact render={() =>
               <div className="map-legend-outerContainer">
             <div className="iconlegend">
+              {/*
+              
               <h2><b>Legend:</b></h2>
               <h5>Crimes within...</h5>
               <button onClick={this.changeToRed} type="button" class="btn btn-danger">Filter Red Only</button> <br></br>
@@ -280,6 +289,9 @@ const Range = createSliderWithTooltip(Slider.Range);
               railStyle={{ backgroundColor: 'green' }}
               onAfterChange = {this.onSliderChange}
               /> 
+              */}
+              <DateFilter testFunction = {this.testFunction}></DateFilter>
+              <text style ={{color: "rgb("+this.state.color+")"}}>Current Color</text>
             </div>
       
         <div className="map">
