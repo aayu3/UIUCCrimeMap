@@ -168,7 +168,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 
         var curDateInDays = this.state.day + (this.state.month - 1) * 30 + (this.state.year - 2000) * 365;
         var dateOccurredInDays = dayOccurred + (monthOccurred -1) * 30 + (yearOccurred - 2000) * 365;
-        if (curDateInDays - dateOccurredInDays <= this.state.thresholds[1]) {
+        if (curDateInDays - dateOccurredInDays <= this.state.thresholds[2]) {
           filtered.push(crime);
         } 
       }
@@ -192,7 +192,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 
         var curDateInDays = this.state.day + (this.state.month - 1) * 30 + (this.state.year - 2000) * 365;
         var dateOccurredInDays = dayOccurred + (monthOccurred -1) * 30 + (yearOccurred - 2000) * 365;
-        if (curDateInDays - dateOccurredInDays <= this.state.thresholds[0]) {
+        if (curDateInDays - dateOccurredInDays <= this.state.thresholds[1]) {
           filtered.push(crime);
         } 
       }
