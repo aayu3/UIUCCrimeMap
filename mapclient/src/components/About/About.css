@@ -1,0 +1,27 @@
+@media (min-width: 1280px) and (max-width: 1299.8px) {
+    #description {
+        font-size: 120%;
+        color: rgb(87, 87, 87);
+    }
+      
+    .about {
+        width: 850px;
+        padding: 20px;
+        margin: 0px auto;
+        color: rgb(0, 51, 102);
+    }
+}
+
+@media (min-width: 1300px) {
+    #description {
+        font-size: 150%;
+        color: rgb(87, 87, 87);
+    }
+      
+    .about {
+        width: 1200px;
+        padding: 20px;
+        margin: 0px auto;
+        color: rgb(0, 51, 102);
+    }
+}
