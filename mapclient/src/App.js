@@ -158,33 +158,35 @@ const Range = createSliderWithTooltip(Slider.Range);
           <Router basename={process.env.PUBLIC_URL}>
             <main>
               <div className="header">
-                <a href="/" className="logo">
-                  {/* UIUC Crime Map */}
-                <img  className = "fullLogo" src ={websitelogo2} alt="logo"/>
-                </a>
+                <div className="header-left">
+                  <a href="/" className="logo">
+                    {/* UIUC Crime Map */}
+                  <img  className = "fullLogo" src ={websitelogo2} alt="logo"/>
+                  </a>
+                </div>
 
                 <div class="header-right">
                   
                   <a href="https://youtu.be/1rHvtO1x0PI">
-                    <button href="https://youtu.be/1rHvtO1x0PI" type="button" class="btn btn-outline-light">
+                    <button size='sm' href="https://youtu.be/1rHvtO1x0PI" type="button" class="btn btn-outline-light">
                       <i class="fa fa-youtube"></i> YouTube</button>
                       </a>
                       <a href="https://github.com/aayu3/UIUCCrimeMap">
-                    <button href="https://github.com/aayu3/UIUCCrimeMap" type="button" class="btn btn-outline-light">
+                    <button className="buttons" href="https://github.com/aayu3/UIUCCrimeMap" type="button" class="btn btn-outline-light">
                       <i class="fa fa-github"></i> GitHub</button>
                       </a>
                     <a href="/team">
-                      <button href=" /team" type="button" class="btn btn-outline-light">Team</button>
+                      <button size='sm' href=" /team" type="button" class="btn btn-outline-light">Team</button>
                     </a>
                     <a href="/about">
-                    <button href=" /about" type="button" class="btn btn-outline-light">About</button>
+                    <button className="buttons" href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
                     <a href="https://police.illinois.edu/">
-                    <button href="https://police.illinois.edu/" type="button" class="btn btn-outline-light">
+                    <button className="buttons" href="https://police.illinois.edu/" type="button" class="btn btn-outline-light">
                       <img src={uiuclogo} width='5%'></img>  University Police Department</button>
                       </a>
                       <a>
-                      <button onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
+                      <button className="buttons" onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
                       </a>
                 </div>
 

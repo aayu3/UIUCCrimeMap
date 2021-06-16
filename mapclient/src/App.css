@@ -1,98 +1,104 @@
 .leaflet-container {
   width: 80vw;
-  height: 85vh;
+  height: 80vh;
   margin: 30px;
   margin-right: 0px;
   position: relative;
   border-radius: 20px;
 }
 
-@media (min-width: 1280px) and (max-width: 1299.8px) {
+@media only screen and (min-width: 1024.9px) {
   .header {
     overflow: hidden;
     background-color: #E84A27;
-    padding: 10px 10px;
-    height: 14vh;
+    height: 5vw;
+  }
+  
+  .fullLogo {
+    height: 3.4vw;
   }
 
-  .fullLogo{
-    height: 9vh;
-    margin-top: 0px ;
-    margin-bottom: 0px;
-    padding: 0px;
-    margin:0px;
-   }
+  .header a {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    line-height: 25px;
+    border-radius: 4px;
+    position: relative;
+    left: 1vw;
+    align-self: center;
+    align-content: center;
+    padding: 5px;
+  }
+  
+  .header-left {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  
+  .header-right a {
+    float: right;
+    position: relative;
+    text-align: center;
+    vertical-align: center;
+    color: #A5A8AA;
+  }
 }
 
-@media (min-width: 1300px) {
-  .header {
-    overflow: hidden;
-    background-color: #E84A27;
-    padding: 10px 10px;
-    height: 10vh;
+@media only screen and (min-width: 1300px) {
+  .header a {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    line-height: 25px;
+    border-radius: 4px;
+    position: relative;
+    left: 1vw;
+    align-self: center;
+    align-content: center;
+    padding: 5px;
+    padding-top: 15px;
   }
 
-  .fullLogo{
-    height: 7vh;
-    margin-top: 0px ;
-    margin-bottom: 10px;
-    padding: 0px;
-    margin:0px;
-   }
-}
-
-.header a {
-  float: left;
-  color: white;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 25px;
-  border-radius: 4px;
-  position: relative;
-  left: 10px;
-  align-self: center;
-  align-content: center;
-}
-
-.header a.logo {
-  font-size: 25px;
-  font-weight: bold;
-  padding:0px;
-  margin:0px;
-}
-
-.header-right a {
-  float: right;
-  position: relative;
-  right: 10px;
-  margin:0px;
-  line-height: 5vh;
-  text-align: center;
-  vertical-align: center;
-  color: #A5A8AA;
+  .fullLogo {
+    height: 2.8vw;
+  }
+  
+  .header-left {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  
+  .header-right a {
+    float: right;
+    position: relative;
+    text-align: center;
+    vertical-align: center;
+    color: #A5A8AA;
+  }
 }
 
 h1 {
   font-size: 200%;
 }
 
-@media (min-width: 1280px) and (max-width: 1299.8px) {
+@media only screen and (max-width: 1299.8px) {
   .iconlegend {
     flex:1.75;
     font-size: 18px;
     background-color: #ffffff ;
     margin-top: 30px;
     margin-right: 20px;
-    margin-left: 35px;
+    margin-left: 35px; 
     padding: 0px;
     border-radius: 20px;
     height:85vh;
   }
 }
 
-@media (min-width: 1300px) {
+@media only screen and (min-width: 1300px) {
   .iconlegend {
     flex:1.75;
     font-size: 22px;
