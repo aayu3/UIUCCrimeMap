@@ -13,6 +13,9 @@ import { createSliderWithTooltip, SliderTooltip } from "rc-slider";
 import About from './components/About/About';
 import Team from './components/Team/Team';
 
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
+
 // Define Center Location
 const location = {
   address: '1401 West Green Street, Urbana, Illinois.',
@@ -46,7 +49,8 @@ const Range = createSliderWithTooltip(Slider.Range);
           year : curyear,
           rangeValue : [0, redDaysThreshold, yellowDaysThreshold],
           rangeMin : 1,
-          rangeMax : 60
+          rangeMax : 60,
+          pdf: false
         };
 
         // bind function to use this
@@ -58,6 +62,28 @@ const Range = createSliderWithTooltip(Slider.Range);
 
     resetMap() {
       this.setState({crimesToDisplay : this.state.allCrimes});
+    }
+
+    sanitizeCrimes(crimes) {
+      var pdfBody = [];
+      for (var i = 0; i < crimes.length; i++) {
+        let crime = crimes[i];
+        console.log(crime);
+        pdfBody[i] = [crime.CaseID, crime.DateReported, crime.TimeReported, crime.DateOccurred, crime.TimeOccurred, crime.StreetAddress, crime.Description, crime.Disposition];
+      }
+      return pdfBody;
+    }
+
+    generatePDF(crimes) {
+      const doc = new jsPDF('l');
+      console.log("pdf generated");
+      let pdfBody = this.sanitizeCrimes(crimes);
+      // Or use javascript directly:
+      doc.autoTable({
+        head: [['Incident', 'Date Reported', 'Time Reported', 'Date Occurred', 'Time Occurred', 'General Location', 'Crime Description', 'Disposition']],
+        body: pdfBody,
+      });
+      doc.save('Daily_Crime_Log.pdf');
     }
 
     changeToYellow() {
@@ -157,6 +183,9 @@ const Range = createSliderWithTooltip(Slider.Range);
                     <button href="https://police.illinois.edu/" type="button" class="btn btn-outline-light">
                       <img src={uiuclogo} width='5%'></img>  University Police Department</button>
                       </a>
+                      <a>
+                      <button onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
+                      </a>
                 </div>
 
               </div>
@@ -175,6 +204,9 @@ const Range = createSliderWithTooltip(Slider.Range);
               <br></br>
               <br></br>
               <button onClick={this.resetMap} type="button" class="btn btn-primary">Reset Map</button> 
+              <br></br>
+              <br></br>
+             
               <br></br>
               <br></br>
               <h3>Crime Threshold Slider</h3>

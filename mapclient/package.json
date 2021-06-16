@@ -8,6 +8,8 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
+    "jspdf": "^2.3.1",
+    "jspdf-autotable": "^3.5.14",
     "leaflet": "^1.7.1",
     "rc-slider": "^9.7.2",
     "react": "^17.0.2",
