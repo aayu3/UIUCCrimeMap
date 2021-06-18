@@ -91,14 +91,137 @@ h1 {
   border-radius: 20px;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1240px) {
   .pdf {
     display: none;
+  }
+
+  .iconlegend {
+    flex:1.75;
+    font-size: 22px;
+    background-color: #ffffff ;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    height: 80vh;
+  }
+
+  .leaflet-container {
+    width: 70vw;
+    height: 85vh;
+    margin: 30px;
+    margin-right: 0px;
+    position: relative;
+    border-radius: 20px;
   }
 }
 
 @media only screen and (max-width: 1100px) {
   .police {
+    display: none;
+  }
+
+  .iconlegend {
+    flex:1.75;
+    font-size: 16px;
+    background-color: #ffffff ;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    height: 80vh;
+  }
+
+  .leaflet-container {
+    width: 70vw;
+    height: 85vh;
+    margin: 30px;
+    margin-right: 0px;
+    position: relative;
+    border-radius: 20px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .iconlegend {
+    flex:1.75;
+    font-size: 16px;
+    background-color: #ffffff ;
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    height: 80vh;
+  }
+
+  .leaflet-container {
+    width: 65vw;
+    height: 85vh;
+    margin: 30px;
+    margin-right: 0px;
+    position: relative;
+    border-radius: 20px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .iconlegend {
+    flex:1.75;
+    font-size: 16px;
+    background-color: #ffffff ;
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    height: 80vh;
+  }
+
+  .leaflet-container {
+    width: 65vw;
+    height: 85vh;
+    margin: 30px;
+    margin-right: 0px;
+    position: relative;
+    border-radius: 20px;
+  }
+}
+
+@media only screen and (max-width: 700px)  {
+  .youtube {
+    display: none;
+  }
+
+  .iconlegend {
+    display: none;
+  }
+
+  .leaflet-container {
+    width: 90vw;
+    height: 85vh;
+    margin: 30px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 20px;
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  .github {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .team {
+    display: none;
+  }
+
+  #about {
     display: none;
   }
 }
