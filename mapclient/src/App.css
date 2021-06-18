@@ -1,83 +1,47 @@
 .leaflet-container {
   width: 80vw;
-  height: 80vh;
+  height: 85vh;
   margin: 30px;
   margin-right: 0px;
   position: relative;
   border-radius: 20px;
 }
 
-@media only screen and (min-width: 1024.9px) {
-  .header {
-    overflow: hidden;
-    background-color: #E84A27;
-    height: 5vw;
-  }
-  
-  .fullLogo {
-    height: 3.4vw;
-  }
-
-  .header a {
-    float: left;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    line-height: 25px;
-    border-radius: 4px;
-    position: relative;
-    left: 1vw;
-    align-self: center;
-    align-content: center;
-    padding: 5px;
-  }
-  
-  .header-left {
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-  
-  .header-right a {
-    float: right;
-    position: relative;
-    text-align: center;
-    vertical-align: center;
-    color: #A5A8AA;
-  }
+.header {
+  overflow: hidden;
+  background-color: #E84A27;
+  height: 65px;
 }
 
-@media only screen and (min-width: 1300px) {
-  .header a {
-    float: left;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    line-height: 25px;
-    border-radius: 4px;
-    position: relative;
-    left: 1vw;
-    align-self: center;
-    align-content: center;
-    padding: 5px;
-    padding-top: 15px;
-  }
+.fullLogo {
+  height: 43px;
+}
 
-  .fullLogo {
-    height: 2.8vw;
-  }
-  
-  .header-left {
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-  
-  .header-right a {
-    float: right;
-    position: relative;
-    text-align: center;
-    vertical-align: center;
-    color: #A5A8AA;
-  }
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  line-height: 25px;
+  border-radius: 4px;
+  position: relative;
+  left: 1vw;
+  align-self: center;
+  align-content: center;
+  padding: 5px;
+}
+
+.header-left {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.header-right a {
+  float: right;
+  position: relative;
+  text-align: center;
+  vertical-align: center;
+  color: #A5A8AA;
 }
 
 h1 {
@@ -112,17 +76,29 @@ h1 {
   }
 }
 
-.map-legend-outerContainer{
+.map-legend-outerContainer {
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
 }
 
-.iconlegend img{
-  width:5vw; 
+.iconlegend img {
+  width: 5vw; 
 }
 
-.map{
-  flex:8;
+.map {
+  flex: 8;
   border-radius: 20px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .pdf {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .police {
+    display: none;
+  }
 }

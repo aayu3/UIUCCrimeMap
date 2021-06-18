@@ -161,34 +161,49 @@ const Range = createSliderWithTooltip(Slider.Range);
                 <div className="header-left">
                   <a href="/" className="logo">
                     {/* UIUC Crime Map */}
-                  <img  className = "fullLogo" src ={websitelogo2} alt="logo"/>
+                    <img className="fullLogo" src ={websitelogo2} alt="logo"/>
                   </a>
                 </div>
 
                 <div class="header-right">
                   
-                  <a href="https://youtu.be/1rHvtO1x0PI">
-                    <button size='sm' href="https://youtu.be/1rHvtO1x0PI" type="button" class="btn btn-outline-light">
-                      <i class="fa fa-youtube"></i> YouTube</button>
-                      </a>
-                      <a href="https://github.com/aayu3/UIUCCrimeMap">
-                    <button className="buttons" href="https://github.com/aayu3/UIUCCrimeMap" type="button" class="btn btn-outline-light">
-                      <i class="fa fa-github"></i> GitHub</button>
-                      </a>
+                  <div className="youtube">
+                    <a href="https://youtu.be/1rHvtO1x0PI">
+                      <button href="https://youtu.be/1rHvtO1x0PI" type="button" class="btn btn-outline-light">
+                        <i class="fa fa-youtube"></i> YouTube</button>
+                    </a>
+                  </div>
+                  <div className="github">
+                    <a href="https://github.com/aayu3/UIUCCrimeMap">
+                      <button href="https://github.com/aayu3/UIUCCrimeMap" type="button" class="btn btn-outline-light">
+                        <i class="fa fa-github"></i> GitHub</button>
+                    </a>
+                  </div>
+                  <div className="Team">
                     <a href="/team">
-                      <button size='sm' href=" /team" type="button" class="btn btn-outline-light">Team</button>
+                      <button href=" /team" type="button" class="btn btn-outline-light">Team</button>
                     </a>
+                  </div>
+
+                  {/* Be careful when changing about. This can break the whole header for some reason */}
                     <a href="/about">
-                    <button className="buttons" href=" /about" type="button" class="btn btn-outline-light">About</button>
+                      <button href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
+
+                  <div className="uiuc police">
                     <a href="https://police.illinois.edu/">
-                    <button className="buttons" href="https://police.illinois.edu/" type="button" class="btn btn-outline-light">
-                      <img src={uiuclogo} width='5%'></img>  University Police Department</button>
-                      </a>
-                      <a>
-                      <button className="buttons" onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
-                      </a>
+                      <button href="https://police.illinois.edu/" type="button" class="btn btn-outline-light">
+                        <img src={uiuclogo} width='5%'></img>  University Police Department</button>
+                    </a>
+                  </div>
+                  <div className="pdf">
+                    <a>
+                      <button onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
+                    </a> 
+                  </div> 
                 </div>
+
+                
 
               </div>
               <Switch>
