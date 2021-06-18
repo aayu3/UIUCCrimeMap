@@ -179,15 +179,15 @@ const Range = createSliderWithTooltip(Slider.Range);
                         <i class="fa fa-github"></i> GitHub</button>
                     </a>
                   </div>
-                  <div className="Team">
+                  <div className="team">
                     <a href="/team">
                       <button href=" /team" type="button" class="btn btn-outline-light">Team</button>
                     </a>
                   </div>
 
                   {/* Be careful when changing about. This can break the whole header for some reason */}
-                    <a id="about" href="/about">
-                      <button href=" /about" type="button" class="btn btn-outline-light">About</button>
+                    <a href="/about">
+                      <button id="about" href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
 
                   <div className="uiuc police">
