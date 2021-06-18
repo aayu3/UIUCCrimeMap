@@ -179,7 +179,9 @@ const Range = createSliderWithTooltip(Slider.Range);
                         <i class="fa fa-github"></i> GitHub</button>
                     </a>
                   </div>
-                  <div className="team">
+
+                  {/* For some reason using className="team" causes the header to break*/}
+                  <div id="team">
                     <a href="/team">
                       <button href=" /team" type="button" class="btn btn-outline-light">Team</button>
                     </a>
