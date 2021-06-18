@@ -186,7 +186,7 @@ const Range = createSliderWithTooltip(Slider.Range);
                   </div>
 
                   {/* Be careful when changing about. This can break the whole header for some reason */}
-                    <a href="/about">
+                    <a id="about" href="/about">
                       <button href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
 
