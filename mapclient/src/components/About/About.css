@@ -13,3 +13,40 @@ h1 {
     margin: 0px auto;
     color: rgb(0, 51, 102);
 }
+
+@media only screen and (max-width: 1050px) {
+    h1 {
+        font-size: 3.8vw;
+    }
+
+    #description {
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    h1 {
+        font-size: 4vw;
+    }
+    #description {
+        font-size: 2.5vw;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    h1 {
+        font-size: 5.5vw;
+    }
+    #description {
+        font-size: 3.5vw;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    h1 {
+        font-size: 6vw;
+    }
+    #description {
+        font-size: 4vw;
+    }
+}
