@@ -144,13 +144,13 @@
         margin-right: 12vw;
         margin-top: 4vw;
         margin-bottom: 2vw;
-        width: 28vw;
-        height: 48vw;
+        width: 30vw;
+        height: 50vw;
     }
     
     .profilepic {
-        width: 28vw;
-        height: 28vw;
+        width: 30vw;
+        height: 30vw;
     }
     
     .name {
@@ -159,6 +159,6 @@
     }
       
     .bio {
-        font-size: 2.3vw;
+        font-size: 2.2vw;
     }
 }
