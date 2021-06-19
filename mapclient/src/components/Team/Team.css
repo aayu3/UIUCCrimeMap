@@ -136,3 +136,29 @@
         font-size: 0.8vw;
     }
 }
+
+@media only screen and (max-width: 450px) {
+    .team > div {
+        background-color: #f1f1f1;
+        margin-left: 12vw;
+        margin-right: 12vw;
+        margin-top: 4vw;
+        margin-bottom: 2vw;
+        width: 28vw;
+        height: 48vw;
+    }
+    
+    .profilepic {
+        width: 28vw;
+        height: 28vw;
+    }
+    
+    .name {
+        font-size: 3vw;
+        font-weight: 600;
+    }
+      
+    .bio {
+        font-size: 10vw;
+    }
+}
