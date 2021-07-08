@@ -5,6 +5,8 @@ import {  yellowIcon  } from './icons/yellowIcon';
 import {  redIcon  } from './icons/redIcon';
 import {  noIcon  } from './icons/noIcon';
 
+import { description, dateOfYear, time, address, ID } from './PopupStyles';
+
 function crimeDate(props, curDate, thresholds) {
     const crime = props;
 
@@ -54,11 +56,11 @@ const CrimeMap = ({crimeData, location, date, thresholds}) => {
     
     <Popup position={[crime.Latitude, crime.Longitude]} > 
       <div>
-        <h2>{crime.Description}</h2>
-        <h3>Date: {crime.DateOccurred}</h3>
-        <h3>Time: {crime.TimeOccurred}</h3>
-        <h3>Address: {crime.StreetAddress}</h3>
-        <p>Incident: {crime.CaseID}</p>
+        <div style={description}>{crime.Description}</div>
+        <div style={dateOfYear}>Date: {crime.DateOccurred}</div>
+        <div style={time}>Time: {crime.TimeOccurred}</div>
+        <div style={address}>Address: {crime.StreetAddress}</div>
+        <div style={ID}>Incident: {crime.CaseID}</div>
       </div>
     </Popup>
     
