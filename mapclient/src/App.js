@@ -248,6 +248,7 @@ const Range = createSliderWithTooltip(Slider.Range);
               <br></br>
               <br></br>
               <h3>Time of Day Slider</h3>
+              <h4>{this.state.crimesToDisplay.length} Crimes</h4>
               <Range 
               allowCross={false} 
               marks={{0: "12 AM", 23 : "11 PM"}}
