@@ -92,9 +92,7 @@ h1 {
 }
 
 @media only screen and (max-width: 1240px) {
-  .pdf {
-    display: none;
-  }
+
 
   .iconlegend {
     flex:1.75;
