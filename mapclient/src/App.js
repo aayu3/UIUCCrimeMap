@@ -181,7 +181,7 @@ const Range = createSliderWithTooltip(Slider.Range);
             <main>
               <div className="header">
                 <div className="header-left">
-                  <a href="/" className="logo">
+                  <a target="_blank" href="/" className="logo">
                     {/* UIUC Crime Map */}
                     <img className="fullLogo" src ={websitelogo2} alt="logo"/>
                   </a>
@@ -211,9 +211,11 @@ const Range = createSliderWithTooltip(Slider.Range);
                   </div>
                  */}
                   {/* Be careful when changing about. This can break the whole header for some reason */}
+                  {/* 
                     <a href="/about">
                       <button id="about" href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
+                    */}
                   {/* 
                   <div className="uiuc police">
                     <a href="https://police.illinois.edu/">
