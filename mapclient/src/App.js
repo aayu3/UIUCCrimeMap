@@ -225,7 +225,7 @@ const Range = createSliderWithTooltip(Slider.Range);
                   </div>
                   */}
                   <div className="pdf">
-                    <a>
+                    <a id="buttonLink">
                       <button onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
                     </a> 
                   </div> 

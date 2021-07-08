@@ -1,3 +1,11 @@
+::-webkit-scrollbar {
+  display:none;
+}
+
+*{
+  -ms-overflow-style: none;
+}
+
 .leaflet-container {
   width: 80vw;
   height: 115vh;
@@ -188,6 +196,13 @@ h1 {
     border-radius: 20px;
   }
 }
+
+.pdf {
+  position:relative;
+  margin-right:1%;
+}
+
+
 
 @media only screen and (max-width: 700px)  {
   .youtube {
