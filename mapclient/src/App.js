@@ -50,7 +50,8 @@ const Range = createSliderWithTooltip(Slider.Range);
           rangeValue : [0, redDaysThreshold, yellowDaysThreshold],
           rangeMin : 1,
           rangeMax : 60,
-          pdf: false
+          pdf: false,
+          timeRange : [0,23]
         };
 
         // bind function to use this
@@ -58,6 +59,7 @@ const Range = createSliderWithTooltip(Slider.Range);
         this.changeToRed = this.changeToRed.bind(this);
         this.resetMap = this.resetMap.bind(this);
         this.onSliderChange = this.onSliderChange.bind(this);
+        this.onTimerChange = this.onTimerChange.bind(this);
     }
 
     resetMap() {
@@ -150,6 +152,26 @@ const Range = createSliderWithTooltip(Slider.Range);
       this.setState({thresholds : newThreshold});
     }
   
+    filterTime(crimes, timeRange) {
+      var filtered = [];
+
+      for (var i = 0; i < crimes.length; i++) {
+        let crime = crimes[i];
+        var rawTime = crime.TimeOccurred.split(":");
+        var timeOccurred = parseInt(rawTime[0]);
+        if ((timeOccurred >= timeRange[0]) && (timeOccurred <= timeRange[1])) {
+          filtered.push(crime);
+        } 
+      }
+      return filtered;
+    }
+
+    onTimerChange(value) {
+      let newRange = [value[0], value[1]];
+      let filtered = this.filterTime(this.state.allCrimes, newRange);
+      this.setState( {crimesToDisplay : filtered});
+      this.setState({timeRange : newRange});
+    }
     
 
     render() {
@@ -225,7 +247,17 @@ const Range = createSliderWithTooltip(Slider.Range);
               <button onClick={this.resetMap} type="button" class="btn btn-primary">Reset Map</button> 
               <br></br>
               <br></br>
-             
+              <h3>Time of Day Slider</h3>
+              <Range 
+              allowCross={false} 
+              marks={{0: "12 AM", 23 : "11 PM"}}
+              defaultValue={this.state.timeRange} 
+              min={0} 
+              max = {23}
+              tipFormatter={value => `${value}:00`}
+              railStyle={{ backgroundColor: 'red' }}
+              onAfterChange = {this.onTimerChange}
+              /> 
               <br></br>
               <br></br>
               <h3>Crime Threshold Slider</h3>

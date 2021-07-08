@@ -56,6 +56,7 @@ const CrimeMap = ({crimeData, location, date, thresholds}) => {
       <div>
         <h2>{crime.Description}</h2>
         <h3>Date: {crime.DateOccurred}</h3>
+        <h3>Time: {crime.TimeOccurred}</h3>
         <h3>Address: {crime.StreetAddress}</h3>
         <p>Incident: {crime.CaseID}</p>
       </div>
