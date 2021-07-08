@@ -222,4 +222,8 @@ h1 {
   #about {
     display: none;
   }
+
+  .pdf {
+    display: none;
+  }
 }
