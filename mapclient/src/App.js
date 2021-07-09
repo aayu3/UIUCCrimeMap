@@ -51,7 +51,8 @@ const Range = createSliderWithTooltip(Slider.Range);
           rangeMin : 1,
           rangeMax : 60,
           pdf: false,
-          timeRange : [0,23]
+          timeRange : [0,23],
+          divstyle : {}
         };
 
         // bind function to use this
@@ -60,6 +61,7 @@ const Range = createSliderWithTooltip(Slider.Range);
         this.resetMap = this.resetMap.bind(this);
         this.onSliderChange = this.onSliderChange.bind(this);
         this.onTimerChange = this.onTimerChange.bind(this);
+        
     }
 
     resetMap() {
@@ -142,9 +144,22 @@ const Range = createSliderWithTooltip(Slider.Range);
         .then(res => this.setState({ allCrimes: Array.from(res) , crimesToDisplay : Array.from(res)}))
         .catch(err => console.log(err));
     }
+
+    inIframe() {
+      try {
+        return window.self !== window.top;
+      } catch (e) {
+        return true;
+      }
+    }
   
     componentDidMount() {
         this.getCrimes();
+        if (this.inIframe()) {
+          this.setState({divstyle : {display: "none"}});
+          console.log("in iframe");
+        }
+        
     }
 
     onSliderChange(value) {
@@ -188,7 +203,14 @@ const Range = createSliderWithTooltip(Slider.Range);
                 </div>
 
                 <div class="header-right">
-                  {/* 
+                <div className="pdf">
+                    <a id="buttonLink">
+                      <button onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
+                    </a> 
+                  </div> 
+                  <div style = {this.state.divstyle}>
+
+                  
                   <div className="youtube">
                     <a href="https://youtu.be/1rHvtO1x0PI">
                       <button href="https://youtu.be/1rHvtO1x0PI" type="button" class="btn btn-outline-light">
@@ -201,34 +223,31 @@ const Range = createSliderWithTooltip(Slider.Range);
                         <i class="fa fa-github"></i> GitHub</button>
                     </a>
                   </div>
-                  */}
+                  
                   {/* For some reason using className="team" causes the header to break*/}
-                  {/* 
+                  
                   <div id="team">
                     <a href="/team">
                       <button href=" /team" type="button" class="btn btn-outline-light">Team</button>
                     </a>
                   </div>
-                 */}
+                 
                   {/* Be careful when changing about. This can break the whole header for some reason */}
-                  {/* 
+                  
                     <a href="/about">
                       <button id="about" href=" /about" type="button" class="btn btn-outline-light">About</button>
                     </a>
-                    */}
-                  {/* 
-                  <div className="uiuc police">
+                    
+                  
+                  <div className="uiuc police" id="police">
                     <a href="https://police.illinois.edu/">
                       <button href="https://police.illinois.edu/" type="button" class="btn btn-outline-light">
-                        <img src={uiuclogo} width='5%'></img>  University Police Department</button>
+                        <img src={uiuclogo} width='5%'></img>    University Police Department</button>
                     </a>
                   </div>
-                  */}
-                  <div className="pdf">
-                    <a id="buttonLink">
-                      <button onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
-                    </a> 
-                  </div> 
+                  
+                  </div>
+                  
                 </div>
 
                 

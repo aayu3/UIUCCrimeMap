@@ -44,13 +44,15 @@
   padding-bottom: 5px;
 }
 
-.header-right a {
+.header-right div {
   float: right;
   position: relative;
   text-align: center;
   vertical-align: center;
   color: #A5A8AA;
 }
+
+
 
 h1 {
   font-size: 200%;
@@ -202,6 +204,11 @@ h1 {
   margin-right:1%;
 }
 
+#police {
+  position:relative;
+  margin-bottom:1%;
+}
+
 
 
 @media only screen and (max-width: 700px)  {
@@ -241,4 +248,6 @@ h1 {
   .pdf {
     display: none;
   }
+
+  
 }
