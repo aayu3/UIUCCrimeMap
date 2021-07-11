@@ -102,7 +102,9 @@ h1 {
 }
 
 @media only screen and (max-width: 1240px) {
-
+  .youtube {
+    display: none;
+  }
 
   .iconlegend {
     flex:1.75;
@@ -212,11 +214,11 @@ h1 {
 
 
 @media only screen and (max-width: 700px)  {
-  .youtube {
+  .iconlegend {
     display: none;
   }
 
-  .iconlegend {
+  .github {
     display: none;
   }
 
@@ -230,24 +232,21 @@ h1 {
   }
 }
 
-@media only screen and (max-width: 570px) {
-  .github {
+@media only screen and (max-width: 600px) {
+  #team {
     display: none;
   }
 }
 
-@media only screen and (max-width: 430px) {
-  #team {
-    display: none;
-  }
-
+@media only screen and (max-width: 570px) {
   #about {
     display: none;
   }
+}
 
+
+@media only screen and (max-width: 430px) {
   .pdf {
     display: none;
   }
-
-  
 }
