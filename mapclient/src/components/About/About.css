@@ -1,5 +1,9 @@
 h1 {
-    font-size: 3vw;
+    font-size: 2.7vw;
+}
+
+h2 {
+    font-size: 2vw;
 }
 
 #description {
@@ -16,37 +20,54 @@ h1 {
 
 @media only screen and (max-width: 1050px) {
     h1 {
-        font-size: 3.8vw;
+        font-size: 3.4vw;
     }
 
     #description {
         font-size: 2vw;
     }
+
+    h2 {
+        font-size: 2.7vw;
+    }
 }
 
 @media only screen and (max-width: 800px) {
     h1 {
-        font-size: 4vw;
+        font-size: 4.2vw;
     }
     #description {
         font-size: 2.5vw;
+    }
+
+    h2 {
+        font-size: 3.5vw;
     }
 }
 
 @media only screen and (max-width: 580px) {
     h1 {
-        font-size: 5.5vw;
+        font-size: 5.7vw;
     }
+
     #description {
         font-size: 3.5vw;
+    }
+
+    h2 {
+        font-size: 5vw;
     }
 }
 
 @media only screen and (max-width: 440px) {
     h1 {
-        font-size: 6vw;
+        font-size: 6.2vw;
     }
     #description {
         font-size: 4vw;
+    }
+
+    h2 {
+        font-size: 5.5vw;
     }
 }
