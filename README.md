@@ -6,7 +6,7 @@ The goal of our project is to create a simple web application that displays crim
 In our project we used <code>react.js</code> to create a front end and display a map with <code>leaftlet.js</code> and <code>react-leaflet.js</code>. For our backend we used the <code>express.js</code> package, and for our database we used MongoDB Atlas. To fetch the pdf we use <code>selenium</code> and <code>beautifulsoup4</code>. For decrypting the pdf, we are using <code>tabula.py</code> in python, as well as Geocoding with the Google Maps API in order to convert street addresses to latitude and longitude for the front-end. Finally we are using <code>pymongo</code> to connect our python program with the MongoDB Atlas database.<br>
 <br>
 <h2>Features</h2>
-As of now our features include a homepage with a map displaying markers with popups showing crime info. We also have a legend describing what each color of marker refers to and linking to maps that only have those markers displayed. We also have a brief description of the project on our about page as well as introductions to each of the team members on our team page.
+As of now our features include a homepage with a map displaying markers with popups showing crime info. We also have a legend describing what each color of marker refers to and linking to maps that only have those markers displayed. We have a Time of Day Slider that can be used to see crimes withing a certain time range and a Crime Threshold Slider that can be used to set a custom date range the colors of the markers. We also have a brief description of the project on our about page as well as introductions to each of the team members on our team page.
 <br>
 <h2>How to Run</h2>
 <h3>Backend (API)</h3>
