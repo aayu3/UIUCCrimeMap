@@ -12,7 +12,7 @@ import urllib
 import time 
 import pymongo 
 from pymongo import MongoClient
-cluster = MongoClient("mongodb+srv://pythonPDFInfo:lKskN2Po6b480C7B@uiuccrimedatabase.vg06i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+cluster = MongoClient("mongodbkey")
 
 db = cluster["Crime-DB"]
 collection = db["Crime-Data"]
