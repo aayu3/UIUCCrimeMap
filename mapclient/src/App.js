@@ -24,6 +24,8 @@ const location = {
   zoom: 17,
 }
 
+const months = [31,28,31,30,31,30,31,31,30,31,30,31];
+
 const Range = createSliderWithTooltip(Slider.Range);
 
   class App extends Component {
@@ -52,7 +54,8 @@ const Range = createSliderWithTooltip(Slider.Range);
           rangeMax : 60,
           pdf: false,
           timeRange : [0,23],
-          divstyle : {}
+          divstyle : {},
+          sixtyDayCrimes: [],
         };
 
         // bind function to use this
@@ -61,26 +64,24 @@ const Range = createSliderWithTooltip(Slider.Range);
         this.resetMap = this.resetMap.bind(this);
         this.onSliderChange = this.onSliderChange.bind(this);
         this.onTimerChange = this.onTimerChange.bind(this);
+        this.setSixtyDays = this.setSixtyDays.bind(this);
         
     }
 
     resetMap() {
-      this.setState({crimesToDisplay : this.state.allCrimes});
+      this.setState({crimesToDisplay : this.state.sixtyDayCrimes});
     }
 
     sanitizeCrimes(crimes) {
       var pdfBody = [];
       for (var i = 0; i < crimes.length; i++) {
-        let crime = crimes[i];
-        console.log(crime);
-        pdfBody[i] = [crime.CaseID, crime.DateReported, crime.TimeReported, crime.DateOccurred, crime.TimeOccurred, crime.StreetAddress, crime.Description, crime.Disposition];
+        let crime = crimes[i];        pdfBody[i] = [crime.CaseID, crime.DateReported, crime.TimeReported, crime.DateOccurred, crime.TimeOccurred, crime.StreetAddress, crime.Description, crime.Disposition];
       }
       return pdfBody;
     }
 
     generatePDF(crimes) {
       const doc = new jsPDF('l');
-      console.log("pdf generated");
       let pdfBody = this.sanitizeCrimes(crimes);
       // Or use javascript directly:
       doc.autoTable({
@@ -91,7 +92,7 @@ const Range = createSliderWithTooltip(Slider.Range);
     }
 
     changeToYellow() {
-      let filtered = this.filterYellow(this.state.allCrimes);
+      let filtered = this.filterYellow(this.state.sixtyDayCrimes);
       this.setState( {crimesToDisplay : filtered});
     }
 
@@ -115,7 +116,7 @@ const Range = createSliderWithTooltip(Slider.Range);
     }
 
     changeToRed() {
-      let filtered = this.filterRed(this.state.allCrimes);
+      let filtered = this.filterRed(this.state.sixtyDayCrimes);
       this.setState( {crimesToDisplay : filtered});
     }
 
@@ -141,7 +142,8 @@ const Range = createSliderWithTooltip(Slider.Range);
     getCrimes = () => {
         fetch("/api/crimes")
         .then(res => res.json())
-        .then(res => this.setState({ allCrimes: Array.from(res) , crimesToDisplay : Array.from(res)}))
+        .then(res => this.setState({ allCrimes: Array.from(res)}))
+        .then(res => this.setSixtyDays())
         .catch(err => console.log(err));
     }
 
@@ -153,12 +155,37 @@ const Range = createSliderWithTooltip(Slider.Range);
       }
     }
   
+    setSixtyDays() {
+      // Sixty Day Filter
+      let crimes = [];
+      for (let i = 0; i < this.state.allCrimes.length; i++) {
+        let crime = this.state.allCrimes[i];
+        let date = crime.DateOccurred.split("/").map(date => parseInt(date));
+        if (date[0] === this.state.month && date[2] === this.state.year) {
+          crimes.push(crime);
+        } else if (date[0] + 1 === this.state.month && date[2] === this.state.year) {
+          let daysBefore = (months[date[0]-1]-date[1]) + this.state.day;
+          if (daysBefore <= 60) {
+            crimes.push(crime);
+          }
+        } else if (date[0] + 2 === this.state.month && date[2] === this.state.year) {
+          let daysBefore = (months[date[0]-1]-date[1]) + months[date[0]] + this.state.day;
+          if (daysBefore <= 60) {
+            crimes.push(crime);
+          }
+        }
+      }
+      this.setState({sixtyDayCrimes : crimes});
+      this.setState({crimesToDisplay : crimes});
+    }
+
     componentDidMount() {
         this.getCrimes();
+        
         if (this.inIframe()) {
           this.setState({divstyle : {display: "none"}});
-          console.log("in iframe");
         }
+        
         
     }
 
@@ -183,7 +210,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 
     onTimerChange(value) {
       let newRange = [value[0], value[1]];
-      let filtered = this.filterTime(this.state.allCrimes, newRange);
+      let filtered = this.filterTime(this.state.sixtyDayCrimes, newRange);
       this.setState( {crimesToDisplay : filtered});
       this.setState({timeRange : newRange});
     }
@@ -205,7 +232,7 @@ const Range = createSliderWithTooltip(Slider.Range);
                 <div class="header-right">
                 <div className="pdf">
                     <a id="buttonLink">
-                      <button onClick={() =>this.generatePDF(this.state.allCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
+                      <button onClick={() =>this.generatePDF(this.state.sixtyDayCrimes)} type="button" class="btn btn-outline-light">Generate PDF</button>
                     </a> 
                   </div> 
                   <div style = {this.state.divstyle}>
