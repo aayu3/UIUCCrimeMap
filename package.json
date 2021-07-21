@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd mapclient && npm install && npm run build" 
+    "heroku-postbuild": "cd mapclient && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
