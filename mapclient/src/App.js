@@ -75,7 +75,9 @@ const Range = createSliderWithTooltip(Slider.Range);
     sanitizeCrimes(crimes) {
       var pdfBody = [];
       for (var i = 0; i < crimes.length; i++) {
-        let crime = crimes[i];        pdfBody[i] = [crime.CaseID, crime.DateReported, crime.TimeReported, crime.DateOccurred, crime.TimeOccurred, crime.StreetAddress, crime.Description, crime.Disposition];
+        let crime = crimes[i]; 
+        console.log(crime.Description);       
+        pdfBody[i] = [crime.CaseID, crime.DateReported, crime.TimeReported, crime.DateOccurred, crime.TimeOccurred, crime.StreetAddress, crime.Description.replace("‐", "-"), crime.Disposition];
       }
       return pdfBody;
     }
