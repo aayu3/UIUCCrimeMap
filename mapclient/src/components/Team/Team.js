@@ -5,7 +5,6 @@ import profilepic from './images/defaultprofilepic.png';
 import aaronyu from './images/aaronpfp.png';
 import petervandervelde from './images/peterpfp.png';
 import angelshah from './images/angelshah.jpg';
-import mohammad from './images/mohammadpfp.png';
 import illiaborzov from './images/illiapfp.jpg';
 
 const team = () => {
