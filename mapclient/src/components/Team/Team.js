@@ -1,7 +1,7 @@
 import React from 'react';
 import './Team.css';
 
-import profilepic from './images/defaultprofilepic.png';
+import juyoungchoi from './images/juyoungchoi.jpg';
 import aaronyu from './images/aaronpfp.png';
 import petervandervelde from './images/peterpfp.png';
 import angelshah from './images/angelshah.jpg';
@@ -23,7 +23,7 @@ const team = () => {
             </div>
             
             <div>
-                <a href="https://github.com/jchoi25"><img className="profilepic" src={profilepic} alt="Juyoung Choi"/></a>
+                <a href="https://github.com/jchoi25"><img className="profilepic" src={juyoungchoi} alt="Juyoung Choi"/></a>
                 <div className="name">
                     Juyoung Choi
                 </div>
