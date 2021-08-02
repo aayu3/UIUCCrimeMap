@@ -347,22 +347,18 @@ class App extends Component {
                       onClick={this.changeToRed}
                       type="button"
                       class="btn btn-danger"
+                      style={{width:"100%",background: `linear-gradient(to bottom, ${[0,1,2,3,4].map(x=>x/4).map(x=>x*this.state.thresholds[1]).map(q=>`hsl(${q*180/60},70%,50%)`).join(', ')})`}}
                     >
-                      Filter Recent Only
-                    </button>{" "}
-                    <br></br>
-                    {this.state.thresholds[1]} Days.
-                    <br></br>
-                    <br></br>
+                      Last 0-{this.state.thresholds[1]} Days
+                    </button><br/>
                     <button
                       onClick={this.changeToYellow}
                       type="button"
                       class="btn btn-warning"
+                      style={{width:"100%",background: `linear-gradient(to bottom, ${[0,1,2,3,4].map(x=>x/4).map(x=>(1-x)*this.state.thresholds[1]+x*this.state.thresholds[2]).map(q=>`hsl(${q*180/60},70%,50%)`).join(', ')})`}}
                     >
-                      Filter Semi Recent Only
-                    </button>{" "}
-                    <br></br>
-                    {this.state.thresholds[2]} Days.
+                      Last {this.state.thresholds[1]}-{this.state.thresholds[2]} Days
+                    </button>
                     <br></br>
                     <br></br>
                     <button
