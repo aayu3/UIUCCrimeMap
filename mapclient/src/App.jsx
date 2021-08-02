@@ -347,15 +347,19 @@ class App extends Component {
                       onClick={this.changeToRed}
                       type="button"
                       class="btn btn-danger"
-                      style={{width:"100%",background: `linear-gradient(to bottom, ${[0,1,2,3,4].map(x=>x/4).map(x=>x*this.state.thresholds[1]).map(q=>`hsl(${q*180/60},70%,50%)`).join(', ')})`}}
-                    >
+                      // style={{width:"100%",background: `linear-gradient(to bottom, ${[0,1,2,3,4].map(x=>x/4).map(x=>x*this.state.thresholds[1]).map(q=>`hsl(${q*180/60},70%,50%)`).join(', ')})`}}
+                    
+                      style={{width:"100%",background: `hsl(${(0.5*this.state.thresholds[1])*180/60},70%,50%)`}}
+                      >
                       Last 0-{this.state.thresholds[1]} Days
                     </button><br/>
                     <button
                       onClick={this.changeToYellow}
                       type="button"
                       class="btn btn-warning"
-                      style={{width:"100%",background: `linear-gradient(to bottom, ${[0,1,2,3,4].map(x=>x/4).map(x=>(1-x)*this.state.thresholds[1]+x*this.state.thresholds[2]).map(q=>`hsl(${q*180/60},70%,50%)`).join(', ')})`}}
+                      style={{width:"100%",background: `hsl(${(0.5*this.state.thresholds[1]+0.5*this.state.thresholds[2])*180/60},70%,50%)`}}
+                    
+                      // style={{width:"100%",background: `linear-gradient(to bottom, ${[0,1,2,3,4].map(x=>x/4).map(x=>(1-x)*this.state.thresholds[1]+x*this.state.thresholds[2]).map(q=>`hsl(${q*180/60},70%,50%)`).join(', ')})`}}
                     >
                       Last {this.state.thresholds[1]}-{this.state.thresholds[2]} Days
                     </button>
