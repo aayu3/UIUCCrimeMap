@@ -3,6 +3,14 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./App.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import {
+  Button,
+  Container,
+  Nav,
+  NavDropdown,
+  NavbarBrand,
+  Navbar,
+} from "react-bootstrap";
 import websitelogo2 from "./icons/websitelogo2.png";
 import Ilogo2 from "./icons/illinois_logo.svg";
 
@@ -259,86 +267,55 @@ class App extends Component {
     return (
       <div>
         <main>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
-            <div className="container-fluid">
-              <a className="navbar-brand" href="#">
+          <Navbar bg="primary" variant="dark" expand="lg">
+            <Container>
+              <Navbar.Brand href="/">
                 <Logo
                   style={{ height: "1.5em", display: "inline", flex: 0 }}
                 ></Logo>
-              </a>
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarColor01"
-                aria-controls="navbarColor01"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon" />
-              </button>
-              <div className="collapse navbar-collapse" id="navbarColor01">
-                <ul className="navbar-nav mr-auto">
+              </Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ml-auto">
                   {routes.map((r) => {
                     return (
-                      <li className="nav-item" key={r.name}>
-                        <Switch>
-                          <Route path={r.path} exact>
-                            <Link className="nav-link active" to={r.path}>
-                              {r.name}
-                            </Link>
-                          </Route>
-                          <Route>
-                            <Link className="nav-link" to={r.path}>
-                              {r.name}
-                            </Link>
-                          </Route>
-                        </Switch>
-                      </li>
+                      <Switch key={r.name}>
+                        <Route path={r.path} exact>
+                          <Nav.Link key={r.name} active to={r.path} as={Link}>
+                            {r.name}
+                          </Nav.Link>
+                        </Route>
+                        <Route>
+                          <Nav.Link key={r.name} to={r.path} as={Link}>
+                            {r.name}
+                          </Nav.Link>
+                        </Route>
+                      </Switch>
                     );
                   })}
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href={"https://youtu.be/1rHvtO1x0PI"}
-                    >
-                      YouTube
-                    </a>
-                  </li>{" "}
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href={"https://github.com/aayu3/UIUCCrimeMap"}
-                    >
-                      GitHub
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href={"https://police.illinois.edu/"}
-                    >
-                      UIUC Police Department
-                    </a>
-                  </li>
-                </ul>
-                <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <button
+                  <Nav.Link href={"https://youtu.be/1rHvtO1x0PI"}>
+                    YouTube
+                  </Nav.Link>
+                  <Nav.Link href={"https://github.com/aayu3/UIUCCrimeMap"}>
+                    GitHub
+                  </Nav.Link>
+                  <Nav.Link href={"https://police.illinois.edu/"}>
+                    UIUC Police Department
+                  </Nav.Link>
+                  <Nav.Item>
+                    <Button
                       onClick={() =>
                         this.generatePDF(this.state.sixtyDayCrimes)
                       }
-                      type="button"
-                      class="btn btn-light"
+                      variant="light"
                     >
                       Generate PDF
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-
+                    </Button>
+                  </Nav.Item>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
           <Switch>
             <Route
               path="/"
