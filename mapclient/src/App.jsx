@@ -39,6 +39,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 const routes = [
   { name: "Map", path: "/" },
   { name: "About", path: "/about" },
+  { name: "UIUC Police", path: "https://police.illinois.edu/", external: true },
   { name: "Team", path: "/team" },
 ];
 class App extends Component {
@@ -278,6 +279,13 @@ class App extends Component {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                   {routes.map((r) => {
+                    if (r.external) {
+                      return (
+                        <Nav.Link key={r.name} href={r.path}>
+                          {r.name}
+                        </Nav.Link>
+                      );
+                    }
                     return (
                       <Switch key={r.name}>
                         <Route path={r.path} exact>
@@ -293,14 +301,11 @@ class App extends Component {
                       </Switch>
                     );
                   })}
-                  <Nav.Link href={"https://youtu.be/1rHvtO1x0PI"}>
-                    YouTube
-                  </Nav.Link>
                   <Nav.Link href={"https://github.com/aayu3/UIUCCrimeMap"}>
                     GitHub
                   </Nav.Link>
-                  <Nav.Link href={"https://police.illinois.edu/"}>
-                    UIUC Police Department
+                  <Nav.Link href={"https://youtu.be/1rHvtO1x0PI"}>
+                    YouTube
                   </Nav.Link>
                   <Nav.Item>
                     <Button
