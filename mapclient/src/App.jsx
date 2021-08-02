@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import websitelogo2 from "./icons/websitelogo2.png";
 import Ilogo2 from "./icons/illinois_logo.svg";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 import uiuclogo from "./icons/uiuclogo.png";
+import { ReactComponent as Logo } from "./icons/websitelogo.svg";
 import CrimeMap from "./CrimeMap";
 import { createSliderWithTooltip, SliderTooltip } from "rc-slider";
 
@@ -28,7 +28,11 @@ const location = {
 const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 const Range = createSliderWithTooltip(Slider.Range);
-
+const routes = [
+  { name: "Map", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Team", path: "/team" },
+];
 class App extends Component {
   constructor(props) {
     super(props);
@@ -254,204 +258,180 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Router basename={process.env.PUBLIC_URL}>
-          <main>
-            <div className="header">
-              <div className="header-left">
-                <a target="_blank" href="/" className="logo">
-                  {/* UIUC Crime Map */}
-                  <img className="fullLogo" src={websitelogo2} alt="logo" />
-                </a>
-              </div>
-
-              <div class="header-right">
-                <div className="pdf">
-                  <a id="buttonLink">
+        <main>
+          <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
+            <div className="container-fluid">
+              <a className="navbar-brand" href="#">
+                <Logo
+                  style={{ height: "1.5em", display: "inline", flex: 0 }}
+                ></Logo>
+              </a>
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarColor01"
+                aria-controls="navbarColor01"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon" />
+              </button>
+              <div className="collapse navbar-collapse" id="navbarColor01">
+                <ul className="navbar-nav mr-auto">
+                  {routes.map((r) => {
+                    return (
+                      <li className="nav-item" key={r.name}>
+                        <Switch>
+                          <Route path={r.path} exact>
+                            <Link className="nav-link active" to={r.path}>
+                              {r.name}
+                            </Link>
+                          </Route>
+                          <Route>
+                            <Link className="nav-link" to={r.path}>
+                              {r.name}
+                            </Link>
+                          </Route>
+                        </Switch>
+                      </li>
+                    );
+                  })}
+                  <li className="nav-item">
+                    <a
+                      className="nav-link"
+                      href={"https://youtu.be/1rHvtO1x0PI"}
+                    >
+                      YouTube
+                    </a>
+                  </li>{" "}
+                  <li className="nav-item">
+                    <a
+                      className="nav-link"
+                      href={"https://github.com/aayu3/UIUCCrimeMap"}
+                    >
+                      GitHub
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link"
+                      href={"https://police.illinois.edu/"}
+                    >
+                      UIUC Police Department
+                    </a>
+                  </li>
+                </ul>
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
                     <button
                       onClick={() =>
                         this.generatePDF(this.state.sixtyDayCrimes)
                       }
                       type="button"
-                      class="btn btn-outline-light"
+                      class="btn btn-light"
                     >
                       Generate PDF
                     </button>
-                  </a>
-                </div>
-                <div style={this.state.divstyle}>
-                  <div className="youtube">
-                    <a href="https://youtu.be/1rHvtO1x0PI">
-                      <button
-                        href="https://youtu.be/1rHvtO1x0PI"
-                        type="button"
-                        class="btn btn-outline-light"
-                      >
-                        <i class="fa fa-youtube"></i> YouTube
-                      </button>
-                    </a>
-                  </div>
-                  <div className="github">
-                    <a href="https://github.com/aayu3/UIUCCrimeMap">
-                      <button
-                        href="https://github.com/aayu3/UIUCCrimeMap"
-                        type="button"
-                        class="btn btn-outline-light"
-                      >
-                        <i class="fa fa-github"></i> GitHub
-                      </button>
-                    </a>
-                  </div>
-
-                  {/* For some reason using className="team" causes the header to break*/}
-
-                  <div id="team">
-                    <a href="/team">
-                      <button
-                        href=" /team"
-                        type="button"
-                        class="btn btn-outline-light"
-                      >
-                        Team
-                      </button>
-                    </a>
-                  </div>
-
-                  {/* Be careful when changing about. This can break the whole header for some reason */}
-
-                  <a href="/about">
-                    <button
-                      id="about"
-                      href=" /about"
-                      type="button"
-                      class="btn btn-outline-light"
-                    >
-                      About
-                    </button>
-                  </a>
-
-                  <div className="uiuc police" id="police">
-                    <a href="https://police.illinois.edu/">
-                      <button
-                        href="https://police.illinois.edu/"
-                        type="button"
-                        class="btn btn-outline-light"
-                        style={{ display: "flex", alignItems: "center" }}
-                      >
-                        <svg
-                          viewBox="-44.44 0 288.892 288.892"
-                          style={{ height: "18px" }}
-                        >
-                          <path
-                            id="path2"
-                            d="M 0 0 L 0 77.78125 L 44.443359 77.78125 L 44.443359 211.11133 L 0 211.11133 L 0 288.89258 L 200 288.89258 L 200 211.11133 L 155.55664 211.11133 L 155.55664 77.78125 L 200 77.78125 L 200 0 L 0 0 z M 11.111328 11.125 L 188.89258 11.125 L 188.89258 66.677734 L 155.56055 66.677734 C 149.42425 66.677734 144.44922 71.650309 144.44922 77.787109 L 144.44922 211.11719 C 144.44922 217.25349 149.42375 222.22656 155.56055 222.22656 L 188.89258 222.22656 L 188.89258 277.7832 L 11.111328 277.7832 L 11.111328 222.22656 L 44.449219 222.22656 C 50.579619 222.22656 55.560547 217.25399 55.560547 211.11719 L 55.560547 77.787109 C 55.560547 71.650809 50.580119 66.677734 44.449219 66.677734 L 11.111328 66.677734 L 11.111328 11.125 z "
-                            style={{
-                              fill: "currentColor",
-                              fillOpacity: 1,
-                              stroke: "none",
-                            }}
-                          />
-                        </svg>
-                        University Police Department
-                      </button>
-                    </a>
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
             </div>
-            <Switch>
-              <Route
-                path="/"
-                exact
-                render={() => (
-                  <div className="map-legend-outerContainer">
-                    <div className="iconlegend">
-                      <h2>
-                        <b>Legend:</b>
-                      </h2>
-                      <h5>Crimes within...</h5>
-                      <button
-                        onClick={this.changeToRed}
-                        type="button"
-                        class="btn btn-danger"
-                      >
-                        Filter Red Only
-                      </button>{" "}
-                      <br></br>
-                      {this.state.thresholds[1]} Days.
-                      <br></br>
-                      <br></br>
-                      <button
-                        onClick={this.changeToYellow}
-                        type="button"
-                        class="btn btn-warning"
-                      >
-                        Filter Yellow Only
-                      </button>{" "}
-                      <br></br>
-                      {this.state.thresholds[2]} Days.
-                      <br></br>
-                      <br></br>
-                      <button
-                        onClick={this.resetMap}
-                        type="button"
-                        class="btn btn-primary"
-                      >
-                        Reset Map
-                      </button>
-                      <br></br>
-                      <br></br>
-                      <h3>Time of Day Slider</h3>
-                      <h4>{this.state.crimesToDisplay.length} Crimes</h4>
-                      <Range
-                        allowCross={false}
-                        marks={{ 0: "12 AM", 23: "11 PM" }}
-                        defaultValue={this.state.timeRange}
-                        min={0}
-                        max={23}
-                        tipFormatter={(value) => `${value}:00`}
-                        railStyle={{ backgroundColor: "red" }}
-                        onAfterChange={this.onTimerChange}
-                      />
-                      <br></br>
-                      <br></br>
-                      <h3>Crime Threshold Slider</h3>
-                      <Range
-                        allowCross={false}
-                        marks={{ 1: "1 Day", 60: "60 Days" }}
-                        defaultValue={this.state.rangeValue}
-                        min={this.state.rangeMin}
-                        max={this.state.rangeMax}
-                        tipFormatter={(value) => `${value} days`}
-                        trackStyle={[
-                          { backgroundColor: "red" },
-                          { backgroundColor: "#DADD2D" },
-                        ]}
-                        railStyle={{ backgroundColor: "green" }}
-                        onAfterChange={this.onSliderChange}
-                      />
-                    </div>
+          </nav>
 
-                    <div className="map">
-                      <CrimeMap
-                        crimeData={this.state.crimesToDisplay}
-                        location={location}
-                        date={this.state.date}
-                        thresholds={this.state.thresholds}
-                      ></CrimeMap>
-                    </div>
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <div className="map-legend-outerContainer">
+                  <div className="iconlegend">
+                    <h2>
+                      <b>Legend:</b>
+                    </h2>
+                    <h5>Crimes within...</h5>
+                    <button
+                      onClick={this.changeToRed}
+                      type="button"
+                      class="btn btn-danger"
+                    >
+                      Filter Red Only
+                    </button>{" "}
+                    <br></br>
+                    {this.state.thresholds[1]} Days.
+                    <br></br>
+                    <br></br>
+                    <button
+                      onClick={this.changeToYellow}
+                      type="button"
+                      class="btn btn-warning"
+                    >
+                      Filter Yellow Only
+                    </button>{" "}
+                    <br></br>
+                    {this.state.thresholds[2]} Days.
+                    <br></br>
+                    <br></br>
+                    <button
+                      onClick={this.resetMap}
+                      type="button"
+                      class="btn btn-primary"
+                    >
+                      Reset Map
+                    </button>
+                    <br></br>
+                    <br></br>
+                    <h3>Time of Day Slider</h3>
+                    <h4>{this.state.crimesToDisplay.length} Crimes</h4>
+                    <Range
+                      allowCross={false}
+                      marks={{ 0: "12 AM", 23: "11 PM" }}
+                      defaultValue={this.state.timeRange}
+                      min={0}
+                      max={23}
+                      tipFormatter={(value) => `${value}:00`}
+                      railStyle={{ backgroundColor: "red" }}
+                      onAfterChange={this.onTimerChange}
+                    />
+                    <br></br>
+                    <br></br>
+                    <h3>Crime Threshold Slider</h3>
+                    <Range
+                      allowCross={false}
+                      marks={{ 1: "1 Day", 60: "60 Days" }}
+                      defaultValue={this.state.rangeValue}
+                      min={this.state.rangeMin}
+                      max={this.state.rangeMax}
+                      tipFormatter={(value) => `${value} days`}
+                      trackStyle={[
+                        { backgroundColor: "red" },
+                        { backgroundColor: "#DADD2D" },
+                      ]}
+                      railStyle={{ backgroundColor: "green" }}
+                      onAfterChange={this.onSliderChange}
+                    />
                   </div>
-                )}
-              />
 
-              <Route exact path="/about">
-                <About />
-              </Route>
-              <Route exact path="/team">
-                <Team />
-              </Route>
-            </Switch>
-          </main>
-        </Router>
+                  <div className="map">
+                    <CrimeMap
+                      crimeData={this.state.crimesToDisplay}
+                      location={location}
+                      date={this.state.date}
+                      thresholds={this.state.thresholds}
+                    ></CrimeMap>
+                  </div>
+                </div>
+              )}
+            />
+
+            <Route exact path="/about">
+              <About />
+            </Route>
+            <Route exact path="/team">
+              <Team />
+            </Route>
+          </Switch>
+        </main>
       </div>
     );
   }
