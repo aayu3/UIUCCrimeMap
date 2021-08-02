@@ -278,35 +278,46 @@ class App extends Component {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                  {routes.map((r) => {
-                    if (r.external) {
-                      return (
-                        <Nav.Link key={r.name} href={r.path}>
-                          {r.name}
-                        </Nav.Link>
-                      );
-                    }
-                    return (
-                      <Switch key={r.name}>
-                        <Route path={r.path} exact>
-                          <Nav.Link key={r.name} active to={r.path} as={Link}>
-                            {r.name}
-                          </Nav.Link>
-                        </Route>
-                        <Route>
-                          <Nav.Link key={r.name} to={r.path} as={Link}>
-                            {r.name}
-                          </Nav.Link>
-                        </Route>
-                      </Switch>
-                    );
-                  })}
-                  <Nav.Link href={"https://github.com/aayu3/UIUCCrimeMap"}>
-                    GitHub
-                  </Nav.Link>
-                  <Nav.Link href={"https://youtu.be/1rHvtO1x0PI"}>
-                    YouTube
-                  </Nav.Link>
+                  {!this.inIframe() ? (
+                    <>
+                      {routes.map((r) => {
+                        if (r.external) {
+                          return (
+                            <Nav.Link key={r.name} href={r.path}>
+                              {r.name}
+                            </Nav.Link>
+                          );
+                        }
+                        return (
+                          <Switch key={r.name}>
+                            <Route path={r.path} exact>
+                              <Nav.Link
+                                key={r.name}
+                                active
+                                to={r.path}
+                                as={Link}
+                              >
+                                {r.name}
+                              </Nav.Link>
+                            </Route>
+                            <Route>
+                              <Nav.Link key={r.name} to={r.path} as={Link}>
+                                {r.name}
+                              </Nav.Link>
+                            </Route>
+                          </Switch>
+                        );
+                      })}
+                      <Nav.Link href={"https://github.com/aayu3/UIUCCrimeMap"}>
+                        GitHub
+                      </Nav.Link>
+                      <Nav.Link href={"https://youtu.be/1rHvtO1x0PI"}>
+                        YouTube
+                      </Nav.Link>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   <Nav.Item>
                     <Button
                       onClick={() =>
