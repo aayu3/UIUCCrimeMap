@@ -5,8 +5,8 @@
     "TimeReported": "8:41",
     "DateOccurred": "4/6/2021",
     "TimeOccurred": "17:33",
-    "GeneralLocation": [40.110580, -88.217842],
-    "StreetAddress" : "805 W GREEN ST, URBANA",
+    "GeneralLocation": [40.11058, -88.217842],
+    "StreetAddress": "805 W GREEN ST, URBANA",
     "CrimeDescription": "BURGLARY FROM MOTOR VEHICLE",
     "Disposition": "REPORTED TO OTHER AGENCY"
   },
@@ -16,8 +16,8 @@
     "TimeReported": "8:06",
     "DateOccurred": "4/5/2021",
     "TimeOccurred": "15:19",
-    "GeneralLocation": [40.113760, -88.219150],
-    "StreetAddress" : "814 STOUGHTON ST, URBANA",
+    "GeneralLocation": [40.11376, -88.21915],
+    "StreetAddress": "814 STOUGHTON ST, URBANA",
     "CrimeDescription": "THEFT",
     "Disposition": "REPORTED TO OTHER AGENCY"
   },
@@ -27,7 +27,7 @@
     "TimeReported": "8:06",
     "DateOccurred": "4/5/2021",
     "TimeOccurred": "18:51",
-    "GeneralLocation": [40.111100,-88.239540],
+    "GeneralLocation": [40.1111, -88.23954],
     "StreetAddress": "55 E HEALEY ST, CHAMPAIGN",
     "CrimeDescription": "BURGLARY",
     "Disposition": "REPORTED TO OTHER AGENCY"

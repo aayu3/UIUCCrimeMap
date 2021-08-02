@@ -1,73 +1,73 @@
 h1 {
-    font-size: 2.7vw;
+  font-size: 2.7vw;
 }
 
 h2 {
-    font-size: 2vw;
+  font-size: 2vw;
 }
 
 #description {
-    font-size: 1.5vw;
-    color: rgb(87, 87, 87);
+  font-size: 1.5vw;
+  color: rgb(87, 87, 87);
 }
-  
+
 .about {
-    width: 80vw;
-    padding: 2vw;
-    margin: 0px auto;
-    color: rgb(0, 51, 102);
+  width: 80vw;
+  padding: 2vw;
+  margin: 0px auto;
+  color: rgb(0, 51, 102);
 }
 
 @media only screen and (max-width: 1050px) {
-    h1 {
-        font-size: 3.4vw;
-    }
+  h1 {
+    font-size: 3.4vw;
+  }
 
-    #description {
-        font-size: 2vw;
-    }
+  #description {
+    font-size: 2vw;
+  }
 
-    h2 {
-        font-size: 2.7vw;
-    }
+  h2 {
+    font-size: 2.7vw;
+  }
 }
 
 @media only screen and (max-width: 800px) {
-    h1 {
-        font-size: 4.2vw;
-    }
-    #description {
-        font-size: 2.5vw;
-    }
+  h1 {
+    font-size: 4.2vw;
+  }
+  #description {
+    font-size: 2.5vw;
+  }
 
-    h2 {
-        font-size: 3.5vw;
-    }
+  h2 {
+    font-size: 3.5vw;
+  }
 }
 
 @media only screen and (max-width: 580px) {
-    h1 {
-        font-size: 5.7vw;
-    }
+  h1 {
+    font-size: 5.7vw;
+  }
 
-    #description {
-        font-size: 3.5vw;
-    }
+  #description {
+    font-size: 3.5vw;
+  }
 
-    h2 {
-        font-size: 5vw;
-    }
+  h2 {
+    font-size: 5vw;
+  }
 }
 
 @media only screen and (max-width: 440px) {
-    h1 {
-        font-size: 6.2vw;
-    }
-    #description {
-        font-size: 4vw;
-    }
+  h1 {
+    font-size: 6.2vw;
+  }
+  #description {
+    font-size: 4vw;
+  }
 
-    h2 {
-        font-size: 5.5vw;
-    }
+  h2 {
+    font-size: 5.5vw;
+  }
 }

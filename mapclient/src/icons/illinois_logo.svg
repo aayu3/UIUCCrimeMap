@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="288.892"
+   width="200"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="illinois_logo.svg"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <path
+     id="path2"
+     d="M 0 0 L 0 77.78125 L 44.443359 77.78125 L 44.443359 211.11133 L 0 211.11133 L 0 288.89258 L 200 288.89258 L 200 211.11133 L 155.55664 211.11133 L 155.55664 77.78125 L 200 77.78125 L 200 0 L 0 0 z M 11.111328 11.125 L 188.89258 11.125 L 188.89258 66.677734 L 155.56055 66.677734 C 149.42425 66.677734 144.44922 71.650309 144.44922 77.787109 L 144.44922 211.11719 C 144.44922 217.25349 149.42375 222.22656 155.56055 222.22656 L 188.89258 222.22656 L 188.89258 277.7832 L 11.111328 277.7832 L 11.111328 222.22656 L 44.449219 222.22656 C 50.579619 222.22656 55.560547 217.25399 55.560547 211.11719 L 55.560547 77.787109 C 55.560547 71.650809 50.580119 66.677734 44.449219 66.677734 L 11.111328 66.677734 L 11.111328 11.125 z "
+     style="fill:#ffffff;fill-opacity:1;stroke:none" />
+</svg>

@@ -1,141 +1,141 @@
 .team {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .team > div.break {
-    flex-basis: 100%;
-    height: 0;
+  flex-basis: 100%;
+  height: 0;
 }
 
 .team > div {
-    background-color: #f1f1f1;
-    margin-left: 5vw;
-    margin-right: 5vw;
-    margin-bottom: 2vw;
-    width: 15.6vw;
-    height: 25vw;
+  background-color: #f1f1f1;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-bottom: 2vw;
+  width: 15.6vw;
+  height: 25vw;
 }
 
 .profilepic {
-    width: 15.6vw;
-    height: 15.6vw;
+  width: 15.6vw;
+  height: 15.6vw;
 }
 
 .name {
-    font-size: 1.5vw;
-    font-weight: 600;
+  font-size: 1.5vw;
+  font-weight: 600;
 }
-  
+
 .bio {
-    font-size: 1vw;
+  font-size: 1vw;
 }
 
 @media only screen and (max-width: 980px) {
-    .team > div {
-        width: 20vw;
-        height: 32vw;
-    }
-    
-    .profilepic {
-        width: 20vw;
-        height: 20vw;
-    }
-    
-    .name {
-        font-size: 1.8vw;
-        font-weight: 600;
-    }
-      
-    .bio {
-        font-size: 1.3vw;
-    }
+  .team > div {
+    width: 20vw;
+    height: 32vw;
+  }
+
+  .profilepic {
+    width: 20vw;
+    height: 20vw;
+  }
+
+  .name {
+    font-size: 1.8vw;
+    font-weight: 600;
+  }
+
+  .bio {
+    font-size: 1.3vw;
+  }
 }
 
 @media only screen and (max-width: 720px) {
-    .team > div {
-        width: 22vw;
-        height: 35vw;
-    }
-    
-    .profilepic {
-        width: 22vw;
-        height: 22vw;
-    }
-    
-    .name {
-        font-size: 1.8vw;
-        font-weight: 600;
-    }
-      
-    .bio {
-        font-size: 1.4vw;
-    }
+  .team > div {
+    width: 22vw;
+    height: 35vw;
+  }
+
+  .profilepic {
+    width: 22vw;
+    height: 22vw;
+  }
+
+  .name {
+    font-size: 1.8vw;
+    font-weight: 600;
+  }
+
+  .bio {
+    font-size: 1.4vw;
+  }
 }
 
 @media only screen and (max-width: 650px) {
-    .team > div {
-        margin-bottom: 2vw;
-        width: 28vw;
-        height: 42vw;
-    }
-    
-    .profilepic {
-        width: 28vw;
-        height: 28vw;
-    }
-    
-    .name {
-        font-size: 2.8vw;
-        font-weight: 600;
-    }
-      
-    .bio {
-        font-size: 0.8vw;
-    }
+  .team > div {
+    margin-bottom: 2vw;
+    width: 28vw;
+    height: 42vw;
+  }
+
+  .profilepic {
+    width: 28vw;
+    height: 28vw;
+  }
+
+  .name {
+    font-size: 2.8vw;
+    font-weight: 600;
+  }
+
+  .bio {
+    font-size: 0.8vw;
+  }
 }
 
 @media only screen and (max-width: 540px) {
-    .team > div {
-        margin-bottom: 2vw;
-        width: 28vw;
-        height: 48vw;
-    }
-    
-    .profilepic {
-        width: 28vw;
-        height: 28vw;
-    }
-    
-    .name {
-        font-size: 2.8vw;
-        font-weight: 600;
-    }
-      
-    .bio {
-        font-size: 0.8vw;
-    }
+  .team > div {
+    margin-bottom: 2vw;
+    width: 28vw;
+    height: 48vw;
+  }
+
+  .profilepic {
+    width: 28vw;
+    height: 28vw;
+  }
+
+  .name {
+    font-size: 2.8vw;
+    font-weight: 600;
+  }
+
+  .bio {
+    font-size: 0.8vw;
+  }
 }
 
 @media only screen and (max-width: 450px) {
-    .team > div {
-        margin-bottom: 2vw;
-        width: 32vw;
-        height: 53vw;
-    }
-    
-    .profilepic {
-        width: 32vw;
-        height: 32vw;
-    }
-    
-    .name {
-        font-size: 3vw;
-        font-weight: 600;
-    }
-      
-    .bio {
-        font-size: 2.2vw;
-    }
+  .team > div {
+    margin-bottom: 2vw;
+    width: 32vw;
+    height: 53vw;
+  }
+
+  .profilepic {
+    width: 32vw;
+    height: 32vw;
+  }
+
+  .name {
+    font-size: 3vw;
+    font-weight: 600;
+  }
+
+  .bio {
+    font-size: 2.2vw;
+  }
 }

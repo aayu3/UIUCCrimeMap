@@ -1,8 +1,8 @@
 ::-webkit-scrollbar {
-  display:none;
+  display: none;
 }
 
-*{
+* {
   -ms-overflow-style: none;
 }
 
@@ -17,7 +17,7 @@
 
 .header {
   overflow: hidden;
-  background-color: #E84A27;
+  background-color: #e84a27;
   height: 65px;
 }
 
@@ -49,10 +49,8 @@
   position: relative;
   text-align: center;
   vertical-align: center;
-  color: #A5A8AA;
+  color: #a5a8aa;
 }
-
-
 
 h1 {
   font-size: 200%;
@@ -60,29 +58,29 @@ h1 {
 
 @media only screen and (max-width: 1299.8px) {
   .iconlegend {
-    flex:1.75;
+    flex: 1.75;
     font-size: 18px;
-    background-color: #ffffff ;
+    background-color: #ffffff;
     margin-top: 30px;
     margin-right: 20px;
-    margin-left: 35px; 
+    margin-left: 35px;
     padding: 0px;
     border-radius: 20px;
-    height:85vh;
+    height: 85vh;
   }
 }
 
 @media only screen and (min-width: 1300px) {
   .iconlegend {
-    flex:1.75;
+    flex: 1.75;
     font-size: 22px;
-    background-color: #ffffff ;
-    margin-top:30px;
+    background-color: #ffffff;
+    margin-top: 30px;
     margin-right: 20px;
     margin-left: 20px;
-    padding:15px;
+    padding: 15px;
     border-radius: 20px;
-    height:85vh;
+    height: 85vh;
   }
 }
 
@@ -93,7 +91,7 @@ h1 {
 }
 
 .iconlegend img {
-  width: 5vw; 
+  width: 5vw;
 }
 
 .map {
@@ -107,9 +105,9 @@ h1 {
   }
 
   .iconlegend {
-    flex:1.75;
+    flex: 1.75;
     font-size: 22px;
-    background-color: #ffffff ;
+    background-color: #ffffff;
     margin-top: 10px;
     margin-right: 20px;
     margin-left: 10px;
@@ -134,9 +132,9 @@ h1 {
   }
 
   .iconlegend {
-    flex:1.75;
+    flex: 1.75;
     font-size: 16px;
-    background-color: #ffffff ;
+    background-color: #ffffff;
     margin-top: 10px;
     margin-right: 20px;
     margin-left: 10px;
@@ -157,9 +155,9 @@ h1 {
 
 @media only screen and (max-width: 900px) {
   .iconlegend {
-    flex:1.75;
+    flex: 1.75;
     font-size: 16px;
-    background-color: #ffffff ;
+    background-color: #ffffff;
     margin-top: 10px;
     margin-right: 5px;
     margin-left: 10px;
@@ -180,9 +178,9 @@ h1 {
 
 @media only screen and (max-width: 780px) {
   .iconlegend {
-    flex:1.75;
+    flex: 1.75;
     font-size: 16px;
-    background-color: #ffffff ;
+    background-color: #ffffff;
     margin-top: 10px;
     margin-right: 5px;
     margin-left: 10px;
@@ -202,18 +200,16 @@ h1 {
 }
 
 .pdf {
-  position:relative;
-  margin-right:1%;
+  position: relative;
+  margin-right: 1%;
 }
 
 #police {
-  position:relative;
-  margin-bottom:1%;
+  position: relative;
+  margin-bottom: 1%;
 }
 
-
-
-@media only screen and (max-width: 700px)  {
+@media only screen and (max-width: 700px) {
   .iconlegend {
     display: none;
   }
@@ -243,7 +239,6 @@ h1 {
     display: none;
   }
 }
-
 
 @media only screen and (max-width: 430px) {
   .pdf {
