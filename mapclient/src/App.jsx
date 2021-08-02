@@ -52,7 +52,6 @@ class App extends Component {
       rangeValue: [0, redDaysThreshold, yellowDaysThreshold],
       rangeMin: 1,
       rangeMax: 60,
-      pdf: false,
       timeRange: [0, 23],
       divstyle: {},
       sixtyDayCrimes: [],
@@ -83,7 +82,7 @@ class App extends Component {
         crime.DateOccurred,
         crime.TimeOccurred,
         crime.StreetAddress,
-        crime.Description.replace("‐", "-"),
+        crime.Description,
         crime.Disposition,
       ];
     }
