@@ -184,7 +184,7 @@ class App extends Component {
   }
 
   getCrimes = () => {
-    fetch("/api/crimes")
+    fetch(process.env.NODE_ENV==="development"?"https://uiuccrimemap.herokuapp.com/api/crimes":"/api/crimes")
       .then((res) => res.json())
       .then((res) => this.setState({ allCrimes: Array.from(res) }))
       .then((res) => this.setSixtyDays())
@@ -348,7 +348,7 @@ class App extends Component {
                       type="button"
                       class="btn btn-danger"
                     >
-                      Filter Red Only
+                      Filter Recent Only
                     </button>{" "}
                     <br></br>
                     {this.state.thresholds[1]} Days.
@@ -359,7 +359,7 @@ class App extends Component {
                       type="button"
                       class="btn btn-warning"
                     >
-                      Filter Yellow Only
+                      Filter Semi Recent Only
                     </button>{" "}
                     <br></br>
                     {this.state.thresholds[2]} Days.
@@ -397,10 +397,10 @@ class App extends Component {
                       max={this.state.rangeMax}
                       tipFormatter={(value) => `${value} days`}
                       trackStyle={[
-                        { backgroundColor: "red" },
-                        { backgroundColor: "#DADD2D" },
+                        { backgroundColor: "transparent" },
+                        { backgroundColor: "transparent" },
                       ]}
-                      railStyle={{ backgroundColor: "green" }}
+                      railStyle={{ background: "linear-gradient(to right, hsl(0,100%,50%),hsl(45,100%,50%),hsl(90,100%,50%),hsl(135,100%,50%), hsl(180,100%,50%))" }}
                       onAfterChange={this.onSliderChange}
                     />
                   </div>

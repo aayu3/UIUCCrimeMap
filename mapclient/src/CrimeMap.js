@@ -6,6 +6,7 @@ import { redIcon } from "./icons/redIcon";
 import { noIcon } from "./icons/noIcon";
 
 import { description, dateOfYear, time, address, ID } from "./PopupStyles";
+import { colorPin } from "./icons/colorPin";
 
 function crimeDate(props, curDate, thresholds) {
   const crime = props;
@@ -29,12 +30,14 @@ function crimeDate(props, curDate, thresholds) {
   var dateOccurredInDays =
     dayOccurred + (monthOccurred - 1) * 30 + (yearOccurred - 2000) * 365;
   let diff = curDateInDays - dateOccurredInDays;
-  if (diff <= redDaysThreshold && diff >= greenLowerThreshold) {
-    return redIcon;
-  } else if (diff <= yellowDaysThreshold) {
-    return yellowIcon;
-  }
-  return greenIcon;
+return colorPin(`hsl(${diff*180/60},100%,50%)`);
+
+  // if (diff <= redDaysThreshold && diff >= greenLowerThreshold) {
+  //   return redIcon;
+  // } else if (diff <= yellowDaysThreshold) {
+  //   return yellowIcon;
+  // }
+  // return greenIcon;
 }
 
 const CrimeMap = ({ crimeData, location, date, thresholds }) => {
