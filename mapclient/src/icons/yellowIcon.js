@@ -5,7 +5,7 @@ import shadowMarker from "./shadowMarker.svg";
 const yellowIcon = new L.Icon({
   iconUrl: yellowMarker,
   iconRetinaUrl: yellowMarker,
-  iconAnchor: [0, 0],
+  iconAnchor: [15, 30],
   popupAnchor: [15.5, 10],
   shadowUrl: null,
   shadowSize: [36, 36],
