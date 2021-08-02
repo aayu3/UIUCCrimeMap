@@ -3,11 +3,11 @@ import L from "leaflet";
 
 const markerHtmlStyles=(myCustomColour:string) => `
   color: ${myCustomColour};
-  width: 3rem;
-  height: 3rem;
+  width: 48px;
+  height: 48px;
   display: block;
-  left: -1.5rem;
-  top: -1.5rem;
+  left: -24px;
+  top: -24px;
   position: relative;`
 
 const icon = (color:string)=>L.divIcon({
