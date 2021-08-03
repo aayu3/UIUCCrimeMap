@@ -7,12 +7,8 @@
 }
 
 .leaflet-container {
-  width: 80vw;
-  height: 115vh;
-  margin: 30px;
-  margin-right: 0px;
   position: relative;
-  border-radius: 20px;
+  height:100%;
 }
 
 .header {
@@ -116,14 +112,6 @@ h1 {
     height: 80vh;
   }
 
-  .leaflet-container {
-    width: 70vw;
-    height: 115vh;
-    margin: 30px;
-    margin-right: 0px;
-    position: relative;
-    border-radius: 20px;
-  }
 }
 
 @media only screen and (max-width: 1100px) {
@@ -143,14 +131,6 @@ h1 {
     height: 80vh;
   }
 
-  .leaflet-container {
-    width: 70vw;
-    height: 115vh;
-    margin: 30px;
-    margin-right: 0px;
-    position: relative;
-    border-radius: 20px;
-  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -166,14 +146,6 @@ h1 {
     height: 80vh;
   }
 
-  .leaflet-container {
-    width: 65vw;
-    height: 115vh;
-    margin: 30px;
-    margin-right: 0px;
-    position: relative;
-    border-radius: 20px;
-  }
 }
 
 @media only screen and (max-width: 780px) {
@@ -189,14 +161,6 @@ h1 {
     height: 80vh;
   }
 
-  .leaflet-container {
-    width: 65vw;
-    height: 115vh;
-    margin: 30px;
-    margin-right: 0px;
-    position: relative;
-    border-radius: 20px;
-  }
 }
 
 .pdf {
@@ -218,14 +182,7 @@ h1 {
     display: none;
   }
 
-  .leaflet-container {
-    width: 90vw;
-    height: 115vh;
-    margin: 30px;
-    margin-right: 10px;
-    position: relative;
-    border-radius: 20px;
-  }
+  
 }
 
 @media only screen and (max-width: 600px) {

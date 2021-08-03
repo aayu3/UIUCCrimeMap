@@ -9,7 +9,7 @@ import illiaborzov from "./images/illiapfp.jpg";
 
 const team = () => {
   return (
-    <div className="team">
+    <div className="team" style={{overflowY:"auto"}}>
       <h2>Meet the Team</h2>
       <div className="break"></div>
       <div>

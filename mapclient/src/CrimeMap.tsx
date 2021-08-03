@@ -1,36 +1,14 @@
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { greenIcon } from "./icons/greenIcon";
-import { yellowIcon } from "./icons/yellowIcon";
-import { redIcon } from "./icons/redIcon";
-import { noIcon } from "./icons/noIcon";
-
-import { description, dateOfYear, time, address, ID } from "./PopupStyles";
+import { JSCrimeEvent } from "./App";
 import { colorPin } from "./icons/colorPin";
+import { address, dateOfYear, description, ID, time } from "./PopupStyles";
 
-function crimeDate(props, curDate, thresholds) {
+function crimeDate(props: JSCrimeEvent) {
   const crime = props;
 
-  // Date parsing
-  let curday = curDate[0];
-  let curmonth = curDate[1];
-  let curyear = curDate[2];
-
-  // get color thresholds
-  let greenLowerThreshold = thresholds[0];
-  let redDaysThreshold = thresholds[1];
-  let yellowDaysThreshold = thresholds[2];
-
-  var dateOccurred = crime.DateOccurred.split("/");
-  var monthOccurred = parseInt(dateOccurred[0]);
-  var dayOccurred = parseInt(dateOccurred[1]);
-  var yearOccurred = parseInt(dateOccurred[2]);
-
-  var curDateInDays = curday + (curmonth - 1) * 30 + (curyear - 2000) * 365;
-  var dateOccurredInDays =
-    dayOccurred + (monthOccurred - 1) * 30 + (yearOccurred - 2000) * 365;
-  let diff = curDateInDays - dateOccurredInDays;
-return colorPin(`hsl(${diff*180/60},100%,50%)`);
+  let diff = (+new Date() - +crime.jsDate) / 1000 / 60 / 60 / 24;
+  return colorPin(`hsl(${(diff * 180) / 60},100%,50%)`);
 
   // if (diff <= redDaysThreshold && diff >= greenLowerThreshold) {
   //   return redIcon;
@@ -40,18 +18,24 @@ return colorPin(`hsl(${diff*180/60},100%,50%)`);
   // return greenIcon;
 }
 
-const CrimeMap = ({ crimeData, location, date, thresholds }) => {
+const CrimeMap:React.FC<{
+  crimeData: JSCrimeEvent[];
+  location: any;
+}> = ({
+  crimeData,
+  location,
+}) => {
   return (
     <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
       <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       {crimeData.map((crime, i) => (
         <Marker
           //key={crime.CaseID}
           position={[crime.Latitude, crime.Longitude]}
-          icon={crimeDate(crime, date, thresholds)}
+          icon={crimeDate(crime)}
         >
           <Popup position={[crime.Latitude, crime.Longitude]}>
             <div>
