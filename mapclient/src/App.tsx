@@ -185,10 +185,10 @@ const App: React.FC = (props) => {
                         </Switch>
                       );
                     })}
-                    <Nav.Link href={"https://github.com/aayu3/UIUCCrimeMap"}>
+                    <Nav.Link href={"https://github.com/aayu3/UIUCCrimeMap"} target="_blank">
                       GitHub
                     </Nav.Link>
-                    <Nav.Link href={"https://youtu.be/1rHvtO1x0PI"}>
+                    <Nav.Link href={"https://youtu.be/1rHvtO1x0PI"} target="_blank">
                       YouTube
                     </Nav.Link>
                   </>
