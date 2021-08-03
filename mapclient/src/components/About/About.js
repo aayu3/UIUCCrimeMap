@@ -18,7 +18,7 @@ const About = () => {
 
       <br></br>
 
-      <h2>How to use the map</h2>
+      <h3>How to use the map</h3>
       <p id="description">
         By clicking on the points on the map, you can find information about the
         crime for every crime occured on campus. The color of the markers indicate
@@ -31,7 +31,7 @@ const About = () => {
 
       <br></br>
 
-      <h2>How the map works</h2>
+      <h3>How the map works</h3>
       <p id="description">
         We are using <code>React.js</code> for the frontend with{" "}
         <code>react-leaflet.js</code> to display the map. The data for the map
