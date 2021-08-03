@@ -234,7 +234,8 @@ class App extends Component {
   onSliderChange(value) {
     let newThreshold = [value[0]];
     let filtered = this.filterRange(this.state.sixtyDayCrimes, [this.state.month, this.state.day, this.state.year], value[0]);
-    this.setState({ thresholds: newThreshold });
+    filtered = this.filterTime(filtered, this.state.timeRange);
+    this.setState({ rangeValue: newThreshold });
     this.setState({ crimesToDisplay : filtered});
   }
 
@@ -267,6 +268,7 @@ class App extends Component {
   onTimerChange(value) {
     let newRange = [value[0], value[1]];
     let filtered = this.filterTime(this.state.sixtyDayCrimes, newRange);
+    filtered = this.filterRange(filtered,[this.state.month, this.state.day, this.state.year], this.state.rangeValue);
     this.setState({ crimesToDisplay: filtered });
     this.setState({ timeRange: newRange });
   }
