@@ -4,13 +4,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd mapclient && npm install && npm install --only=dev && npm run build"
+    "heroku-postbuild": "cross-env NODE_ENV=development && cd mapclient && yarn install && yarn run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.3"
