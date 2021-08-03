@@ -388,7 +388,7 @@ class App extends Component {
                       max={23}
                       tipFormatter={(value) => `${value}:00`}
                       railStyle={{ backgroundColor: "red" }}
-                      onAfterChange={this.onTimerChange}
+                      onChange={this.onTimerChange}
                     />
                     <br></br>
                     <br></br>
@@ -405,7 +405,7 @@ class App extends Component {
                         { backgroundColor: "transparent" },
                       ]}
                       railStyle={{ background: "linear-gradient(to right, hsl(0,100%,50%),hsl(45,100%,50%),hsl(90,100%,50%),hsl(135,100%,50%), hsl(180,100%,50%))" }}
-                      onAfterChange={this.onSliderChange}
+                      onChange={this.onSliderChange}
                     />
                     <br></br>
                     <br></br>
