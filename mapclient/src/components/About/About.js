@@ -3,14 +3,13 @@ import "./About.css";
 
 const About = () => {
   return (
-    <div className="about">
+    <div className="about" style={{overflowY:"auto"}}>
       <h1>About UIUC Crime Map</h1>
       <p id="description">
         UIUC Crime Map is a website that tracks data about crimes in the
         University Illinois Campustown area and displays detailed information
-        about each crime incident. Red markers indicate a crime that has occured
-        in the last 7 days, yellow markers indicate a crime that happened in the
-        last 30 days, and green markers indicate every crime in the{" "}
+        about each crime incident. The map contains the type, date, time, address,
+        and incident code of every crime in the{" "}
         <a href="https://police.illinois.edu/crime-reporting/daily-crime-log/">
           University Police Daily Crime Log
         </a>
@@ -22,11 +21,10 @@ const About = () => {
       <h2>How to use the map</h2>
       <p id="description">
         By clicking on the points on the map, you can find information about the
-        crime type, date, location, and incident code for every crime occured on
-        campus. To filter crimes by their date, click on the markers in the
-        legend to view only the markers of those colors. To use a different
-        range of dates for the markers, use the crime threshold slider to set
-        the range of the colors as you wish. To see crimes that happened at a
+        crime for every crime occured on campus. The color of the markers indicate
+        when the crime happend. Red markers are recent crimes, and blue markers are
+        old crimes. By using the crime threshold slider, you can see how old each crime is,
+        and also filter out crimes that happened in the past. To see crimes that happened at a
         specific time range, use the time of day slider to set a time range to
         view.
       </p>
