@@ -62,7 +62,7 @@ class App extends Component {
       day: curday,
       month: curmonth,
       year: curyear,
-      rangeValue: [0, redDaysThreshold, yellowDaysThreshold],
+      rangeValue: [60],
       rangeMin: 1,
       rangeMax: 60,
       timeRange: [0, 23],
@@ -205,47 +205,54 @@ class App extends Component {
     for (let i = 0; i < this.state.allCrimes.length; i++) {
       let crime = this.state.allCrimes[i];
       let date = crime.DateOccurred.split("/").map((date) => parseInt(date));
-      if (date[0] === this.state.month && date[2] === this.state.year) {
+      let daysBetween = this.daysBefore([this.state.month,this.state.day,this.state.year],date);
+      if (daysBetween <= 60) {
         crimes.push(crime);
-      } else if (
-        date[0] + 1 === this.state.month &&
-        date[2] === this.state.year
-      ) {
-        let daysBefore = months[date[0] - 1] - date[1] + this.state.day;
-        if (daysBefore <= 60) {
-          crimes.push(crime);
-        }
-      } else if (
-        date[0] + 2 === this.state.month &&
-        date[2] === this.state.year
-      ) {
-        let daysBefore =
-          months[date[0] - 1] - date[1] + months[date[0]] + this.state.day;
-        if (daysBefore <= 60) {
-          crimes.push(crime);
-        }
       }
     }
     this.setState({ sixtyDayCrimes: crimes });
     this.setState({ crimesToDisplay: crimes });
   }
 
+  daysBefore(curDate, date) {
+    let days = 0;
+    days = days + (curDate[2] - date[2])*365;
+    days = days + curDate[1] - date[1];
+    for(var i = date[0]; i < curDate[0]; i++) {
+      days = days + months[i];
+    } 
+    return days;
+  }
+
   componentDidMount() {
     this.getCrimes();
-
     if (this.inIframe()) {
       this.setState({ divstyle: { display: "none" } });
     }
   }
 
   onSliderChange(value) {
-    let newThreshold = [value[0], value[1], value[2]];
+    let newThreshold = [value[0]];
+    let filtered = this.filterRange(this.state.sixtyDayCrimes, [this.state.month, this.state.day, this.state.year], value[0]);
     this.setState({ thresholds: newThreshold });
+    this.setState({ crimesToDisplay : filtered});
+  }
+
+  filterRange(crimes, curdate, range) {
+    var filtered = [];
+    for (let i = 0; i < crimes.length; i++) {
+      let crime = crimes[i];
+      let date = crime.DateOccurred.split("/").map((date) => parseInt(date));
+      let daysBetween = this.daysBefore(curdate,date);
+      if (daysBetween <= range) {
+        filtered.push(crime);
+      }
+    }
+    return filtered;
   }
 
   filterTime(crimes, timeRange) {
     var filtered = [];
-
     for (var i = 0; i < crimes.length; i++) {
       let crime = crimes[i];
       var rawTime = crime.TimeOccurred.split(":");
@@ -342,7 +349,10 @@ class App extends Component {
                     <h2>
                       <b>Legend:</b>
                     </h2>
+                    {/*
                     <h5>Crimes within...</h5>
+                    
+                    
                     <button
                       onClick={this.changeToRed}
                       type="button"
@@ -363,17 +373,11 @@ class App extends Component {
                     >
                       Last {this.state.thresholds[1]}-{this.state.thresholds[2]} Days
                     </button>
+                    
                     <br></br>
                     <br></br>
-                    <button
-                      onClick={this.resetMap}
-                      type="button"
-                      class="btn btn-primary"
-                    >
-                      Reset Map
-                    </button>
-                    <br></br>
-                    <br></br>
+                  */}
+                    
                     <h3>Time of Day Slider</h3>
                     <h4>{this.state.crimesToDisplay.length} Crimes</h4>
                     <Range
@@ -403,6 +407,16 @@ class App extends Component {
                       railStyle={{ background: "linear-gradient(to right, hsl(0,100%,50%),hsl(45,100%,50%),hsl(90,100%,50%),hsl(135,100%,50%), hsl(180,100%,50%))" }}
                       onAfterChange={this.onSliderChange}
                     />
+                    <br></br>
+                    <br></br>
+                    <button
+                      onClick={this.resetMap}
+                      type="button"
+                      class="btn btn-primary"
+                    >
+                      Reset Map
+                    </button>
+                    
                   </div>
 
                   <div className="map">
