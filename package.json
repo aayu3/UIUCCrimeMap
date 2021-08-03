@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cross-env NODE_ENV=development && cd mapclient && yarn install && yarn run build"
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development && cd mapclient && yarn install && yarn run build"
   },
   "keywords": [],
   "author": "",
