@@ -1,19 +1,40 @@
+h2 {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 .team {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.team > div.break {
-  flex-basis: 100%;
-  height: 0;
+.item {
+  align-items: center;
+  display: flex;
+  flex: 1 1 21%;
+  flex-direction: column;
+  text-align: left;
 }
 
-.team > div {
-  background-color: #f1f1f1;
+.box {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.bio {
+  width: 200px;
+}
+
+.profile-pic img {
+  width: 200px;
+  height: 200px;
+}
+
+/* .item {
   margin-left: 5vw;
   margin-right: 5vw;
-  margin-bottom: 2vw;
+  margin-bottom: 2.3vw;
   width: 15.6vw;
   height: 25vw;
 }
@@ -138,4 +159,4 @@
   .bio {
     font-size: 2.2vw;
   }
-}
+} */
