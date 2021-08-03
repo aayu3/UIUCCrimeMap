@@ -3,7 +3,7 @@ import "./About.css";
 
 const About = () => {
   return (
-    <div className="about">
+    <div className="about" style={{overflowY:"auto"}}>
       <h1>About UIUC Crime Map</h1>
       <p id="description">
         UIUC Crime Map is a website that tracks data about crimes in the
@@ -19,7 +19,7 @@ const About = () => {
 
       <br></br>
 
-      <h2>How to use the map</h2>
+      <h3>How to use the map</h3>
       <p id="description">
         By clicking on the points on the map, you can find information about the
         crime type, date, location, and incident code for every crime occured on
@@ -33,7 +33,7 @@ const About = () => {
 
       <br></br>
 
-      <h2>How the map works</h2>
+      <h3>How the map works</h3>
       <p id="description">
         We are using <code>React.js</code> for the frontend with{" "}
         <code>react-leaflet.js</code> to display the map. The data for the map

@@ -1,4 +1,4 @@
-#headers {
+h2 {
   text-align: center;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -34,6 +34,12 @@
 }
 
 @media (max-width: 800px) {
+  .item {
+    flex: 1 1 50%;
+  }
+}
+
+@media (max-width: 770px) {
   .item {
     flex: 1 1 70%;
   }
