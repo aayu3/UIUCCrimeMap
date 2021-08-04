@@ -15,6 +15,7 @@ import {
 import { Link, Route, Switch } from "react-router-dom";
 import "./App.css";
 import About from "./components/About/About";
+import Map from "./components/map/Map";
 import Team from "./components/Team/Team";
 import CrimeMap from "./CrimeMap";
 import { ReactComponent as Logo } from "./icons/websitelogo.svg";
@@ -209,7 +210,7 @@ const App: React.FC = (props) => {
             path="/"
             exact
             render={() => (
-              <div className="map-legend-outerContainer" style={{minHeight:"1px",flex:1}}>
+              <div className="map-legend-outerContainer" style={{minHeight:"1px",flex:1,flexWrap:"nowrap"}}>
                 <div className="iconlegend">
                   <h2>
                     <b>Legend:</b>
@@ -290,10 +291,12 @@ const App: React.FC = (props) => {
                 </div>
 
                 <div className="map" style={{height:"100%"}}>
-                  <CrimeMap
+                  <Map  crimeData={crimesToDisplay}
+                    location={location}/>
+                  {/* <CrimeMap
                     crimeData={crimesToDisplay}
                     location={location}
-                  ></CrimeMap>
+                  ></CrimeMap> */}
                 </div>
               </div>
             )}
