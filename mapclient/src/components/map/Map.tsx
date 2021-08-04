@@ -38,7 +38,18 @@ const Map: React.FC<{
 
     const [crime, setCrime] = useState<JSCrimeEvent|null>(null);
     const mapRef = useRef<MapRef>(null);
+useEffect(()=>{
+    const onResize=()=>{
+    setViewport(prevState => (
+        { ...prevState, width:"100%",height:"100%" }
+    ));
+    }
+    window.addEventListener('resize', onResize);
+    return ()=>{
 
+    window.removeEventListener('resize', onResize);
+    }
+},[])
     // public componentDidMount() {
     //     window.addEventListener('resize', this.resize);
     //     this.resize();
