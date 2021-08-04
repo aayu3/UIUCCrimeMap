@@ -1,6 +1,7 @@
 import "jspdf-autotable";
 import Slider, { createSliderWithTooltip } from "rc-slider";
 import "rc-slider/assets/index.css";
+import { useMediaQuery } from 'react-responsive'
 import React, {
   useCallback,
   useEffect,
@@ -116,7 +117,9 @@ const App: React.FC = (props) => {
       let crime = crimes[i];
       var rawTime = crime.TimeOccurred.split(":");
       var timeOccurred = parseInt(rawTime[0]);
-      if (timeOccurred >= timeRange[0] && timeOccurred <= timeRange[1]) {
+      if(Number.isNaN(timeOccurred)){
+        filtered.push(crime);
+      }else if (timeOccurred >= timeRange[0] && timeOccurred <= timeRange[1]) {
         filtered.push(crime);
       }
     }
@@ -147,6 +150,7 @@ const App: React.FC = (props) => {
   const onTimerChange = (value: number[]) => {
     setTimeRange(value as [number, number]);
   };
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
 
   return (
     <div>
@@ -210,42 +214,19 @@ const App: React.FC = (props) => {
             path="/"
             exact
             render={() => (
-              <div className="map-legend-outerContainer" style={{minHeight:"1px",flex:1,flexWrap:"nowrap"}}>
-                <div className="iconlegend">
-                  <h2>
-                    <b>Legend:</b>
-                  </h2>
-                  {/*
-                    <h5>Crimes within...</h5>
-                    
-                    
-                    <button
-                      onClick={this.changeToRed}
-                      type="button"
-                      class="btn btn-danger"
-                      // style={{width:"100%",background: `linear-gradient(to bottom, ${[0,1,2,3,4].map(x=>x/4).map(x=>x*this.state.thresholds[1]).map(q=>`hsl(${q*180/60},70%,50%)`).join(', ')})`}}
-                    
-                      style={{width:"100%",background: `hsl(${(0.5*this.state.thresholds[1])*180/60},70%,50%)`}}
-                      >
-                      Last 0-{this.state.thresholds[1]} Days
-                    </button><br/>
-                    <button
-                      onClick={this.changeToYellow}
-                      type="button"
-                      class="btn btn-warning"
-                      style={{width:"100%",background: `hsl(${(0.5*this.state.thresholds[1]+0.5*this.state.thresholds[2])*180/60},70%,50%)`}}
-                    
-                      // style={{width:"100%",background: `linear-gradient(to bottom, ${[0,1,2,3,4].map(x=>x/4).map(x=>(1-x)*this.state.thresholds[1]+x*this.state.thresholds[2]).map(q=>`hsl(${q*180/60},70%,50%)`).join(', ')})`}}
-                    >
-                      Last {this.state.thresholds[1]}-{this.state.thresholds[2]} Days
-                    </button>
-                    
-                    <br></br>
-                    <br></br>
-                  */}
-
-                  <h3>Time of Day Slider</h3>
-                  <h4>{crimesToDisplay.length} Crimes</h4>
+              <div className="map-legend-outerContainer" style={{minHeight:"1px",flex:1,flexWrap:"nowrap",flexDirection:"column"}}>
+               
+                <div className="map" style={{flex:1}}>
+                  <Map  crimeData={crimesToDisplay}
+                    location={location}/>
+                  {/* <CrimeMap
+                    crimeData={crimesToDisplay}
+                    location={location}
+                  ></CrimeMap> */}
+                </div>
+                <div className="iconlegend" style={!isTabletOrMobile?{padding:32,background:"white",position:"absolute",top:"50%",transform:"translate(0,-50%)",right:16}:{left:0,bottom:0,right:0,padding:24,background:"white",fontSize:16,flexShrink:0}}>
+                 
+                  <h3 style={{fontSize:"1em"}}>Time of Day</h3>
                   <Range
                     allowCross={false}
                     marks={{ 0: "12 AM", 23: "11 PM" }}
@@ -260,7 +241,7 @@ const App: React.FC = (props) => {
                   />
                   <br></br>
                   <br></br>
-                  <h3>Crime Threshold Slider</h3>
+                  <h3 style={{fontSize:"1em"}}>Recency</h3>
                   <Range
                     allowCross={false}
                     marks={{ 1: "1 Day", 60: "60 Days" }}
@@ -288,16 +269,12 @@ const App: React.FC = (props) => {
                   >
                     Reset Map
                   </button>
+                  <br></br>
+                  <br></br>
+                  <h4 style={{fontSize:"1em"}}>{crimesToDisplay.length}/{sixtyDayCrimes.length} Crimes</h4>
+                  
                 </div>
 
-                <div className="map" style={{height:"100%"}}>
-                  <Map  crimeData={crimesToDisplay}
-                    location={location}/>
-                  {/* <CrimeMap
-                    crimeData={crimesToDisplay}
-                    location={location}
-                  ></CrimeMap> */}
-                </div>
               </div>
             )}
           />

@@ -51,7 +51,7 @@
 h1 {
   font-size: 200%;
 }
-
+/* 
 @media only screen and (max-width: 1299.8px) {
   .iconlegend {
     flex: 1.75;
@@ -78,7 +78,7 @@ h1 {
     border-radius: 20px;
     height: 85vh;
   }
-}
+} */
 
 .map-legend-outerContainer {
   display: flex;
@@ -95,7 +95,7 @@ h1 {
   border-radius: 20px;
 }
 
-@media only screen and (max-width: 1240px) {
+/* @media only screen and (max-width: 1240px) {
   .youtube {
     display: none;
   }
@@ -112,9 +112,9 @@ h1 {
     height: 80vh;
   }
 
-}
+} */
 
-@media only screen and (max-width: 1100px) {
+/* @media only screen and (max-width: 1100px) {
   .police {
     display: none;
   }
@@ -161,7 +161,7 @@ h1 {
     height: 80vh;
   }
 
-}
+} */
 
 .pdf {
   position: relative;
@@ -173,7 +173,7 @@ h1 {
   margin-bottom: 1%;
 }
 
-@media only screen and (max-width: 700px) {
+/* @media only screen and (max-width: 700px) {
   .iconlegend {
     display: none;
   }
@@ -183,9 +183,9 @@ h1 {
   }
 
   
-}
+} */
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   #team {
     display: none;
   }
@@ -201,4 +201,4 @@ h1 {
   .pdf {
     display: none;
   }
-}
+} */
