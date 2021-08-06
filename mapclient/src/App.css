@@ -51,34 +51,6 @@
 h1 {
   font-size: 200%;
 }
-/* 
-@media only screen and (max-width: 1299.8px) {
-  .iconlegend {
-    flex: 1.75;
-    font-size: 18px;
-    background-color: #ffffff;
-    margin-top: 30px;
-    margin-right: 20px;
-    margin-left: 35px;
-    padding: 0px;
-    border-radius: 20px;
-    height: 85vh;
-  }
-}
-
-@media only screen and (min-width: 1300px) {
-  .iconlegend {
-    flex: 1.75;
-    font-size: 22px;
-    background-color: #ffffff;
-    margin-top: 30px;
-    margin-right: 20px;
-    margin-left: 20px;
-    padding: 15px;
-    border-radius: 20px;
-    height: 85vh;
-  }
-} */
 
 .map-legend-outerContainer {
   display: flex;
@@ -95,74 +67,6 @@ h1 {
   border-radius: 20px;
 }
 
-/* @media only screen and (max-width: 1240px) {
-  .youtube {
-    display: none;
-  }
-
-  .iconlegend {
-    flex: 1.75;
-    font-size: 22px;
-    background-color: #ffffff;
-    margin-top: 10px;
-    margin-right: 20px;
-    margin-left: 10px;
-    padding: 15px;
-    border-radius: 20px;
-    height: 80vh;
-  }
-
-} */
-
-/* @media only screen and (max-width: 1100px) {
-  .police {
-    display: none;
-  }
-
-  .iconlegend {
-    flex: 1.75;
-    font-size: 16px;
-    background-color: #ffffff;
-    margin-top: 10px;
-    margin-right: 20px;
-    margin-left: 10px;
-    padding: 15px;
-    border-radius: 20px;
-    height: 80vh;
-  }
-
-}
-
-@media only screen and (max-width: 900px) {
-  .iconlegend {
-    flex: 1.75;
-    font-size: 16px;
-    background-color: #ffffff;
-    margin-top: 10px;
-    margin-right: 5px;
-    margin-left: 10px;
-    padding: 15px;
-    border-radius: 20px;
-    height: 80vh;
-  }
-
-}
-
-@media only screen and (max-width: 780px) {
-  .iconlegend {
-    flex: 1.75;
-    font-size: 16px;
-    background-color: #ffffff;
-    margin-top: 10px;
-    margin-right: 5px;
-    margin-left: 10px;
-    padding: 15px;
-    border-radius: 20px;
-    height: 80vh;
-  }
-
-} */
-
 .pdf {
   position: relative;
   margin-right: 1%;
@@ -172,33 +76,3 @@ h1 {
   position: relative;
   margin-bottom: 1%;
 }
-
-/* @media only screen and (max-width: 700px) {
-  .iconlegend {
-    display: none;
-  }
-
-  .github {
-    display: none;
-  }
-
-  
-} */
-
-/* @media only screen and (max-width: 600px) {
-  #team {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 570px) {
-  #about {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 430px) {
-  .pdf {
-    display: none;
-  }
-} */
