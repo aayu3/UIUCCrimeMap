@@ -2,7 +2,6 @@ import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { JSCrimeEvent } from "./App";
 import { colorPin } from "./icons/colorPin";
-import { address, dateOfYear, description, ID, time } from "./PopupStyles";
 
 function crimeDate(props: JSCrimeEvent) {
   const crime = props;
@@ -39,11 +38,11 @@ const CrimeMap:React.FC<{
         >
           <Popup position={[crime.Latitude, crime.Longitude]}>
             <div>
-              <div style={description}>{crime.Description}</div>
-              <div style={dateOfYear}>Date: {crime.DateOccurred}</div>
-              <div style={time}>Time: {crime.TimeOccurred}</div>
-              <div style={address}>Address: {crime.StreetAddress}</div>
-              <div style={ID}>Incident: {crime.CaseID}</div>
+              <h4>{crime.Description}</h4>
+              <p>Date: {crime.DateOccurred}</p>
+              <p>Time: {crime.TimeOccurred}</p>
+              <p>Address: {crime.StreetAddress}</p>
+              <p>Incident: {crime.CaseID}</p>
             </div>
           </Popup>
         </Marker>
