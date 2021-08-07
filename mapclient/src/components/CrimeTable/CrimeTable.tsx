@@ -6,6 +6,7 @@ import { DataGrid ,GridColumns} from '@material-ui/data-grid';
 import { Popover,Typography} from '@material-ui/core';
 
 import Map from "../../components/map/Map";
+import RoomIcon from '@material-ui/icons/Room';
 
 export const PlaceCell=({value,row,hasFocus}:any)=>{
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,6 +27,7 @@ export const PlaceCell=({value,row,hasFocus}:any)=>{
     aria-haspopup="true"
     
   >
+    <RoomIcon/>
     {value}
   </Typography>
   <Popover
@@ -47,7 +49,7 @@ export const PlaceCell=({value,row,hasFocus}:any)=>{
     disableAutoFocus
     onBackdropClick={handlePopoverClose}
   >
-    <div style={{width:200,height:200}}>{open?<Map showNav={false} crimeData={[row]} location={{lat:parseFloat(row.Latitude)??0,lng:parseFloat(row.Longitude)??0,zoom:15}}/>:undefined}</div>
+    <div style={{width:"50vw",height:"50vh",maxHeight:"50vw",maxWidth:"50vh"}}>{open?<Map showNav={false} crimeData={[row]} location={{lat:parseFloat(row.Latitude)??0,lng:parseFloat(row.Longitude)??0,zoom:15}}/>:undefined}</div>
   </Popover>
 </div>
 }
