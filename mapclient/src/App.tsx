@@ -19,8 +19,10 @@ import About from "./components/About/About";
 import Map from "./components/map/Map";
 import Team from "./components/Team/Team";
 import CrimeMap from "./CrimeMap";
+import {CrimeTable} from "./components/CrimeTable/CrimeTable";
 import { ReactComponent as Logo } from "./icons/websitelogo.svg";
 import { generatePDF } from "./PDFGenerator";
+import { TablePage } from "./pages";
 
 
 
@@ -45,10 +47,11 @@ export type RawCrimeEvent = {
   Description: string;
   Disposition: string;
 };
-export type JSCrimeEvent = RawCrimeEvent & { jsDate: Date };
+export type JSCrimeEvent = RawCrimeEvent & { jsDateOccured: Date;jsDateTimeOccurred:Date;jsTimeOccurred:number };
 const Range = createSliderWithTooltip(Slider.Range);
 const routes = [
   { name: "Map", path: "/" },
+  { name: "Table", path: "/table" },
   { name: "About", path: "/about" },
   { name: "UIUC Police", path: "https://police.illinois.edu/", external: true },
   { name: "Team", path: "/team" },
@@ -89,9 +92,13 @@ const App: React.FC = (props) => {
       const json = await r.json();
       const crimes = (Array.from(json) as RawCrimeEvent[]).map((x) => {
         let datee = x.DateOccurred.split("/");
+        let timee = x.TimeOccurred;
+        const jsDateOccured=new Date(`${[datee[2], datee[0], datee[1]].join("/")} ${"00:00"}`);
         return {
           ...x,
-          jsDate: new Date([datee[2], datee[0], datee[1]].join("/")),
+          jsDateOccured ,
+          jsDateTimeOccurred: new Date(`${[datee[2], datee[0], datee[1]].join("/")} ${timee}`),
+          jsTimeOccurred: +new Date(`${[datee[2], datee[0], datee[1]].join("/")} ${timee}`)-+new Date(`${[datee[2], datee[0], datee[1]].join("/")} ${"00:00"}`),
         };
       });
       setAllCrimes(crimes);
@@ -103,7 +110,7 @@ const App: React.FC = (props) => {
     let sixtyDayCrimesA = [];
     for (let i = 0; i < allCrimes.length; i++) {
       let crime = allCrimes[i];
-      let daysBetween = (+new Date() - +crime.jsDate) / 1000 / 60 / 60 / 24;
+      let daysBetween = (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
       if (daysBetween <= 60) {
         sixtyDayCrimesA.push(crime);
       }
@@ -129,7 +136,7 @@ const App: React.FC = (props) => {
     var filtered = [];
     for (let i = 0; i < crimes.length; i++) {
       let crime = crimes[i];
-      let daysBetween = (+new Date() - +crime.jsDate) / 1000 / 60 / 60 / 24;
+      let daysBetween = (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
       if (daysBetween <= range) {
         filtered.push(crime);
       }
@@ -233,7 +240,7 @@ const App: React.FC = (props) => {
                     value={timeRange as number[]}
                     min={0}
                     max={23}
-                    tipFormatter={(value) => `${value}:00`}
+                    tipFormatter={(value: any) => `${value}:00`}
                     railStyle={{ backgroundColor: "black" }}
                     trackStyle={[{backgroundColor:"#FF552E"}]}
                     onChange={onTimerChange}
@@ -249,7 +256,7 @@ const App: React.FC = (props) => {
                     min={1}
                     max={60}
                     draggableTrack={true}
-                    tipFormatter={(value) => `${value} days`}
+                    tipFormatter={(value: any) => `${value} days`}
                     trackStyle={[
                       { backgroundColor: "transparent" },
                       { backgroundColor: "transparent" },
@@ -274,7 +281,6 @@ const App: React.FC = (props) => {
                   <h4 style={{fontSize:"1em"}}>{crimesToDisplay.length}/{sixtyDayCrimes.length} Crimes</h4>
                   
                 </div>
-
               </div>
             )}
           />
@@ -284,6 +290,9 @@ const App: React.FC = (props) => {
           </Route>
           <Route exact path="/team">
             <Team />
+          </Route>
+          <Route exact path="/table">
+            <TablePage crimes={allCrimes}/>
           </Route>
         </Switch>
       </main>

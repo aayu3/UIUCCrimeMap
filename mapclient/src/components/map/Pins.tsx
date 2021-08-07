@@ -13,7 +13,7 @@ function Pins(props:any) {
   const {data, onClick} = props;
 
   return (data??[]).map((crime:JSCrimeEvent, index:number) => {
-    let diff = (+new Date() - +crime.jsDate) / 1000 / 60 / 60 / 24;
+    let diff = (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
   
    return  (
     <Marker key={`marker-${index}`} longitude={crime.Longitude} latitude={crime.Latitude} >

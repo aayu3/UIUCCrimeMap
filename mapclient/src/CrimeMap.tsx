@@ -6,7 +6,7 @@ import { colorPin } from "./icons/colorPin";
 function crimeDate(props: JSCrimeEvent) {
   const crime = props;
 
-  let diff = (+new Date() - +crime.jsDate) / 1000 / 60 / 60 / 24;
+  let diff = (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
   return colorPin(`hsl(${(diff * 180) / 60},100%,50%)`);
 
   // if (diff <= redDaysThreshold && diff >= greenLowerThreshold) {
