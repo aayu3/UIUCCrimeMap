@@ -17,7 +17,7 @@ function crimeDate(props: JSCrimeEvent) {
   // return greenIcon;
 }
 
-const CrimeMap:React.FC<{
+export const CrimeMap:React.FC<{
   crimeData: JSCrimeEvent[];
   location: any;
 }> = ({

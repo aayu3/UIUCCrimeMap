@@ -89,14 +89,20 @@ const App: React.FC = (props) => {
       );
       const json = await r.json();
       const crimes = (Array.from(json) as RawCrimeEvent[]).map((x) => {
-        let datee = x.DateOccurred.split("/");
-        let timee = x.TimeOccurred;
-        const jsDateOccured=new Date(`${[datee[2], datee[0], datee[1]].join("/")} ${"00:00"}`);
+        let dateO = x.DateOccurred.split("/");
+        let timeO = x.TimeOccurred;
+        let dateR = x.DateReported.split("/");
+        let timeR = x.TimeReported;
+        const jsDateOccured=new Date(`${[dateO[2], dateO[0], dateO[1]].join("/")} ${"00:00"}`);
+        const jsDateReported=new Date(`${[dateR[2], dateR[0], dateR[1]].join("/")} ${"00:00"}`);
         return {
           ...x,
           jsDateOccured ,
-          jsDateTimeOccurred: new Date(`${[datee[2], datee[0], datee[1]].join("/")} ${timee}`),
-          jsTimeOccurred: +new Date(`${[datee[2], datee[0], datee[1]].join("/")} ${timee}`)-+new Date(`${[datee[2], datee[0], datee[1]].join("/")} ${"00:00"}`),
+          jsDateReported ,
+          jsDateTimeOccurred: new Date(`${[dateO[2], dateO[0], dateO[1]].join("/")} ${timeO}`),
+          jsDateTimeReported: new Date(`${[dateR[2], dateR[0], dateR[1]].join("/")} ${timeR}`),
+          jsTimeOccurred: +new Date(`${[dateO[2], dateO[0], dateO[1]].join("/")} ${timeO}`)-+new Date(`${[dateO[2], dateO[0], dateO[1]].join("/")} ${"00:00"}`),
+          jsTimeReported: +new Date(`${[dateR[2], dateR[0], dateR[1]].join("/")} ${timeR}`)-+new Date(`${[dateR[2], dateR[0], dateR[1]].join("/")} ${"00:00"}`),
         };
       });
       setAllCrimes(crimes);

@@ -8,7 +8,7 @@ import Pins from './Pins';
 const transformRequest = (url: string, resourceType: string) => {
     // console.log(url,resourceType)
     if (resourceType === "Style") {
-        return { url: "https://api.maptiler.com/maps/streets/style.json?key=gbetYLSD5vR8MdtZ88AQ" }
+        return { url: "https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ" }
     }
     if (url.match("api.mapbox.com")) {
         return { url: "" }
@@ -22,10 +22,12 @@ const transformRequest = (url: string, resourceType: string) => {
 const Map: React.FC<{
     crimeData: JSCrimeEvent[],
     location: any
+    showNav?:boolean
 }> = (properties) => {
     const {
         crimeData,
         location,
+        showNav=false
     } = properties;
     // public state: State = initialState;
     const [viewport, setViewport] = useState({
@@ -70,7 +72,10 @@ const Map: React.FC<{
     const onClick = (event: MapEvent) => {
         if (event) {
             const feature = event.features?.[0];
-            setCrime(event.features?.[0]?.properties);
+            const cv=event.features?.[0]?.properties;
+            if(cv&& cv.Longitude && cv.Latitude){
+            setCrime(cv);
+            }
             // if (feature) {
 
             //     const clusterId = feature.properties.cluster_id;
@@ -123,15 +128,15 @@ const Map: React.FC<{
                 clusterRadius={50}
                 data={data}
             >
-                 <Layer {...clusterLayer} />
+                <Layer {...clusterLayer} />
                 <Layer {...clusterCountLayer} /> 
                 <Layer {...unclusteredPointLayer} />
                 
             </Source> */}
             <Pins data={crimeData} onClick={setCrime} />
-            <div style={{ position: 'absolute', left: 30, top: 30 }}>
+            {showNav?<div style={{ position: 'absolute', left: 30, top: 30 }}>
                 <NavigationControl onViewportChange={updateViewport} />
-            </div>
+            </div>:false}
             {crime && (
                 <Popup
                     tipSize={5}

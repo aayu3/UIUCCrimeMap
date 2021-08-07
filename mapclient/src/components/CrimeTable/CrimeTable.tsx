@@ -1,10 +1,56 @@
-import React from "react";
+import React,{useState} from "react";
 import { JSCrimeEvent } from "../../App";
 import { MDBDataTable } from 'mdbreact';
 import { DataGrid ,GridColumns} from '@material-ui/data-grid';
 
+import { Popover,Typography} from '@material-ui/core';
 
+import Map from "../../components/map/Map";
 
+export const PlaceCell=({value,row,hasFocus}:any)=>{
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopoverOpen = (event:any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  return <div >
+  <Typography
+  onClick={handlePopoverOpen}
+    aria-owns={open ? 'mouse-over-popover'+row.id : undefined}
+    aria-haspopup="true"
+    
+  >
+    {value}
+  </Typography>
+  <Popover
+    id={"mouse-over-popover"+row.id}
+    
+    open={open}
+    anchorEl={anchorEl}
+    anchorOrigin={{
+      vertical: 'center',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'center',
+      horizontal: 'center',
+    }}
+    onClose={handlePopoverClose}
+    disableRestoreFocus
+    disableEnforceFocus
+    disableAutoFocus
+    onBackdropClick={handlePopoverClose}
+  >
+    <div style={{width:200,height:200}}>{open?<Map showNav={false} crimeData={[row]} location={{lat:parseFloat(row.Latitude)??0,lng:parseFloat(row.Longitude)??0,zoom:15}}/>:undefined}</div>
+  </Popover>
+</div>
+}
 export const CrimeTable:React.FC<{crimes: JSCrimeEvent[]}> = (properties) => {
   const crimes=properties.crimes.map(x=>({...x,id:JSON.stringify(x)}));
   const columns:GridColumns=[
@@ -15,16 +61,29 @@ export const CrimeTable:React.FC<{crimes: JSCrimeEvent[]}> = (properties) => {
       width: 120
     },
     {
-      headerName: 'Date Reported',
-      field: 'DateReported',
-      sortable: true,
-      width: 150
-    },
-    {
       headerName: 'Time Reported',
-      field: 'TimeReported',
+      field: 'jsDateTimeReported',
       sortable: true,
-      width: 100
+      width: 200,
+      valueGetter:({row})=>{
+        if(row.jsDateTimeReported){
+          return row.jsDateTimeReported
+        }
+        return row.jsDateTimeReported
+       },
+       valueFormatter:({value,row})=>{
+         let dta=null;
+         if(row.jsDateTimeReported){
+           dta=row.jsDateTimeReported
+         }else{
+           dta=row.jsDateTimeReported
+         }
+         try{
+           return new Intl.DateTimeFormat('en-US',{year: 'numeric', month: 'numeric', day: 'numeric',hour: 'numeric', minute: 'numeric'}).format(dta as Date)
+         }catch(e){
+           return "UNKNOWN"
+         }
+       }
     },
     {
       headerName: 'Time Occurred',
@@ -68,7 +127,11 @@ export const CrimeTable:React.FC<{crimes: JSCrimeEvent[]}> = (properties) => {
       headerName: 'Place',
       field: 'StreetAddress',
       sortable: true,
-      width: 300
+      width: 300,
+      renderCell:(props:{value:any,row:any,hasFocus:boolean})=>{
+        return <PlaceCell {...props}/>
+      //  return hasFocus||true?<div style={{width:300,height:200}}><Map showNav={false} crimeData={[row]} location={{lat:row.Latitude,lng:row.Longitude,zoom:15}}/></div>:value
+      }
     },
     {
       headerName: 'Crime Description',
@@ -89,6 +152,7 @@ export const CrimeTable:React.FC<{crimes: JSCrimeEvent[]}> = (properties) => {
      
       columns={columns}
       rows={crimes}
+      //rowHeight={200}
     />
   );
 
