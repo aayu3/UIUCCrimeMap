@@ -154,7 +154,6 @@ export const CrimeTable:React.FC<{crimes: JSCrimeEvent[]}> = (properties) => {
      
       columns={columns}
       rows={crimes}
-      //rowHeight={150}
     />
   );
 
