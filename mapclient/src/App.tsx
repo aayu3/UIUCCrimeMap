@@ -18,8 +18,6 @@ import "./App.css";
 import About from "./components/About/About";
 import Map from "./components/map/Map";
 import Team from "./components/Team/Team";
-import CrimeMap from "./CrimeMap";
-import {CrimeTable} from "./components/CrimeTable/CrimeTable";
 import { ReactComponent as Logo } from "./icons/websitelogo.svg";
 import { generatePDF } from "./PDFGenerator";
 import { TablePage } from "./pages";

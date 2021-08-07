@@ -46,7 +46,6 @@ const Map: React.FC<{
         }
         window.addEventListener('resize', onResize);
         return () => {
-
             window.removeEventListener('resize', onResize);
         }
     }, [])
@@ -143,11 +142,11 @@ const Map: React.FC<{
                     onClose={() => setCrime(null)}
                 >
                     <div>
-                        <div >{crime.Description}</div>
-                        <div>Date: {crime.DateOccurred}</div>
-                        <div>Time: {crime.TimeOccurred}</div>
-                        <div>Address: {crime.StreetAddress}</div>
-                        <div >Incident: {crime.CaseID}</div>
+                        <div style={{fontSize: "1.1em", fontWeight: 600, color: "black"}}>{crime.Description}</div>
+                        <div style={{fontSize: "0.9em"}}>Date: {crime.DateOccurred}</div>
+                        <div style={{fontSize: "0.9em"}}>Time: {crime.TimeOccurred}</div>
+                        <div style={{fontSize: "0.9em"}}>Address: {crime.StreetAddress}</div>
+                        <div style={{fontSize: "0.7em"}}>ID: {crime.CaseID}</div>
                     </div>
                 </Popup>
             )}
