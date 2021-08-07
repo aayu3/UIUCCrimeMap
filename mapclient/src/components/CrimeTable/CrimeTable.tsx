@@ -129,7 +129,7 @@ export const CrimeTable:React.FC<{crimes: JSCrimeEvent[]}> = (properties) => {
       headerName: 'Place',
       field: 'StreetAddress',
       sortable: true,
-      width: 300,
+      width: 400,
       renderCell:(props:{value:any,row:any,hasFocus:boolean})=>{
         return <PlaceCell {...props}/>
       //  return hasFocus||true?<div style={{width:300,height:200}}><Map showNav={false} crimeData={[row]} location={{lat:row.Latitude,lng:row.Longitude,zoom:15}}/></div>:value
@@ -154,7 +154,7 @@ export const CrimeTable:React.FC<{crimes: JSCrimeEvent[]}> = (properties) => {
      
       columns={columns}
       rows={crimes}
-      //rowHeight={200}
+      //rowHeight={150}
     />
   );
 
