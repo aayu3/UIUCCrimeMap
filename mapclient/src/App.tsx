@@ -18,7 +18,7 @@ import "./App.css";
 import About from "./components/About/About";
 import Map from "./components/map/Map";
 import Team from "./components/Team/Team";
-import CrimeMap from "./CrimeMap";
+// import CrimeMap from "./CrimeMap";
 import { ReactComponent as Logo } from "./icons/websitelogo.svg";
 import { generatePDF } from "./PDFGenerator";
 
