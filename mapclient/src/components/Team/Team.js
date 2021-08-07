@@ -6,6 +6,7 @@ import aaronyu from "./images/aaronpfp.png";
 import petervandervelde from "./images/peterpfp.png";
 import angelshah from "./images/angelshah.jpg";
 import illiaborzov from "./images/illiapfp.jpg";
+import coleKissane from "./images/Cole.jpg";
 
 const team = () => {
   return (
@@ -41,6 +42,23 @@ const team = () => {
               <p>
                 Juyoung is a Freshman at UIUC majoring in Physics from South Korea. He
                 enjoys observing the night sky and playing the guitar.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="box">
+            <div className="profile-pic">
+              <a href="https://github.com/ckissane">
+                <img src={coleKissane} alt="Cole Kissane" />
+              </a>
+            </div>
+            <div className="bio">
+              <h4>Cole Kissane</h4>
+              <p>
+                Cole is a upcoming Sophmore at Stanford majoring in Computer Science and Math.
+                In addition to CS & Math, he enjoys physics and graphic design.
               </p>
             </div>
           </div>
