@@ -10,7 +10,7 @@ import coleKissane from "./images/Cole.jpg";
 
 const team = () => {
   return (
-    <div className="team-page" style={{overflowY:"auto"}}>
+    <div className="team-page" style={{ overflowY: "auto" }}>
       <h2>Meet the Team</h2>
       <section className="team">
         <div className="item">
@@ -23,10 +23,10 @@ const team = () => {
             <div className="bio">
               <h4>Aaron Yu</h4>
               <p>
-                Aaron is a Freshman at UIUC in Mathematics + Computer Science. In his
-                spare time he enjoys playing with his cat and reading.
+                Aaron is a Freshman at UIUC in Mathematics + Computer Science.
+                In his spare time he enjoys playing with his cat and reading.
               </p>
-            </div> 
+            </div>
           </div>
         </div>
 
@@ -40,8 +40,8 @@ const team = () => {
             <div className="bio">
               <h4>Juyoung Choi</h4>
               <p>
-                Juyoung is a Freshman at UIUC majoring in Physics from South Korea. He
-                enjoys observing the night sky and playing the guitar.
+                Juyoung is a Freshman at UIUC majoring in Physics from South
+                Korea. He enjoys observing the night sky and playing the guitar.
               </p>
             </div>
           </div>
@@ -57,8 +57,9 @@ const team = () => {
             <div className="bio">
               <h4>Cole Kissane</h4>
               <p>
-                Cole is a upcoming Sophmore at Stanford majoring in Computer Science and Math.
-                In addition to CS & Math, he enjoys physics and graphic design.
+                Cole is a upcoming Sophmore at Stanford majoring in Computer
+                Science and Math. In addition to CS & Math, he enjoys physics
+                and graphic design.
               </p>
             </div>
           </div>
@@ -72,10 +73,10 @@ const team = () => {
               </a>
             </div>
             <div className="bio">
-            <h4>Illia Borzov</h4>
+              <h4>Illia Borzov</h4>
               <p>
-                Illia is a freshman studying Computer Science at NYU. In addition to
-                CS, he enjoys linguistics and graphic design.
+                Illia is a freshman studying Computer Science at NYU. In
+                addition to CS, he enjoys linguistics and graphic design.
               </p>
             </div>
           </div>
@@ -85,25 +86,23 @@ const team = () => {
       <h2>Previous Contributors</h2>
       <section className="team">
         <div className="item">
-         <div className="box">
-          <div className="profile-pic">
-            <a href="https://github.com/r0ckwav3">
-              <img
-                src={petervandervelde}
-                alt="Peter Vandervelde"
-              />
-            </a>
-          </div>
+          <div className="box">
+            <div className="profile-pic">
+              <a href="https://github.com/r0ckwav3">
+                <img src={petervandervelde} alt="Peter Vandervelde" />
+              </a>
+            </div>
 
-          <div className="bio">
-            <h4>Peter Vandervelde</h4>
-            <p>
-              Peter is a High Schooler at Proof School who is interested in CS and
-              Mathematics. His hobbies include acrobatics and digital drawing.
-            </p>
+            <div className="bio">
+              <h4>Peter Vandervelde</h4>
+              <p>
+                Peter is a High Schooler at Proof School who is interested in CS
+                and Mathematics. His hobbies include acrobatics and digital
+                drawing.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
         <div className="item">
           <div className="box">
@@ -115,9 +114,9 @@ const team = () => {
             <div className="bio">
               <h4>Angel Shah</h4>
               <p>
-                Angel is a sophomore studying Computer Engineering at the University
-                of Waterloo. In his spare time, he loves learning piano and reading.{" "}
-                <i class="fa fa-book"></i>
+                Angel is a sophomore studying Computer Engineering at the
+                University of Waterloo. In his spare time, he loves learning
+                piano and reading. <i class="fa fa-book"></i>
               </p>
             </div>
           </div>

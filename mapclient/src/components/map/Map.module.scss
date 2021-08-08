@@ -1,0 +1,7 @@
+.mapPopup {
+  background: transparent;
+  :global(.mapboxgl-popup-content) {
+    background: transparent;
+    padding: 0;
+  }
+}

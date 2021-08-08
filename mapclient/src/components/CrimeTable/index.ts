@@ -1,1 +1,1 @@
-export * from './CrimeTable'
+export * from "./CrimeTable";

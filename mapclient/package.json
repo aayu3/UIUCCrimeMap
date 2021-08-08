@@ -22,7 +22,7 @@
     "leaflet": "^1.7.1",
     "maplibre-gl": "^1.15.2",
     "mdbreact": "^5.1.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.1",
     "rc-slider": "^9.7.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",

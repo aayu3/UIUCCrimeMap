@@ -17,13 +17,10 @@ function crimeDate(props: JSCrimeEvent) {
   // return greenIcon;
 }
 
-export const CrimeMap:React.FC<{
+export const CrimeMap: React.FC<{
   crimeData: JSCrimeEvent[];
   location: any;
-}> = ({
-  crimeData,
-  location,
-}) => {
+}> = ({ crimeData, location }) => {
   return (
     <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
       <TileLayer
