@@ -62,11 +62,6 @@ h1 {
   width: 5vw;
 }
 
-.map {
-  flex: 8;
-  border-radius: 20px;
-}
-
 .pdf {
   position: relative;
   margin-right: 1%;

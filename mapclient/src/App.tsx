@@ -1,17 +1,21 @@
+import { IconButton, Paper, Slider, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import ChevronUpIcon from "@material-ui/icons/ExpandLess";
+import ChevronDownIcon from "@material-ui/icons/ExpandMore";
 import "jspdf-autotable";
-import Slider, { createSliderWithTooltip } from "rc-slider";
+import RCSlider, { createSliderWithTooltip } from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useMediaQuery } from "react-responsive";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { useMediaQuery } from "react-responsive";
 import { Link, Route, Switch } from "react-router-dom";
 import "./App.css";
 import About from "./components/About/About";
 import Map from "./components/map/Map";
 import Team from "./components/Team/Team";
 import { ReactComponent as Logo } from "./icons/websitelogo.svg";
-import { generatePDF } from "./PDFGenerator";
 import { TablePage } from "./pages";
+import { generatePDF } from "./PDFGenerator";
 
 // Define Center Location
 const location = {
@@ -38,7 +42,7 @@ export type JSCrimeEvent = RawCrimeEvent & {
   jsDateTimeOccurred: Date;
   jsTimeOccurred: number;
 };
-const Range = createSliderWithTooltip(Slider.Range);
+const Range = createSliderWithTooltip(RCSlider.Range);
 const routes = [
   { name: "Map", path: "/" },
   { name: "Table", path: "/table" },
@@ -48,7 +52,15 @@ const routes = [
 ];
 const defaultRangeValue = [60] as [number];
 const defaultTimeRange = [0, 23] as [number, number];
+const useStyles = makeStyles((theme) => ({
+  fab: {
+    position: "absolute",
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+}));
 const App: React.FC = (props) => {
+  const styles = useStyles();
   const inIFrame = useMemo(() => {
     try {
       return window.self !== window.top;
@@ -62,6 +74,7 @@ const App: React.FC = (props) => {
   const [timeRange, setTimeRange] =
     useState<[number, number]>(defaultTimeRange);
   const [sixtyDayCrimes, setSixtyDayCrimes] = useState<JSCrimeEvent[]>([]);
+  const [showLegend, setShowLegend] = useState(false);
 
   const resetMap = useCallback(() => {
     setRangeValue(defaultRangeValue);
@@ -254,20 +267,22 @@ const App: React.FC = (props) => {
                   flexDirection: "column",
                 }}
               >
-                <div className="map" style={{ flex: 1 }}>
+                <div className="map" style={{ flex: 1, overflow: "hidden" }}>
                   <Map crimeData={crimesToDisplay} location={location} />
                   {/* <CrimeMap
                     crimeData={crimesToDisplay}
                     location={location}
                   ></CrimeMap> */}
                 </div>
-                <div
+                {/* <Fab color="primary" aria-label="open-legend" className={styles.fab} onClick={()=>setShowLegend((cv)=>!cv)}>
+                  <ExploreIcon/>
+                </Fab> */}
+                <Paper
                   className="iconlegend"
                   style={
                     !isTabletOrMobile
                       ? {
-                          padding: 32,
-                          background: "white",
+                          padding: showLegend ? 32 : "0 16px",
                           position: "absolute",
                           top: "50%",
                           transform: "translate(0,-50%)",
@@ -277,62 +292,112 @@ const App: React.FC = (props) => {
                           left: 0,
                           bottom: 0,
                           right: 0,
-                          padding: 24,
-                          background: "white",
+                          padding: showLegend ? 24 : "0 16px",
                           fontSize: 16,
                           flexShrink: 0,
                         }
                   }
                 >
-                  <h3 style={{ fontSize: "1em" }}>Time of Day</h3>
-                  <Range
-                    allowCross={false}
-                    marks={{ 0: "12 AM", 23: "11 PM" }}
-                    value={timeRange as number[]}
-                    min={0}
-                    max={23}
-                    tipFormatter={(value: any) => `${value}:00`}
-                    railStyle={{ backgroundColor: "black" }}
-                    trackStyle={[{ backgroundColor: "#FF552E" }]}
-                    onChange={onTimerChange}
-                    draggableTrack={true}
-                  />
-                  <br></br>
-                  <br></br>
-                  <h3 style={{ fontSize: "1em" }}>Recency</h3>
-                  <Range
-                    allowCross={false}
-                    marks={{ 1: "1 Day", 60: "60 Days" }}
-                    value={rangeValue}
-                    min={1}
-                    max={60}
-                    draggableTrack={true}
-                    tipFormatter={(value: any) => `${value} days`}
-                    trackStyle={[
-                      { backgroundColor: "transparent" },
-                      { backgroundColor: "transparent" },
-                    ]}
-                    railStyle={{
-                      background:
-                        "linear-gradient(to right, hsl(0,100%,50%),hsl(45,100%,50%),hsl(90,100%,50%),hsl(135,100%,50%), hsl(180,100%,50%))",
-                    }}
-                    onChange={onSliderChange}
-                  />
-                  <br></br>
-                  <br></br>
-                  <button
-                    onClick={resetMap}
-                    type="button"
-                    className="btn btn-primary"
-                  >
-                    Reset Map
-                  </button>
-                  <br></br>
-                  <br></br>
-                  <h4 style={{ fontSize: "1em" }}>
-                    {crimesToDisplay.length}/{sixtyDayCrimes.length} Crimes
-                  </h4>
-                </div>
+                  {showLegend && false ? undefined : (
+                    <>
+                      {isTabletOrMobile ? (
+                        <>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            <IconButton
+                              onClick={() => setShowLegend((cv) => !cv)}
+                              edge={"start"}
+                            >
+                              {showLegend ? (
+                                <ChevronDownIcon />
+                              ) : (
+                                <ChevronUpIcon />
+                              )}
+                            </IconButton>
+                            <Typography>Legend & Filters</Typography>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            <IconButton
+                              onClick={() => setShowLegend((cv) => !cv)}
+                              edge={"start"}
+                            >
+                              {showLegend ? (
+                                <ChevronUpIcon />
+                              ) : (
+                                <ChevronDownIcon />
+                              )}
+                            </IconButton>
+                            <Typography>Legend & Filters</Typography>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
+                  {showLegend ? (
+                    <>
+                      <Typography id="time-of-day-slider" gutterBottom>
+                        Time of Day
+                      </Typography>
+                      <Slider
+                        value={timeRange as any as number}
+                        onChange={(event: any, newValue: number | number[]) =>
+                          onTimerChange(newValue as any as [number, number])
+                        }
+                        valueLabelDisplay="auto"
+                        aria-labelledby="time-of-day-slider"
+                        valueLabelFormat={(value: number, index: number) =>
+                          `${value}:${index > 0 ? "59" : "00"}`
+                        }
+                        getAriaValueText={(value: number, index: number) =>
+                          `${value}:${index > 0 ? "59" : "00"}`
+                        }
+                        min={0}
+                        max={23}
+                      />
+                      <br></br>
+                      <br></br>
+                      <h3 style={{ fontSize: "1em" }}>Recency</h3>
+                      <Range
+                        allowCross={false}
+                        marks={{ 1: "1 Day", 60: "60 Days" }}
+                        value={rangeValue}
+                        min={1}
+                        max={60}
+                        draggableTrack={true}
+                        tipFormatter={(value: any) => `${value} days`}
+                        trackStyle={[
+                          { backgroundColor: "transparent" },
+                          { backgroundColor: "transparent" },
+                        ]}
+                        railStyle={{
+                          background:
+                            "linear-gradient(to right, hsl(0,100%,50%),hsl(45,100%,50%),hsl(90,100%,50%),hsl(135,100%,50%), hsl(180,100%,50%))",
+                        }}
+                        onChange={onSliderChange}
+                      />
+                      <br></br>
+                      <br></br>
+                      <button
+                        onClick={resetMap}
+                        type="button"
+                        className="btn btn-primary"
+                      >
+                        Reset Map
+                      </button>
+                      <br></br>
+                      <br></br>
+                      <h4 style={{ fontSize: "1em" }}>
+                        {crimesToDisplay.length}/{sixtyDayCrimes.length} Crimes
+                      </h4>
+                    </>
+                  ) : undefined}
+                </Paper>
               </div>
             )}
           />

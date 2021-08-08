@@ -1,32 +1,25 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import ReactMapGL, {
-  NavigationControl,
-  Source,
-  Layer,
-  MapEvent,
-  Popup,
-  MapRef,
-  GeolocateControl,
-} from "react-map-gl";
-import { JSCrimeEvent } from "../../App";
-
-import {
-  clusterLayer,
-  clusterCountLayer,
-  unclusteredPointLayer,
-} from "./layers";
-import Pins from "./Pins";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   IconButton,
-  Typography,
   Paper,
+  Typography,
 } from "@material-ui/core";
-import classes from "./Map.module.scss";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CloseIcon from "@material-ui/icons/Close";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import ReactMapGL, {
+  GeolocateControl,
+  MapRef,
+  NavigationControl,
+  Popup,
+} from "react-map-gl";
+import { JSCrimeEvent } from "../../App";
+import { clusterLayer } from "./layers";
+import classes from "./Map.module.scss";
+import Pins from "./Pins";
+
 const transformRequest = (url: string, resourceType: string) => {
   // console.log(url,resourceType)
   if (resourceType === "Style") {
@@ -47,7 +40,7 @@ const Map: React.FC<{
   location: any;
   showNav?: boolean;
 }> = (properties) => {
-  const { crimeData, location, showNav = false } = properties;
+  const { crimeData, location, showNav = true } = properties;
   // public state: State = initialState;
   const [viewport, setViewport] = useState({
     height: "100%",
@@ -68,8 +61,10 @@ const Map: React.FC<{
       }));
     };
     window.addEventListener("resize", onResize);
+    const handle = window.setInterval(onResize, 1000);
     return () => {
       window.removeEventListener("resize", onResize);
+      window.clearInterval(handle);
     };
   }, []);
   // public componentDidMount() {
@@ -120,20 +115,20 @@ const Map: React.FC<{
       // onClick={onClick}
     >
       {/* <Source
-                id="earthquakes"
-                type="geojson"
-                //   type="geojson"
-                //   data="https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
-                cluster={false}
-                clusterMaxZoom={14}
-                clusterRadius={50}
-                data={data}
-            >
-                <Layer {...clusterLayer} />
-                <Layer {...clusterCountLayer} /> 
-                <Layer {...unclusteredPointLayer} />
-                
-            </Source> */}
+                  id="earthquakes"
+                  type="geojson"
+                  //   type="geojson"
+                  //   data="https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
+                  cluster={false}
+                  clusterMaxZoom={14}
+                  clusterRadius={50}
+                  data={data}
+              >
+                  <Layer {...clusterLayer} />
+                  <Layer {...clusterCountLayer} /> 
+                  <Layer {...unclusteredPointLayer} />
+                  
+              </Source> */}
       <Pins
         data={crimeData}
         onClick={(cv: JSCrimeEvent) =>
@@ -150,9 +145,7 @@ const Map: React.FC<{
         <div style={{ position: "absolute", left: 30, top: 30 }}>
           <NavigationControl onViewportChange={updateViewport} />
         </div>
-      ) : (
-        false
-      )}
+      ) : undefined}
       {dcrime.length > 0 && (
         <Popup
           tipSize={5}
