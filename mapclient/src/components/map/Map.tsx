@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import ReactMapGL, { NavigationControl, Source, Layer, MapEvent, Popup, MapRef } from 'react-map-gl';
+import ReactMapGL, { NavigationControl, Source, Layer, MapEvent, Popup, MapRef, GeolocateControl } from 'react-map-gl';
 import { JSCrimeEvent } from '../../App';
 
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './layers';
@@ -106,6 +106,12 @@ const Map: React.FC<{
         }
     }, [crimeData])
 
+    const geolocateStyle = {
+        bottom: 0,
+        left: 0,
+        margin: 10
+    };
+
     return (
         <ReactMapGL
             {...viewport}
@@ -155,7 +161,12 @@ const Map: React.FC<{
                     </div>
                 </Popup>
             )}
-            
+            <GeolocateControl
+                style={geolocateStyle}
+                positionOptions={{enableHighAccuracy: true}}
+                trackUserLocation
+                showAccuracyCircle={false}
+            />    
         </ReactMapGL>
     );
 
