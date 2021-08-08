@@ -200,7 +200,7 @@ const Map: React.FC<{
                         Time: {crime.TimeOccurred}
                       </div>
                       <div style={{ fontSize: "0.9em" }}>
-                        Address: {crime.StreetAddress}
+                        Disposition: {crime.Disposition}
                       </div>
                       <div style={{ fontSize: "0.7em" }}>
                         ID: {crime.CaseID}
