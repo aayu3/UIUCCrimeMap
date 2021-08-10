@@ -25,6 +25,7 @@ const location = {
   zoom: 17,
 };
 
+const mode = ["https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ","https://api.maptiler.com/maps/darkmatter/style.json?key=gbetYLSD5vR8MdtZ88AQ"];
 export type RawCrimeEvent = {
   CaseID: string;
   DateReported: string;
@@ -75,11 +76,25 @@ const App: React.FC = (props) => {
     useState<[number, number]>(defaultTimeRange);
   const [sixtyDayCrimes, setSixtyDayCrimes] = useState<JSCrimeEvent[]>([]);
   const [showLegend, setShowLegend] = useState(false);
+  const [toggle, setToggle] = useState<number>(0);
+  const [mapURL, setMapURL] = useState<string>("https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ");
 
   const resetMap = useCallback(() => {
     setRangeValue(defaultRangeValue);
     setTimeRange(defaultTimeRange);
   }, [setRangeValue, setTimeRange]);
+
+  const changeMode = useCallback(() => {
+    if (toggle == 1) {
+      setToggle(0);
+      setMapURL(mode[0]);
+    } else if (toggle == 0) { 
+      setToggle(1);
+      setMapURL(mode[1]);
+    }
+  }, [setToggle]);
+
+
 
   const savePDF = useCallback(() => {
     const doc = generatePDF(sixtyDayCrimes);
@@ -249,6 +264,11 @@ const App: React.FC = (props) => {
                     Generate PDF
                   </Button>
                 </Nav.Item>
+                <Nav.Item>
+                  <Button onClick={changeMode} variant="light">
+                    Toggle Map
+                  </Button>
+                </Nav.Item>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -268,7 +288,7 @@ const App: React.FC = (props) => {
                 }}
               >
                 <div className="map" style={{ flex: 1, overflow: "hidden" }}>
-                  <Map crimeData={crimesToDisplay} location={location} />
+                  <Map crimeData={crimesToDisplay} location={location} mode={mapURL}/>
                   {/* <CrimeMap
                     crimeData={crimesToDisplay}
                     location={location}

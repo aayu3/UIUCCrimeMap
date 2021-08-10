@@ -9,6 +9,7 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback } from "react";
 import ReactMapGL, {
   GeolocateControl,
   MapRef,
@@ -20,11 +21,15 @@ import { clusterLayer } from "./layers";
 import classes from "./Map.module.scss";
 import Pins from "./Pins";
 
+const mode = ["https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ","https://api.maptiler.com/maps/darkmatter/style.json?key=gbetYLSD5vR8MdtZ88AQ"];
+
+
+/*
 const transformRequest = (url: string, resourceType: string) => {
   // console.log(url,resourceType)
   if (resourceType === "Style") {
     return {
-      url: "https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ",
+      url: 'https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ',
     };
   }
   if (url.match("api.mapbox.com")) {
@@ -35,12 +40,16 @@ const transformRequest = (url: string, resourceType: string) => {
     // headers: { 'Authorization': 'Bearer ' + yourAuthToken }
   };
 };
+*/
+
+
 const Map: React.FC<{
   crimeData: JSCrimeEvent[];
   location: any;
   showNav?: boolean;
+  mode: string;
 }> = (properties) => {
-  const { crimeData, location, showNav = true } = properties;
+  const { crimeData, location, showNav = true, mode} = properties;
   // public state: State = initialState;
   const [viewport, setViewport] = useState({
     height: "100%",
@@ -51,7 +60,9 @@ const Map: React.FC<{
   });
 
   const [dcrime, setDcrime] = useState<JSCrimeEvent[]>([]);
+  const [mapURL, setMapURL] = useState<string>(mode);
   const mapRef = useRef<MapRef>(null);
+  
   useEffect(() => {
     const onResize = () => {
       setViewport((prevState) => ({
@@ -82,6 +93,23 @@ const Map: React.FC<{
   useEffect(() => {
     updateViewport({ longitude: location.lng, latitude: location.lat });
   }, [location]);
+
+  const transformRequest = useCallback((url: string, resourceType: string) => {
+    // console.log(url,resourceType)
+    setMapURL(mode);
+    if (resourceType === "Style") {
+      return {
+        url: mapURL,
+      };
+    }
+    if (url.match("api.mapbox.com")) {
+      return { url: "" };
+    }
+    return {
+      url: url,
+      // headers: { 'Authorization': 'Bearer ' + yourAuthToken }
+    };
+  }, [setMapURL]);
 
   const data = useMemo<
     | GeoJSON.Feature<GeoJSON.Geometry>
