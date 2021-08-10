@@ -411,7 +411,7 @@ const App: React.FC = (props) => {
           <Route
             exact
             path="/table"
-            render={() => <TablePage crimes={allCrimes} />}
+            render={() => <TablePage crimes={sixtyDayCrimes} />}
           />
         </Switch>
       </main>
