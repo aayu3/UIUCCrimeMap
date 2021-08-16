@@ -25,6 +25,21 @@ const location = {
   zoom: 17,
 };
 
+let mode = localStorage.getItem("theme");
+var modeLabel = "";
+var buttonMode = "";
+
+if (mode === null) {
+  modeLabel = 'dark';
+  buttonMode = 'light';
+} else if (mode === 'light') {
+  modeLabel = 'dark';
+  buttonMode = 'light';
+} else if (mode === 'dark') {
+  modeLabel = 'light';
+  buttonMode = 'dark';
+}
+
 export type RawCrimeEvent = {
   CaseID: string;
   DateReported: string;
@@ -269,13 +284,13 @@ const App: React.FC = (props) => {
                   <></>
                 )}
                 <Nav.Item>
-                  <Button onClick={savePDF} variant="light">
+                  <Button onClick={savePDF} variant={buttonMode}>
                     Generate PDF
                   </Button>
                 </Nav.Item>
                 <Nav.Item>
-                  <Button onClick={changeMode} variant="light">
-                    Toggle Map
+                  <Button onClick={changeMode} variant={buttonMode}>
+                    {modeLabel} Mode
                   </Button>
                 </Nav.Item>
               </Nav>
