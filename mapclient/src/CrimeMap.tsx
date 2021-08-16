@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { JSCrimeEvent } from "./App";
@@ -20,11 +21,12 @@ function crimeDate(props: JSCrimeEvent) {
 export const CrimeMap: React.FC<{
   crimeData: JSCrimeEvent[];
   location: any;
-}> = ({ crimeData, location }) => {
+  mode: string;
+}> = ({ crimeData, location , mode}) => {
   return (
     <MapContainer center={[location.lat, location.lng]} zoom={location.zoom}>
       <TileLayer
-        url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
+        url={mode}
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       {crimeData.map((crime, i) => (

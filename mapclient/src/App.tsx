@@ -25,6 +25,21 @@ const location = {
   zoom: 17,
 };
 
+let mode = localStorage.getItem("theme");
+var modeLabel = "";
+var buttonMode = "";
+
+if (mode === null) {
+  modeLabel = 'dark';
+  buttonMode = 'light';
+} else if (mode === 'light') {
+  modeLabel = 'dark';
+  buttonMode = 'light';
+} else if (mode === 'dark') {
+  modeLabel = 'light';
+  buttonMode = 'dark';
+}
+
 export type RawCrimeEvent = {
   CaseID: string;
   DateReported: string;
@@ -75,16 +90,40 @@ const App: React.FC = (props) => {
     useState<[number, number]>(defaultTimeRange);
   const [sixtyDayCrimes, setSixtyDayCrimes] = useState<JSCrimeEvent[]>([]);
   const [showLegend, setShowLegend] = useState(false);
+  const [toggle, setToggle] = useState<string|null>(localStorage.getItem('theme'));
 
   const resetMap = useCallback(() => {
     setRangeValue(defaultRangeValue);
     setTimeRange(defaultTimeRange);
   }, [setRangeValue, setTimeRange]);
 
+  const changeMode = useCallback(() => {
+    if (toggle == 'light') {
+      setToggle('dark');
+      localStorage.setItem('theme', 'dark');
+    } else { 
+      setToggle('light');
+      localStorage.setItem('theme', 'light');
+    }
+    console.log(toggle);
+    window.location.reload(); 
+  }, [toggle]);
+
+
   const savePDF = useCallback(() => {
     const doc = generatePDF(sixtyDayCrimes);
     doc.save("Daily_Crime_Log.pdf");
   }, [sixtyDayCrimes]);
+
+  useEffect(() => {
+    let mode = localStorage.getItem("theme");
+    if (mode === null) {
+      setToggle("light");
+      localStorage.setItem('theme', 'light');
+    } else {
+      setToggle(mode);
+    }
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -245,8 +284,13 @@ const App: React.FC = (props) => {
                   <></>
                 )}
                 <Nav.Item>
-                  <Button onClick={savePDF} variant="light">
+                  <Button onClick={savePDF} variant={buttonMode}>
                     Generate PDF
+                  </Button>
+                </Nav.Item>
+                <Nav.Item>
+                  <Button onClick={changeMode} variant={buttonMode}>
+                    {modeLabel} Mode
                   </Button>
                 </Nav.Item>
               </Nav>
@@ -268,7 +312,7 @@ const App: React.FC = (props) => {
                 }}
               >
                 <div className="map" style={{ flex: 1, overflow: "hidden" }}>
-                  <Map crimeData={crimesToDisplay} location={location} />
+                  <Map crimeData={crimesToDisplay} location={location} mode={toggle}/>
                   {/* <CrimeMap
                     crimeData={crimesToDisplay}
                     location={location}

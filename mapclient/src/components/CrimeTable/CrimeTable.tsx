@@ -65,6 +65,7 @@ export const PlaceCell = ({ value, row, hasFocus }: any) => {
                 lng: parseFloat(row.Longitude) ?? 0,
                 zoom: 15,
               }}
+              mode= {"https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ"}
             />
           ) : undefined}
         </div>
