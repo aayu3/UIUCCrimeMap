@@ -25,7 +25,6 @@ const location = {
   zoom: 17,
 };
 
-const mode = ["https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ","https://api.maptiler.com/maps/darkmatter/style.json?key=gbetYLSD5vR8MdtZ88AQ"];
 export type RawCrimeEvent = {
   CaseID: string;
   DateReported: string;
@@ -76,8 +75,7 @@ const App: React.FC = (props) => {
     useState<[number, number]>(defaultTimeRange);
   const [sixtyDayCrimes, setSixtyDayCrimes] = useState<JSCrimeEvent[]>([]);
   const [showLegend, setShowLegend] = useState(false);
-  const [toggle, setToggle] = useState<number>(0);
-  const [mapURL, setMapURL] = useState<string>("https://api.maptiler.com/maps/positron/style.json?key=gbetYLSD5vR8MdtZ88AQ");
+  const [toggle, setToggle] = useState<string|null>(localStorage.getItem('theme'));
 
   const resetMap = useCallback(() => {
     setRangeValue(defaultRangeValue);
@@ -85,21 +83,32 @@ const App: React.FC = (props) => {
   }, [setRangeValue, setTimeRange]);
 
   const changeMode = useCallback(() => {
-    if (toggle == 1) {
-      setToggle(0);
-      setMapURL(mode[0]);
-    } else if (toggle == 0) { 
-      setToggle(1);
-      setMapURL(mode[1]);
+    if (toggle == 'light') {
+      setToggle('dark');
+      localStorage.setItem('theme', 'dark');
+    } else { 
+      setToggle('light');
+      localStorage.setItem('theme', 'light');
     }
-  }, [setToggle]);
-
+    console.log(toggle);
+    window.location.reload(); 
+  }, [toggle]);
 
 
   const savePDF = useCallback(() => {
     const doc = generatePDF(sixtyDayCrimes);
     doc.save("Daily_Crime_Log.pdf");
   }, [sixtyDayCrimes]);
+
+  useEffect(() => {
+    let mode = localStorage.getItem("theme");
+    if (mode === null) {
+      setToggle("light");
+      localStorage.setItem('theme', 'light');
+    } else {
+      setToggle(mode);
+    }
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -288,7 +297,7 @@ const App: React.FC = (props) => {
                 }}
               >
                 <div className="map" style={{ flex: 1, overflow: "hidden" }}>
-                  <Map crimeData={crimesToDisplay} location={location} mode={mapURL}/>
+                  <Map crimeData={crimesToDisplay} location={location} mode={toggle}/>
                   {/* <CrimeMap
                     crimeData={crimesToDisplay}
                     location={location}
