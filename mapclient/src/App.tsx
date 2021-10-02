@@ -2,6 +2,8 @@ import { IconButton, Paper, Slider, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ChevronUpIcon from "@material-ui/icons/ExpandLess";
 import ChevronDownIcon from "@material-ui/icons/ExpandMore";
+import { createTheme ,ThemeProvider, styled }  from '@material-ui/core/styles'
+
 import "jspdf-autotable";
 import RCSlider, { createSliderWithTooltip } from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -221,6 +223,9 @@ const App: React.FC = (props) => {
   };
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
+  const darkTheme = createTheme({ palette: { type: 'dark' } });
+  const lightTheme = createTheme({ palette: { type: 'light' } });
+
   return (
     <div>
       <main
@@ -321,6 +326,8 @@ const App: React.FC = (props) => {
                 {/* <Fab color="primary" aria-label="open-legend" className={styles.fab} onClick={()=>setShowLegend((cv)=>!cv)}>
                   <ExploreIcon/>
                 </Fab> */}
+                <ThemeProvider theme={(buttonMode as string == "dark") ? darkTheme : lightTheme}>
+
                 <Paper
                   className="iconlegend"
                   style={
@@ -406,7 +413,7 @@ const App: React.FC = (props) => {
                       />
                       <br></br>
                       <br></br>
-                      <h3 style={{ fontSize: "1em" }}>Recency</h3>
+                      <h3 style={{ fontSize: "1em", color: (modeLabel as string == 'dark') ? 'black' : 'white'}}>Recency</h3>
                       <Range
                         allowCross={false}
                         marks={{ 1: "1 Day", 60: "60 Days" }}
@@ -436,12 +443,13 @@ const App: React.FC = (props) => {
                       </button>
                       <br></br>
                       <br></br>
-                      <h4 style={{ fontSize: "1em" }}>
+                      <h4 style={{ fontSize: "1em" , color: (modeLabel as string == 'dark') ? 'black' : 'white'}}>
                         {crimesToDisplay.length}/{sixtyDayCrimes.length} Crimes
                       </h4>
                     </>
                   ) : undefined}
                 </Paper>
+                </ThemeProvider>
               </div>
             )}
           />
