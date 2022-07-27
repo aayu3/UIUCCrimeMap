@@ -28,11 +28,11 @@ const lightTransformRequest = (url: string, resourceType: string) => {
   // console.log(url,resourceType)
   if (resourceType === "Style") {
     return {
-      url: 'https://api.maptiler.com/maps/openstreetmap/style.json?key=ZN4HZne3siYkMhBLqToY',
+      url: 'https://api.maptiler.com/maps/basic-v2/style.json?key=ZN4HZne3siYkMhBLqToY',
     };
   }
   if (url.match("api.mapbox.com")) {
-    return { url: "" };
+    return { url: "https://api.maptiler.com/maps/basic-v2/style.json?key=ZN4HZne3siYkMhBLqToY" };
   }
   return {
     url: url,
@@ -44,11 +44,11 @@ const darkTransformRequest = (url: string, resourceType: string) => {
   // console.log(url,resourceType)
   if (resourceType === "Style") {
     return {
-      url: 'https://api.maptiler.com/maps/openstreetmap/style.json?key=ZN4HZne3siYkMhBLqToY',
+      url: 'https://api.maptiler.com/maps/basic-v2/style.json?key=ZN4HZne3siYkMhBLqToY',
     };
   }
   if (url.match("api.mapbox.com")) {
-    return { url: "" };
+    return { url: "https://api.maptiler.com/maps/basic-v2/style.json?key=ZN4HZne3siYkMhBLqToY" };
   }
   return {
     url: url,

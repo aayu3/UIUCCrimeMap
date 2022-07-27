@@ -65,7 +65,7 @@ export const PlaceCell = ({ value, row, hasFocus }: any) => {
                 lng: parseFloat(row.Longitude) ?? 0,
                 zoom: 15,
               }}
-              mode= {"https://api.maptiler.com/maps/openstreetmap/style.json?key=ZN4HZne3siYkMhBLqToY"}
+              mode= {"https://api.maptiler.com/maps/basic-v2/style.json?key=ZN4HZne3siYkMhBLqToY"}
             />
           ) : undefined}
         </div>
