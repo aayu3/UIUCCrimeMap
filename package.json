@@ -7,7 +7,7 @@
     "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development && cd mapclient && yarn install && yarn run build"
   },
   "engines": {
-    "node": "16.16.0"
+    "node": "12.x"
   },
   "keywords": [],
   "author": "",
