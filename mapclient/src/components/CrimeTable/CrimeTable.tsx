@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { JSCrimeEvent } from "../../App";
-import { MDBDataTable } from "mdbreact";
 import { DataGrid, GridColumns } from "@material-ui/data-grid";
 
 import { Popover, Typography } from "@material-ui/core";

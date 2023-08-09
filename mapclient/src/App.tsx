@@ -1,8 +1,7 @@
 import { IconButton, Paper, Slider, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import ChevronUpIcon from "@material-ui/icons/ExpandLess";
 import ChevronDownIcon from "@material-ui/icons/ExpandMore";
-import { createTheme ,ThemeProvider, styled }  from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import "jspdf-autotable";
 import RCSlider, { createSliderWithTooltip } from "rc-slider";
@@ -56,6 +55,7 @@ export type RawCrimeEvent = {
 };
 export type JSCrimeEvent = RawCrimeEvent & {
   jsDateOccured: Date;
+  jsDateReported: Date;
   jsDateTimeOccurred: Date;
   jsTimeOccurred: number;
 };
@@ -68,16 +68,9 @@ const routes = [
   { name: "Team", path: "/team" },
 ];
 const defaultRangeValue = [60] as [number];
-const defaultTimeRange = [0, 23] as [number, number];
-const useStyles = makeStyles((theme) => ({
-  fab: {
-    position: "absolute",
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-}));
+const defaultTimeRange = [0, 24] as [number, number];
+
 const App: React.FC = (props) => {
-  const styles = useStyles();
   const inIFrame = useMemo(() => {
     try {
       return window.self !== window.top;
@@ -92,7 +85,7 @@ const App: React.FC = (props) => {
     useState<[number, number]>(defaultTimeRange);
   const [sixtyDayCrimes, setSixtyDayCrimes] = useState<JSCrimeEvent[]>([]);
   const [showLegend, setShowLegend] = useState(false);
-  const [toggle, setToggle] = useState<string|null>(localStorage.getItem('theme'));
+  const [toggle, setToggle] = useState<string | null>(localStorage.getItem('theme'));
 
   const resetMap = useCallback(() => {
     setRangeValue(defaultRangeValue);
@@ -100,15 +93,15 @@ const App: React.FC = (props) => {
   }, [setRangeValue, setTimeRange]);
 
   const changeMode = useCallback(() => {
-    if (toggle == 'light') {
+    if (toggle === 'light') {
       setToggle('dark');
       localStorage.setItem('theme', 'dark');
-    } else { 
+    } else {
       setToggle('light');
       localStorage.setItem('theme', 'light');
     }
     console.log(toggle);
-    window.location.reload(); 
+    window.location.reload();
   }, [toggle]);
 
 
@@ -173,9 +166,16 @@ const App: React.FC = (props) => {
     let sixtyDayCrimesA = [];
     for (let i = 0; i < allCrimes.length; i++) {
       let crime = allCrimes[i];
-      let daysBetween =
+      // default to not adding
+      let daysBetween = 61;
+      if (crime.DateOccurred.includes("/")) {
+        daysBetween =
         (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
-      if (daysBetween <= 60) {
+      } else if (crime.DateReported.includes("/")) {
+        daysBetween =
+        (+new Date() - +crime.jsDateReported) / 1000 / 60 / 60 / 24;
+      }
+      if ( 0<= daysBetween && daysBetween <= 60) {
         sixtyDayCrimesA.push(crime);
       }
     }
@@ -186,10 +186,16 @@ const App: React.FC = (props) => {
     var filtered = [];
     for (var i = 0; i < crimes.length; i++) {
       let crime = crimes[i];
-      var rawTime = crime.TimeOccurred.split(":");
+      var rawTime = ["N/A"];
+      if (crime.TimeOccurred.includes(":")) {
+        rawTime = crime.TimeOccurred.split(":");
+      } else if (crime.TimeReported.includes(":")) {
+        rawTime = crime.TimeReported.split(":");
+      }
       var timeOccurred = parseInt(rawTime[0]);
       if (Number.isNaN(timeOccurred)) {
         filtered.push(crime);
+        // <= to account for 23-23:59 case i.e. when the time filter circles are on eachother
       } else if (timeOccurred >= timeRange[0] && timeOccurred <= timeRange[1]) {
         filtered.push(crime);
       }
@@ -200,9 +206,15 @@ const App: React.FC = (props) => {
     var filtered = [];
     for (let i = 0; i < crimes.length; i++) {
       let crime = crimes[i];
-      let daysBetween =
+      let daysBetween = 61;
+      if (crime.DateOccurred.includes("/")) {
+        daysBetween =
         (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
-      if (daysBetween <= range) {
+      } else if (crime.DateReported.includes("/")) {
+        daysBetween =
+        (+new Date() - +crime.jsDateReported) / 1000 / 60 / 60 / 24;
+      }
+      if (0 <= daysBetween && daysBetween <= range) {
         filtered.push(crime);
       }
     }
@@ -317,29 +329,25 @@ const App: React.FC = (props) => {
                 }}
               >
                 <div className="map" style={{ flex: 1, overflow: "hidden" }}>
-                  <Map crimeData={crimesToDisplay} location={location} mode={toggle}/>
-                  {/* <CrimeMap
-                    crimeData={crimesToDisplay}
-                    location={location}
-                  ></CrimeMap> */}
+                  <Map crimeData={crimesToDisplay} location={location} mode={toggle} />CC
                 </div>
                 {/* <Fab color="primary" aria-label="open-legend" className={styles.fab} onClick={()=>setShowLegend((cv)=>!cv)}>
                   <ExploreIcon/>
                 </Fab> */}
-                <ThemeProvider theme={(buttonMode as string == "dark") ? darkTheme : lightTheme}>
+                <ThemeProvider theme={(buttonMode as string === "dark") ? darkTheme : lightTheme}>
 
-                <Paper
-                  className="iconlegend"
-                  style={
-                    !isTabletOrMobile
-                      ? {
+                  <Paper
+                    className="iconlegend"
+                    style={
+                      !isTabletOrMobile
+                        ? {
                           padding: showLegend ? 32 : "0 16px",
                           position: "absolute",
                           top: "50%",
                           transform: "translate(0,-50%)",
                           right: 16,
                         }
-                      : {
+                        : {
                           left: 0,
                           bottom: 0,
                           right: 0,
@@ -347,108 +355,108 @@ const App: React.FC = (props) => {
                           fontSize: 16,
                           flexShrink: 0,
                         }
-                  }
-                >
-                  {showLegend && false ? undefined : (
-                    <>
-                      {isTabletOrMobile ? (
-                        <>
-                          <div
-                            style={{ display: "flex", alignItems: "center" }}
-                          >
-                            <IconButton
-                              onClick={() => setShowLegend((cv) => !cv)}
-                              edge={"start"}
+                    }
+                  >
+                    {showLegend && false ? undefined : (
+                      <>
+                        {isTabletOrMobile ? (
+                          <>
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
                             >
-                              {showLegend ? (
-                                <ChevronDownIcon />
-                              ) : (
-                                <ChevronUpIcon />
-                              )}
-                            </IconButton>
-                            <Typography>Legend & Filters</Typography>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div
-                            style={{ display: "flex", alignItems: "center" }}
-                          >
-                            <IconButton
-                              onClick={() => setShowLegend((cv) => !cv)}
-                              edge={"start"}
+                              <IconButton
+                                onClick={() => setShowLegend((cv) => !cv)}
+                                edge={"start"}
+                              >
+                                {showLegend ? (
+                                  <ChevronDownIcon />
+                                ) : (
+                                  <ChevronUpIcon />
+                                )}
+                              </IconButton>
+                              <Typography>Legend & Filters</Typography>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
                             >
-                              {showLegend ? (
-                                <ChevronUpIcon />
-                              ) : (
-                                <ChevronDownIcon />
-                              )}
-                            </IconButton>
-                            <Typography>Legend & Filters</Typography>
-                          </div>
-                        </>
-                      )}
-                    </>
-                  )}
-                  {showLegend ? (
-                    <>
-                      <Typography id="time-of-day-slider" gutterBottom>
-                        Time of Day
-                      </Typography>
-                      <Slider
-                        value={timeRange as any as number}
-                        onChange={(event: any, newValue: number | number[]) =>
-                          onTimerChange(newValue as any as [number, number])
-                        }
-                        valueLabelDisplay="auto"
-                        aria-labelledby="time-of-day-slider"
-                        valueLabelFormat={(value: number, index: number) =>
-                          `${value}:${index > 0 ? "59" : "00"}`
-                        }
-                        getAriaValueText={(value: number, index: number) =>
-                          `${value}:${index > 0 ? "59" : "00"}`
-                        }
-                        min={0}
-                        max={23}
-                      />
-                      <br></br>
-                      <br></br>
-                      <h3 style={{ fontSize: "1em", color: (modeLabel as string == 'dark') ? 'black' : 'white'}}>Recency</h3>
-                      <Range
-                        allowCross={false}
-                        marks={{ 1: "1 Day", 60: "60 Days" }}
-                        value={rangeValue}
-                        min={1}
-                        max={60}
-                        draggableTrack={true}
-                        tipFormatter={(value: any) => `${value} days`}
-                        trackStyle={[
-                          { backgroundColor: "transparent" },
-                          { backgroundColor: "transparent" },
-                        ]}
-                        railStyle={{
-                          background:
-                            "linear-gradient(to right, hsl(0,100%,50%),hsl(45,100%,50%),hsl(90,100%,50%),hsl(135,100%,50%), hsl(180,100%,50%))",
-                        }}
-                        onChange={onSliderChange}
-                      />
-                      <br></br>
-                      <br></br>
-                      <button
-                        onClick={resetMap}
-                        type="button"
-                        className="btn btn-primary"
-                      >
-                        Reset Map
-                      </button>
-                      <br></br>
-                      <br></br>
-                      <h4 style={{ fontSize: "1em" , color: (modeLabel as string == 'dark') ? 'black' : 'white'}}>
-                        {crimesToDisplay.length}/{sixtyDayCrimes.length} Crimes
-                      </h4>
-                    </>
-                  ) : undefined}
-                </Paper>
+                              <IconButton
+                                onClick={() => setShowLegend((cv) => !cv)}
+                                edge={"start"}
+                              >
+                                {showLegend ? (
+                                  <ChevronUpIcon />
+                                ) : (
+                                  <ChevronDownIcon />
+                                )}
+                              </IconButton>
+                              <Typography>Legend & Filters</Typography>
+                            </div>
+                          </>
+                        )}
+                      </>
+                    )}
+                    {showLegend ? (
+                      <>
+                        <Typography id="time-of-day-slider" gutterBottom>
+                          Time of Day
+                        </Typography>
+                        <Slider
+                          value={timeRange as any as number}
+                          onChange={(event: any, newValue: number | number[]) =>
+                            onTimerChange(newValue as any as [number, number])
+                          }
+                          valueLabelDisplay="auto"
+                          aria-labelledby="time-of-day-slider"
+                          valueLabelFormat={(value: number, index: number) =>
+                            `${value}:${index > 0 ? "59" : "00"}`
+                          }
+                          getAriaValueText={(value: number, index: number) =>
+                            `${value}:${index > 0 ? "59" : "00"}`
+                          }
+                          min={0}
+                          max={23}
+                        />
+                        <br></br>
+                        <br></br>
+                        <h3 style={{ fontSize: "1em", color: (modeLabel as string === 'dark') ? 'black' : 'white' }}>Recency</h3>
+                        <Range
+                          allowCross={false}
+                          marks={{ 1: "1 Day", 60: "60 Days" }}
+                          value={rangeValue}
+                          min={1}
+                          max={60}
+                          draggableTrack={true}
+                          tipFormatter={(value: any) => `${value} days`}
+                          trackStyle={[
+                            { backgroundColor: "transparent" },
+                            { backgroundColor: "transparent" },
+                          ]}
+                          railStyle={{
+                            background:
+                              "linear-gradient(to right, hsl(0,100%,50%),hsl(45,100%,50%),hsl(90,100%,50%),hsl(135,100%,50%), hsl(180,100%,50%))",
+                          }}
+                          onChange={onSliderChange}
+                        />
+                        <br></br>
+                        <br></br>
+                        <button
+                          onClick={resetMap}
+                          type="button"
+                          className="btn btn-primary"
+                        >
+                          Reset Map
+                        </button>
+                        <br></br>
+                        <br></br>
+                        <h4 style={{ fontSize: "1em", color: (modeLabel as string === 'dark') ? 'black' : 'white' }}>
+                          {crimesToDisplay.length}/{sixtyDayCrimes.length} Crimes
+                        </h4>
+                      </>
+                    ) : undefined}
+                  </Paper>
                 </ThemeProvider>
               </div>
             )}

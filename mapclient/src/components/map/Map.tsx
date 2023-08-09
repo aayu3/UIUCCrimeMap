@@ -8,8 +8,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactMapGL, {
   GeolocateControl,
   MapRef,
@@ -108,21 +107,6 @@ const Map: React.FC<{
   useEffect(() => {
     updateViewport({ longitude: location.lng, latitude: location.lat });
   }, [location]);
-
-  const data = useMemo<
-    | GeoJSON.Feature<GeoJSON.Geometry>
-    | GeoJSON.FeatureCollection<GeoJSON.Geometry>
-  >(() => {
-    return {
-      type: "FeatureCollection",
-
-      features: crimeData.map((x) => ({
-        type: "Feature",
-        properties: x,
-        geometry: { type: "Point", coordinates: [x.Longitude, x.Latitude, 0] },
-      })),
-    };
-  }, [crimeData]);
 
   const geolocateStyle = {
     bottom: 0,
