@@ -18,6 +18,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-static-gzip": "^2.1.7",
     "mongoose": "^5.12.3",
     "yarn": "^1.22.11"
   },

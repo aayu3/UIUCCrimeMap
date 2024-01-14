@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/crimes', async(req, res) => {
     try {
         const crimes = await Crime.find();
+        res.setHeader('Cache-Control', 'public, max-age=86400');
         res.send(crimes);
     } catch {
         res.status(404);
@@ -19,6 +20,7 @@ router.get('/crimes', async(req, res) => {
 router.get("/crimes/:id", async (req, res) => {
     try {
         const crime = await Crime.findOne( {_id : req.params.id});
+        res.setHeader('Cache-Control', 'public, max-age=604800');
         res.send(crime);
     } catch {
         res.status(404);
