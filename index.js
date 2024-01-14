@@ -20,6 +20,7 @@ mongoose.connect(
     // Serve up our react app
 
     // serves the built version of your react app
+    app.use(express.expressStaticGzip(path.join(__dirname, 'mapclient/build'), {maxAge: '1d'}))
     app.use(express.static(path.join(__dirname, 'mapclient/build'), {maxAge: '1d'}))
     app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/mapclient/build/index.html'))
