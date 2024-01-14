@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const routes = require("./api/routes");
 const cors = require("cors");
 const path = require('path');
+var compress = require('compression');
 require('dotenv').config();
 
 
@@ -16,11 +17,12 @@ mongoose.connect(
     app.use(cors());
     app.use("/api", routes);
     app.use(express.json());
+    app.use(compress()); 
 
     // Serve up our react app
 
     // serves the built version of your react app
-    app.use(express.static(path.join(__dirname, 'mapclient/build')))
+    app.use(express.static(path.join(__dirname, 'mapclient/build'), {maxAge: '1d'}))
     app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/mapclient/build/index.html'))
     })
