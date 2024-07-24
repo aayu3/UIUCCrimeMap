@@ -1,16 +1,15 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { JSCrimeEvent } from "./App";
-export const generatePDFBody = (crimes: JSCrimeEvent[]) => {
+import { CrimeEvent } from "./App";
+export const generatePDFBody = (crimes: CrimeEvent[]) => {
   var pdfBody = [];
   for (var i = 0; i < crimes.length; i++) {
     let crime = crimes[i];
-    console.log(crime.Description);
     pdfBody[i] = [
       crime.CaseID,
-      crime.DateReported,
+      crime.DateReported.toDateString(),
       crime.TimeReported,
-      crime.DateOccurred,
+      crime.DateOccurred.toDateString(),
       crime.TimeOccurred,
       crime.StreetAddress,
       crime.Description,
@@ -19,7 +18,7 @@ export const generatePDFBody = (crimes: JSCrimeEvent[]) => {
   }
   return pdfBody;
 };
-export const generatePDF = (crimes: JSCrimeEvent[]) => {
+export const generatePDF = (crimes: CrimeEvent[]) => {
   const doc = new jsPDF("l");
   let pdfBody = generatePDFBody(crimes);
   // Or use javascript directly:

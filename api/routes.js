@@ -6,7 +6,22 @@ const router = express.Router();
 // Gets all crimes
 router.get('/crimes', async(req, res) => {
     try {
-        const crimes = await Crime.find();
+        const days = parseInt(req.query.days, 10);
+
+        let query = {};
+
+        // If 'days' is provided and is a valid number, add the date filter to the query
+        if (!isNaN(days) && days > 0) {
+            const dateThreshold = new Date(new Date() - days * 24 * 60 * 60 * 1000);
+            query = {
+                $or: [
+                    { DateOccurred: { $gte: dateThreshold } },
+                    { DateReported: { $gte: dateThreshold } }
+                ]
+            };
+        }
+
+        const crimes = await Crime.find(query);
         res.setHeader('Cache-Control', 'public, max-age=86400');
         res.send(crimes);
     } catch {
@@ -16,17 +31,8 @@ router.get('/crimes', async(req, res) => {
     
 });
 
-// Getting a specific crime
-router.get("/crimes/:id", async (req, res) => {
-    try {
-        const crime = await Crime.findOne( {_id : req.params.id});
-        res.setHeader('Cache-Control', 'public, max-age=604800');
-        res.send(crime);
-    } catch {
-        res.status(404);
-        res.send({error: "Get request for a single crime resulted in error"});
-    }
-});
+
+
 
 // Create a new crime report
 /*
