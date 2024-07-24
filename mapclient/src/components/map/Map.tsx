@@ -15,7 +15,7 @@ import ReactMapGL, {
   NavigationControl,
   Popup,
 } from "react-map-gl";
-import { JSCrimeEvent } from "../../App";
+import { CrimeEvent } from "../../App";
 import { clusterLayer } from "./layers";
 import classes from "./Map.module.scss";
 import Pins from "./Pins";
@@ -35,7 +35,6 @@ const lightTransformRequest = (url: string, resourceType: string) => {
   }
   return {
     url: url,
-    // headers: { 'Authorization': 'Bearer ' + yourAuthToken }
   };
 };
 
@@ -51,7 +50,6 @@ const darkTransformRequest = (url: string, resourceType: string) => {
   }
   return {
     url: url,
-    // headers: { 'Authorization': 'Bearer ' + yourAuthToken }
   };
 };
 
@@ -59,12 +57,12 @@ const darkTransformRequest = (url: string, resourceType: string) => {
 // if statement in main program and reload props
 
 const Map: React.FC<{
-  crimeData: JSCrimeEvent[];
+  crimeData: CrimeEvent[];
   location: any;
   showNav?: boolean;
-  mode: string|null;
+  mode: string | null;
 }> = (properties) => {
-  const { crimeData, location, showNav = true, mode} = properties;
+  const { crimeData, location, showNav = true, mode } = properties;
   // public state: State = initialState;
   const [viewport, setViewport] = useState({
     height: "100%",
@@ -74,9 +72,9 @@ const Map: React.FC<{
     zoom: 14,
   });
 
-  const [dcrime, setDcrime] = useState<JSCrimeEvent[]>([]);
+  const [dcrime, setDcrime] = useState<CrimeEvent[]>([]);
   const mapRef = useRef<MapRef>(null);
-  
+
   useEffect(() => {
     const onResize = () => {
       setViewport((prevState) => ({
@@ -115,15 +113,15 @@ const Map: React.FC<{
   };
   if (mode === "light") {
     return (
-    
+
       <ReactMapGL
-        {...viewport} 
+        {...viewport}
         transformRequest={lightTransformRequest}
         disableTokenWarning
         interactiveLayerIds={[clusterLayer.id as string]}
         ref={mapRef}
         onViewportChange={(v: any) => updateViewport(v)}
-        // onClick={onClick}
+      // onClick={onClick}
       >
         {/* <Source
                     id="earthquakes"
@@ -142,7 +140,7 @@ const Map: React.FC<{
                 </Source> */}
         <Pins
           data={crimeData}
-          onClick={(cv: JSCrimeEvent) =>
+          onClick={(cv: CrimeEvent) =>
             setDcrime(
               crimeData.filter(
                 (crime) =>
@@ -188,7 +186,7 @@ const Map: React.FC<{
                   <CloseIcon />
                 </IconButton>
               </Paper>
-  
+
               {dcrime.map((crime) => {
                 return (
                   <Accordion>
@@ -198,7 +196,11 @@ const Map: React.FC<{
                     <AccordionDetails>
                       <Typography>
                         <div style={{ fontSize: "0.9em" }}>
-                          Date: {crime.DateOccurred}
+                          Date: {
+                            new Date(crime.DateOccurred).getFullYear() > 2020
+                              ? new Date(crime.DateOccurred).toDateString()
+                              : new Date(crime.DateReported).toDateString()
+                          }
                         </div>
                         <div style={{ fontSize: "0.9em" }}>
                           Time: {crime.TimeOccurred}
@@ -227,15 +229,15 @@ const Map: React.FC<{
     );
   } else if (mode === "dark") {
     return (
-    
+
       <ReactMapGL
-        {...viewport} 
+        {...viewport}
         transformRequest={darkTransformRequest}
         disableTokenWarning
         interactiveLayerIds={[clusterLayer.id as string]}
         ref={mapRef}
         onViewportChange={(v: any) => updateViewport(v)}
-        // onClick={onClick}
+      // onClick={onClick}
       >
         {/* <Source
                     id="earthquakes"
@@ -254,7 +256,7 @@ const Map: React.FC<{
                 </Source> */}
         <Pins
           data={crimeData}
-          onClick={(cv: JSCrimeEvent) =>
+          onClick={(cv: CrimeEvent) =>
             setDcrime(
               crimeData.filter(
                 (crime) =>
@@ -300,7 +302,7 @@ const Map: React.FC<{
                   <CloseIcon />
                 </IconButton>
               </Paper>
-  
+
               {dcrime.map((crime) => {
                 return (
                   <Accordion>
@@ -310,7 +312,7 @@ const Map: React.FC<{
                     <AccordionDetails>
                       <Typography>
                         <div style={{ fontSize: "0.9em" }}>
-                          Date: {crime.DateOccurred}
+                          Date: {crime.DateOccurred.toLocaleDateString()}
                         </div>
                         <div style={{ fontSize: "0.9em" }}>
                           Time: {crime.TimeOccurred}
@@ -337,17 +339,17 @@ const Map: React.FC<{
         />
       </ReactMapGL>
     );
-  } 
+  }
   return (
-    
+
     <ReactMapGL
-      {...viewport} 
+      {...viewport}
       transformRequest={lightTransformRequest}
       disableTokenWarning
       interactiveLayerIds={[clusterLayer.id as string]}
       ref={mapRef}
       onViewportChange={(v: any) => updateViewport(v)}
-      // onClick={onClick}
+    // onClick={onClick}
     >
       {/* <Source
                   id="earthquakes"
@@ -366,7 +368,7 @@ const Map: React.FC<{
               </Source> */}
       <Pins
         data={crimeData}
-        onClick={(cv: JSCrimeEvent) =>
+        onClick={(cv: CrimeEvent) =>
           setDcrime(
             crimeData.filter(
               (crime) =>

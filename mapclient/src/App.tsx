@@ -15,7 +15,6 @@ import About from "./components/About/About";
 import Map from "./components/map/Map";
 import Team from "./components/Team/Team";
 import { ReactComponent as Logo } from "./icons/websitelogo.svg";
-import { TablePage } from "./pages";
 import { generatePDF } from "./PDFGenerator";
 
 // Define Center Location
@@ -26,6 +25,9 @@ const location = {
   zoom: 17,
 };
 
+// Default date, if something has this as the date, means that something got fucked up
+const defaultDate = new Date(1868, 2, 1);
+const currentDate = new Date();
 let mode = localStorage.getItem("theme");
 var modeLabel = "";
 var buttonMode = "";
@@ -41,11 +43,11 @@ if (mode === null) {
   buttonMode = 'dark';
 }
 
-export type RawCrimeEvent = {
+export type CrimeEvent = {
   CaseID: string;
-  DateReported: string;
+  DateReported: Date;
   TimeReported: string;
-  DateOccurred: string;
+  DateOccurred: Date;
   TimeOccurred: string;
   Latitude: number;
   Longitude: number;
@@ -53,16 +55,9 @@ export type RawCrimeEvent = {
   Description: string;
   Disposition: string;
 };
-export type JSCrimeEvent = RawCrimeEvent & {
-  jsDateOccured: Date;
-  jsDateReported: Date;
-  jsDateTimeOccurred: Date;
-  jsTimeOccurred: number;
-};
 const Range = createSliderWithTooltip(RCSlider.Range);
 const routes = [
   { name: "Map", path: "/" },
-  { name: "Table", path: "/table" },
   { name: "About", path: "/about" },
   { name: "UIUC Police", path: "https://police.illinois.edu/", external: true },
   { name: "Team", path: "/team" },
@@ -78,12 +73,11 @@ const App: React.FC = (props) => {
       return true;
     }
   }, []);
-  const [allCrimes, setAllCrimes] = useState<JSCrimeEvent[]>([]);
-  const [crimesToDisplay, setCrimesToDisplay] = useState<JSCrimeEvent[]>([]);
+  const [crimesToDisplay, setCrimesToDisplay] = useState<CrimeEvent[]>([]);
   const [rangeValue, setRangeValue] = useState<[number]>(defaultRangeValue);
   const [timeRange, setTimeRange] =
     useState<[number, number]>(defaultTimeRange);
-  const [sixtyDayCrimes, setSixtyDayCrimes] = useState<JSCrimeEvent[]>([]);
+  const [sixtyDayCrimes, setSixtyDayCrimes] = useState<CrimeEvent[]>([]);
   const [showLegend, setShowLegend] = useState(false);
   const [toggle, setToggle] = useState<string | null>(localStorage.getItem('theme'));
 
@@ -100,7 +94,6 @@ const App: React.FC = (props) => {
       setToggle('light');
       localStorage.setItem('theme', 'light');
     }
-    console.log(toggle);
     window.location.reload();
   }, [toggle]);
 
@@ -124,65 +117,17 @@ const App: React.FC = (props) => {
     (async () => {
       const r = await fetch(
         process.env.NODE_ENV === "development"
-          ? "https://uiuccrimemap.herokuapp.com/api/crimes"
-          : "/api/crimes"
+          ? "http://localhost:5000/api/crimes?days=60"
+          : "/api/crimes?days=60"
       );
       const json = await r.json();
-      const crimes = (Array.from(json) as RawCrimeEvent[]).map((x) => {
-        let dateO = x.DateOccurred.split("/");
-        let timeO = x.TimeOccurred;
-        let dateR = x.DateReported.split("/");
-        let timeR = x.TimeReported;
-        const jsDateOccured = new Date(
-          `${[dateO[2], dateO[0], dateO[1]].join("/")} ${"00:00"}`
-        );
-        const jsDateReported = new Date(
-          `${[dateR[2], dateR[0], dateR[1]].join("/")} ${"00:00"}`
-        );
-        return {
-          ...x,
-          jsDateOccured,
-          jsDateReported,
-          jsDateTimeOccurred: new Date(
-            `${[dateO[2], dateO[0], dateO[1]].join("/")} ${timeO}`
-          ),
-          jsDateTimeReported: new Date(
-            `${[dateR[2], dateR[0], dateR[1]].join("/")} ${timeR}`
-          ),
-          jsTimeOccurred:
-            +new Date(`${[dateO[2], dateO[0], dateO[1]].join("/")} ${timeO}`) -
-            +new Date(`${[dateO[2], dateO[0], dateO[1]].join("/")} ${"00:00"}`),
-          jsTimeReported:
-            +new Date(`${[dateR[2], dateR[0], dateR[1]].join("/")} ${timeR}`) -
-            +new Date(`${[dateR[2], dateR[0], dateR[1]].join("/")} ${"00:00"}`),
-        };
+      const crimes = (Array.from(json) as CrimeEvent[]).map((x) => { return {...x, DateOccurred: new Date(x.DateOccurred), DateReported: new Date(x.DateReported)};
       });
-      setAllCrimes(crimes);
+      setSixtyDayCrimes(crimes);
     })();
   }, []);
 
-  useEffect(() => {
-    // Sixty Day Filter
-    let sixtyDayCrimesA = [];
-    for (let i = 0; i < allCrimes.length; i++) {
-      let crime = allCrimes[i];
-      // default to not adding
-      let daysBetween = 61;
-      if (crime.DateOccurred.includes("/")) {
-        daysBetween =
-        (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
-      } else if (crime.DateReported.includes("/")) {
-        daysBetween =
-        (+new Date() - +crime.jsDateReported) / 1000 / 60 / 60 / 24;
-      }
-      if ( 0<= daysBetween && daysBetween <= 60) {
-        sixtyDayCrimesA.push(crime);
-      }
-    }
-    setSixtyDayCrimes(sixtyDayCrimesA);
-  }, [allCrimes]);
-
-  const filterTime = (crimes: JSCrimeEvent[], timeRange: [number, number]) => {
+  const filterTime = (crimes: CrimeEvent[], timeRange: [number, number]) => {
     var filtered = [];
     for (var i = 0; i < crimes.length; i++) {
       let crime = crimes[i];
@@ -202,17 +147,18 @@ const App: React.FC = (props) => {
     }
     return filtered;
   };
-  const filterRange = (crimes: JSCrimeEvent[], range: number) => {
+  const filterRange = (crimes: CrimeEvent[], range: number) => {
     var filtered = [];
     for (let i = 0; i < crimes.length; i++) {
       let crime = crimes[i];
       let daysBetween = 61;
-      if (crime.DateOccurred.includes("/")) {
+      if (!(crime.DateOccurred === defaultDate)) {
+        
         daysBetween =
-        (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
-      } else if (crime.DateReported.includes("/")) {
+        (currentDate.getTime() - crime.DateOccurred.getTime()) / 1000 / 60 / 60 / 24;
+      } else if (!(crime.DateReported === defaultDate)) {
         daysBetween =
-        (+new Date() - +crime.jsDateReported) / 1000 / 60 / 60 / 24;
+        (currentDate.getTime() - crime.DateReported.getTime()) / 1000 / 60 / 60 / 24;
       }
       if (0 <= daysBetween && daysBetween <= range) {
         filtered.push(crime);
@@ -220,9 +166,11 @@ const App: React.FC = (props) => {
     }
     return filtered;
   };
+
   useEffect(() => {
     let filtered = filterRange(sixtyDayCrimes, rangeValue[0]);
     filtered = filterTime(filtered, timeRange);
+
     setCrimesToDisplay(filtered);
   }, [sixtyDayCrimes, rangeValue, timeRange, setCrimesToDisplay]);
 
@@ -468,11 +416,6 @@ const App: React.FC = (props) => {
           <Route exact path="/team">
             <Team />
           </Route>
-          <Route
-            exact
-            path="/table"
-            render={() => <TablePage crimes={sixtyDayCrimes} />}
-          />
         </Switch>
       </main>
     </div>

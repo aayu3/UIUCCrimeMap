@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
     CaseID : String,
-    DateReported : String,
+    DateReported : Date,
     TimeReported : String,
-    DateOccurred : String,
+    DateOccurred : Date,
     TimeOccurred : String,
     Latitude : Number,
     Longitude : Number,
@@ -14,7 +14,7 @@ const schema = mongoose.Schema({
 },
 // Used to specify collection name in MongoDB
 {
-    collection : "Crime-Data"
+    collection : "Crime-Data-Date"
 });
 
 module.exports = mongoose.model("Crimes", schema);

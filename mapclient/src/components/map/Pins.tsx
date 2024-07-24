@@ -1,6 +1,6 @@
 import React from "react";
 import { Marker } from "react-map-gl";
-import { JSCrimeEvent } from "../../App";
+import { CrimeEvent } from "../../App";
 
 /*
 const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
@@ -56,7 +56,7 @@ function describeArc(
 function Pins(props: any) {
   const { data, onClick } = props;
   let posMap: { count: number; lng: number; lat: number }[] = [];
-  (data ?? []).map((crime: JSCrimeEvent, index: number) => {
+  (data ?? []).map((crime: CrimeEvent, index: number) => {
     let posMapIndex = posMap.findIndex(
       (x) => crime.Longitude === x.lng && crime.Latitude === x.lat
     );
@@ -68,8 +68,8 @@ function Pins(props: any) {
   });
   let oldPosMap = posMap.slice();
   posMap = [];
-  return (data ?? []).map((crime: JSCrimeEvent, index: number) => {
-    let diff = (+new Date() - +crime.jsDateOccured) / 1000 / 60 / 60 / 24;
+  return (data ?? []).map((crime: CrimeEvent, index: number) => {
+    let diff = (+new Date() - +crime.DateOccurred) / 1000 / 60 / 60 / 24;
     let posMapIndex = posMap.findIndex(
       (x) => crime.Longitude === x.lng && crime.Latitude === x.lat
     );
